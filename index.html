@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dwij Joshi — Mechatronics Engineering</title>
+  <meta name="description" content="Mechatronics Engineering student at TMU. Embedded systems, C++, hardware-software integration."/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- Canvases -->
+<canvas id="lightning-canvas"></canvas>
+<canvas id="spark-canvas"></canvas>
+
+<!-- Cursor -->
+<div class="c-dot"  id="cDot"></div>
+<div class="c-ring" id="cRing"></div>
+
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav id="nav">
+  <div class="nav-logo">&lt;dwij-joshi /&gt;</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <a href="Dwij_Joshi_Resume_Technical.pdf" target="_blank" class="nav-cta">resume.pdf</a>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg-text" aria-hidden="true">DWIJ</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">MECHATRONICS ENGINEERING · TMU · CLASS OF 2029</div>
+    <h1 class="hero-name" data-glitch="DWIJ&#10;JOSHI.">
+      DWIJ
+      <span class="red-line">JOSHI.</span>
+    </h1>
+    <p class="hero-sub">
+      Embedded Systems<span class="sep">⚡</span>C++<span class="sep">⚡</span>Hardware-Software Integration
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-red">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        VIEW PROJECTS
+      </a>
+      <a href="https://github.com/dwijjoshi14" target="_blank" class="btn-ghost">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GITHUB
+      </a>
+      <a href="https://linkedin.com/in/dwij-joshi" target="_blank" class="btn-ghost">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LINKEDIN
+      </a>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>SCROLL</span>
+    <div class="scroll-bolt"></div>
+  </div>
+</section>
+
+<div class="e-divider"></div>
+
+<!-- ── ABOUT ─────────────────────────────────────────────── -->
+<section id="about">
+  <div class="s-wrap">
+    <div class="s-label">01 — ABOUT</div>
+    <h2 class="s-title">WHO I <span class="acc">AM</span></h2>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>I'm a <strong>Mechatronics Engineering student at Toronto Metropolitan University</strong>, transferred from Computer Engineering because the problems I care about most live at the intersection of electronics, mechanics, and firmware.</p>
+        <p>My technical work spans <span class="hl">embedded C++ firmware</span>, <span class="hl">sensor integration</span>, ADC-to-output control loops, and software QA. I don't just write code — I stress-test it, document it, and hand it off in a state others can actually use.</p>
+        <p>Outside engineering, 3+ years across clinical data management, youth education, and community sports operations. I'm equally comfortable in a lab, a spreadsheet, or a stakeholder meeting.</p>
+        <p><strong>Ontario Scholar</strong> · Certificate of Recognition (Leacock Foundation)</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-n">3+</div><div class="stat-l">Years Work Experience</div></div>
+        <div class="stat-card"><div class="stat-n">C++</div><div class="stat-l">Primary Language</div></div>
+        <div class="stat-card"><div class="stat-n">2029</div><div class="stat-l">Expected Graduation</div></div>
+        <div class="stat-card"><div class="stat-n">TMU</div><div class="stat-l">Toronto Met University</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="e-divider"></div>
+
+<!-- ── PROJECTS ──────────────────────────────────────────── -->
+<section id="projects">
+  <div class="s-wrap">
+    <div class="s-label">02 — PROJECTS</div>
+    <h2 class="s-title">THINGS I'VE <span class="acc">BUILT</span></h2>
+    <div class="proj-grid">
+
+      <div class="proj-card reveal">
+        <div class="corner-tl"></div><div class="corner-br"></div>
+        <div class="proj-head">
+          <div class="proj-name">Heat Management System</div>
+          <div class="proj-links">
+            <a href="https://github.com/dwijjoshi14/heat-management-system" target="_blank" class="proj-link" title="GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+        <span class="proj-badge">Group Project · MTE301 · Fall 2025</span>
+        <p class="proj-desc">Closed-loop thermal control system on Arduino Uno. TMP36 ADC sensing, threshold-based PWM fan control via PMOS high-side driver. Dual feedback: 16×2 LCD and an 80-LED NeoPixel strip with color-coded thermal zones. Simulated and debugged in Tinkercad Circuits.</p>
+        <div class="proj-tags">
+          <span class="p-tag">C++</span><span class="p-tag">Arduino</span><span class="p-tag">PWM</span>
+          <span class="p-tag">TMP36</span><span class="p-tag">NeoPixel</span><span class="p-tag">Tinkercad</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="corner-tl"></div><div class="corner-br"></div>
+        <div class="proj-head">
+          <div class="proj-name">DC Circuit Analyzer</div>
+          <div class="proj-links">
+            <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" class="proj-link" title="GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+        <p class="proj-desc">Command-line C++ tool applying Ohm's Law and Kirchhoff's Laws to series and parallel DC resistive circuits. Computes total resistance, branch currents, per-component voltage drops, and power — with automatic KVL/KCL self-verification.</p>
+        <div class="proj-tags">
+          <span class="p-tag">C++17</span><span class="p-tag">OOP</span>
+          <span class="p-tag">KVL/KCL</span><span class="p-tag">Ohm's Law</span><span class="p-tag">Make</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="corner-tl"></div><div class="corner-br"></div>
+        <div class="proj-head">
+          <div class="proj-name">Smart Parking Assistant</div>
+        </div>
+        <span class="proj-badge">High School Capstone · Jun 2024</span>
+        <p class="proj-desc">Proximity-feedback parking system achieving 95% distance detection accuracy across 5–100 cm. Sub-50 ms real-time feedback loop with proportional buzzer and LED guidance. 10+ edge-case test scenarios hardened system reliability from 65% to 88%.</p>
+        <div class="proj-tags">
+          <span class="p-tag">C++</span><span class="p-tag">Arduino</span>
+          <span class="p-tag">Ultrasonic</span><span class="p-tag">PWM</span>
+        </div>
+      </div>
+
+      <div class="proj-card reveal" style="opacity:0.45;border-style:dashed;">
+        <div class="corner-tl"></div><div class="corner-br"></div>
+        <div class="proj-head"><div class="proj-name">Embedded GPIO Demo</div></div>
+        <span class="proj-badge">In Progress</span>
+        <p class="proj-desc">Bare-metal button + interrupt-driven LED control on Arduino Uno. Direct register writes, no Arduino IDE abstractions. Debouncing, state machine logic, UART serial output.</p>
+        <div class="proj-tags">
+          <span class="p-tag">C</span><span class="p-tag">Arduino</span>
+          <span class="p-tag">GPIO</span><span class="p-tag">Interrupts</span><span class="p-tag">UART</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="e-divider"></div>
+
+<!-- ── SKILLS ────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="s-wrap">
+    <div class="s-label">03 — SKILLS</div>
+    <h2 class="s-title">WHAT I <span class="acc">WORK WITH</span></h2>
+    <div class="skills-grid reveal">
+      <div class="sk-group">
+        <div class="sk-title">Languages</div>
+        <div class="sk-tags">
+          <span class="sk-tag">C</span><span class="sk-tag">C++</span><span class="sk-tag">Python</span>
+          <span class="sk-tag">Java</span><span class="sk-tag">SQL</span><span class="sk-tag">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-title">Embedded & Hardware</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Arduino</span><span class="sk-tag">PWM</span><span class="sk-tag">ADC</span>
+          <span class="sk-tag">UART</span><span class="sk-tag">I2C</span><span class="sk-tag">SPI</span>
+          <span class="sk-tag">GPIO</span><span class="sk-tag">PMOS Driver</span>
+        </div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-title">Tools & Platforms</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Git</span><span class="sk-tag">PlatformIO</span>
+          <span class="sk-tag">Tinkercad</span><span class="sk-tag">MATLAB</span>
+          <span class="sk-tag">VS Code</span><span class="sk-tag">Make</span>
+        </div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-title">Testing & QA</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Test Case Design</span><span class="sk-tag">Black-box</span>
+          <span class="sk-tag">White-box</span><span class="sk-tag">Defect Tracking</span><span class="sk-tag">V&V</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="e-divider"></div>
+
+<!-- ── EXPERIENCE ────────────────────────────────────────── -->
+<section id="experience">
+  <div class="s-wrap">
+    <div class="s-label">04 — EXPERIENCE</div>
+    <h2 class="s-title">WHERE I'VE <span class="acc">WORKED</span></h2>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-date">Jul 2024 – Aug 2025</div>
+          <span class="exp-type">Contract</span>
+        </div>
+        <div>
+          <div class="exp-role">Administrative Assistant</div>
+          <div class="exp-org">Rosalie Hall Mental Health Institution · Toronto, ON</div>
+          <ul class="exp-buls">
+            <li>Rebuilt Excel-based client tracking for 50+ users, cutting report generation from ~3 hours to under 45 minutes.</li>
+            <li>Designed a standardized data-entry protocol adopted across 3 program teams, improving audit readiness.</li>
+            <li>Produced monthly outcome dashboards for clinical leadership informing staffing and resource decisions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-date">Feb 2023 – Oct 2025</div>
+          <span class="exp-type">Part-time</span>
+        </div>
+        <div>
+          <div class="exp-role">Senior Program Assistant</div>
+          <div class="exp-org">Leacock Foundation · Toronto, ON</div>
+          <ul class="exp-buls">
+            <li>Tracked engagement for 100+ students across 4 streams; identified 15% attendance drop-off prompting a schedule change that recovered participation within 6 weeks.</li>
+            <li>Redesigned evaluation documentation, reducing compilation by 30% enabling same-week funder submissions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-date">Sept 2022 – Dec 2022</div>
+          <span class="exp-type">Contract</span>
+        </div>
+        <div>
+          <div class="exp-role">League Ambassador</div>
+          <div class="exp-org">JAM Sports · Toronto, ON</div>
+          <ul class="exp-buls">
+            <li>Coordinated logistics for 30+ participants per session; zero-incident operational record throughout engagement.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="e-divider"></div>
+
+<!-- ── CONTACT ───────────────────────────────────────────── -->
+<section id="contact">
+  <div class="s-wrap">
+    <div class="contact-inner reveal">
+      <div class="s-label" style="justify-content:center;">05 — CONTACT</div>
+      <h2 class="contact-big">LET'S<br/><span class="acc">CONNECT.</span></h2>
+      <p class="contact-sub">Open to co-op and internship opportunities in embedded systems, mechatronics, and hardware-software integration. Also open to non-technical roles where precision and initiative matter.</p>
+      <div class="contact-links">
+        <a href="mailto:dwijjoshi14@gmail.com" class="c-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          dwijjoshi14@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/dwij-joshi" target="_blank" class="c-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/dwijjoshi14" target="_blank" class="c-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Built by Dwij Joshi &nbsp;⚡&nbsp; dwijjoshi14.github.io</span>
+</footer>
+
+<!-- ── SCRIPTS ───────────────────────────────────────────── -->
+<script>
+// ── LIGHTNING CANVAS ────────────────────────────────────────
+const lCanvas = document.getElementById('lightning-canvas');
+const lCtx    = lCanvas.getContext('2d');
+
+function resizeLC() {
+  lCanvas.width  = window.innerWidth;
+  lCanvas.height = window.innerHeight;
+}
+resizeLC();
+window.addEventListener('resize', resizeLC);
+
+function bolt(ctx, x1, y1, x2, y2, rough, branches) {
+  const dx = x2 - x1, dy = y2 - y1;
+  const dist = Math.hypot(dx, dy);
+  if (dist < 12 || branches < 0) { ctx.lineTo(x2, y2); return; }
+  const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * rough;
+  const my = (y1 + y2) / 2 + (Math.random() - 0.5) * rough;
+  bolt(ctx, x1, y1, mx, my, rough * 0.55, branches - 1);
+  bolt(ctx, mx, my, x2, y2, rough * 0.55, branches - 1);
+  // Random sub-branch
+  if (Math.random() < 0.35 && branches > 1) {
+    const bx = mx + (Math.random() - 0.5) * dist * 0.7;
+    const by = my + Math.random() * dist * 0.5;
+    ctx.moveTo(mx, my);
+    bolt(ctx, mx, my, bx, by, rough * 0.4, branches - 2);
+  }
+}
+
+function flashLightning() {
+  const x1 = Math.random() * lCanvas.width;
+  const x2 = x1 + (Math.random() - 0.5) * 300;
+  const y2 = Math.random() * lCanvas.height * 0.7 + lCanvas.height * 0.15;
+  let alpha = 1;
+
+  function drawFrame() {
+    lCtx.clearRect(0, 0, lCanvas.width, lCanvas.height);
+    if (alpha <= 0) return;
+
+    // Outer glow
+    lCtx.save();
+    lCtx.strokeStyle = `rgba(255,60,60,${alpha * 0.18})`;
+    lCtx.lineWidth = 8;
+    lCtx.shadowColor = '#FF1A1A';
+    lCtx.shadowBlur = 30;
+    lCtx.beginPath(); lCtx.moveTo(x1, 0);
+    bolt(lCtx, x1, 0, x2, y2, 120, 6);
+    lCtx.stroke();
+
+    // Core bolt
+    lCtx.strokeStyle = `rgba(255,200,200,${alpha * 0.9})`;
+    lCtx.lineWidth = 1.5;
+    lCtx.shadowBlur = 12;
+    lCtx.beginPath(); lCtx.moveTo(x1, 0);
+    bolt(lCtx, x1, 0, x2, y2, 120, 6);
+    lCtx.stroke();
+    lCtx.restore();
+
+    alpha -= 0.045;
+    requestAnimationFrame(drawFrame);
+  }
+  drawFrame();
+}
+
+// Fire lightning randomly
+flashLightning();
+setInterval(() => { if (Math.random() < 0.7) flashLightning(); }, 3500);
+
+// ── SPARK CANVAS (cursor trail) ─────────────────────────────
+const sCanvas = document.getElementById('spark-canvas');
+const sCtx    = sCanvas.getContext('2d');
+
+function resizeSC() {
+  sCanvas.width  = window.innerWidth;
+  sCanvas.height = window.innerHeight;
+}
+resizeSC();
+window.addEventListener('resize', resizeSC);
+
+const sparks = [];
+let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+function spawnSparks() {
+  const count = 2 + Math.floor(Math.random() * 2);
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 0.5 + Math.random() * 2.5;
+    sparks.push({
+      x: mx, y: my,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 0.5,
+      life: 1,
+      decay: 0.04 + Math.random() * 0.06,
+      size: 1.5 + Math.random() * 2,
+    });
+  }
+}
+
+function animSparks() {
+  sCtx.clearRect(0, 0, sCanvas.width, sCanvas.height);
+  spawnSparks();
+  for (let i = sparks.length - 1; i >= 0; i--) {
+    const s = sparks[i];
+    s.x += s.vx; s.y += s.vy;
+    s.vy += 0.06; // gravity
+    s.life -= s.decay;
+    if (s.life <= 0) { sparks.splice(i, 1); continue; }
+    sCtx.save();
+    sCtx.globalAlpha = s.life * 0.7;
+    sCtx.fillStyle = s.life > 0.6 ? '#FF6B6B' : '#FF1A1A';
+    sCtx.shadowColor = '#FF1A1A';
+    sCtx.shadowBlur = 6;
+    sCtx.beginPath();
+    sCtx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
+    sCtx.fill();
+    sCtx.restore();
+  }
+  requestAnimationFrame(animSparks);
+}
+animSparks();
+
+// ── CUSTOM CURSOR ────────────────────────────────────────────
+const cDot  = document.getElementById('cDot');
+const cRing = document.getElementById('cRing');
+let rx2 = mx, ry2 = my;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cDot.style.left = mx + 'px';
+  cDot.style.top  = my + 'px';
+});
+function animRing() {
+  rx2 += (mx - rx2) * 0.14;
+  ry2 += (my - ry2) * 0.14;
+  cRing.style.left = rx2 + 'px';
+  cRing.style.top  = ry2 + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+document.querySelectorAll('a, button, .proj-card, .stat-card, .sk-tag').forEach(el => {
+  el.addEventListener('mouseenter', () => cRing.classList.add('active'));
+  el.addEventListener('mouseleave', () => cRing.classList.remove('active'));
+});
+
+// ── CLICK BURST ──────────────────────────────────────────────
+document.addEventListener('click', e => {
+  const burst = document.createElement('div');
+  burst.className = 'burst';
+  burst.style.left = e.clientX + 'px';
+  burst.style.top  = e.clientY + 'px';
+  document.body.appendChild(burst);
+
+  const count = 10 + Math.floor(Math.random() * 8);
+  for (let i = 0; i < count; i++) {
+    const arc = document.createElement('div');
+    arc.className = 'burst-arc';
+    const angle = (i / count) * 360;
+    const length = 30 + Math.random() * 50;
+    arc.style.cssText = `
+      transform: rotate(${angle}deg);
+      height: ${length}px;
+      animation-delay: ${Math.random() * 0.08}s;
+      animation-duration: ${0.35 + Math.random() * 0.25}s;
+      background: linear-gradient(to top, ${Math.random() > 0.5 ? '#FF1A1A' : '#FF6B6B'}, transparent);
+    `;
+    burst.appendChild(arc);
+  }
+
+  // Also flash lightning at click position
+  const bx = e.clientX, by = e.clientY;
+  let ba = 0.8;
+  function drawClickBolt() {
+    if (ba <= 0) return;
+    lCtx.save();
+    lCtx.strokeStyle = `rgba(255,100,100,${ba * 0.5})`;
+    lCtx.lineWidth = 3;
+    lCtx.shadowColor = '#FF1A1A';
+    lCtx.shadowBlur = 20;
+    for (let i = 0; i < 4; i++) {
+      const ex = bx + (Math.random() - 0.5) * 120;
+      const ey = by + (Math.random() - 0.5) * 120;
+      lCtx.beginPath(); lCtx.moveTo(bx, by);
+      bolt(lCtx, bx, by, ex, ey, 30, 3);
+      lCtx.stroke();
+    }
+    lCtx.restore();
+    ba -= 0.12;
+    requestAnimationFrame(drawClickBolt);
+  }
+  drawClickBolt();
+
+  setTimeout(() => burst.remove(), 600);
+});
+
+// ── NAV SCROLL ───────────────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── REVEAL ON SCROLL ─────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('on'), 60);
+      e.target.querySelectorAll('.proj-card,.sk-group,.stat-card,.exp-item').forEach((c, j) => {
+        setTimeout(() => { c.classList.add('reveal','on'); }, j * 100);
+      });
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── SECTION LIGHTNING ON ENTER ───────────────────────────────
+const sObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      // Fire a small bolt near the section title
+      setTimeout(flashLightning, 200);
+      sObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.s-title').forEach(el => sObserver.observe(el));
+</script>
+
+</body>
+</html>
