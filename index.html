@@ -9,12 +9,9 @@
 </head>
 <body>
 
-<!-- Canvases -->
 <canvas id="lightning-canvas"></canvas>
 <canvas id="spark-canvas"></canvas>
-
-<!-- Cursor -->
-<div class="c-dot"  id="cDot"></div>
+<div class="c-dot" id="cDot"></div>
 <div class="c-ring" id="cRing"></div>
 
 <!-- ── NAV ──────────────────────────────────────────────── -->
@@ -36,8 +33,7 @@
   <div class="hero-inner">
     <div class="hero-eyebrow">MECHATRONICS ENGINEERING · TMU · CLASS OF 2029</div>
     <h1 class="hero-name" data-glitch="DWIJ&#10;JOSHI.">
-      DWIJ
-      <span class="red-line">JOSHI.</span>
+      DWIJ<span class="red-line">JOSHI.</span>
     </h1>
     <p class="hero-sub">
       Embedded Systems<span class="sep">⚡</span>C++<span class="sep">⚡</span>Hardware-Software Integration
@@ -73,8 +69,8 @@
     <div class="about-grid reveal">
       <div class="about-text">
         <p>I'm a <strong>Mechatronics Engineering student at Toronto Metropolitan University</strong>, transferred from Computer Engineering because the problems I care about most live at the intersection of electronics, mechanics, and firmware.</p>
-        <p>My technical work spans <span class="hl">embedded C++ firmware</span>, <span class="hl">sensor integration</span>, ADC-to-output control loops, and software QA. I don't just write code — I stress-test it, document it, and hand it off in a state others can actually use.</p>
-        <p>Outside engineering, 3+ years across clinical data management, youth education, and community sports operations. I'm equally comfortable in a lab, a spreadsheet, or a stakeholder meeting.</p>
+        <p>My technical work spans <span class="hl">embedded C++ firmware</span>, <span class="hl">sensor integration</span>, ADC-to-output control loops, FreeRTOS real-time systems, and software QA. I don't just write code — I stress-test it, document it, and hand it off in a state others can actually use.</p>
+        <p>Outside engineering, 3+ years across clinical data management, youth education, and community sports operations. Equally comfortable in a lab, a spreadsheet, or a stakeholder meeting.</p>
         <p><strong>Ontario Scholar</strong> · Certificate of Recognition (Leacock Foundation)</p>
       </div>
       <div class="stat-grid">
@@ -94,100 +90,85 @@
   <div class="s-wrap">
     <div class="s-label">02 — PROJECTS</div>
     <h2 class="s-title">THINGS I'VE <span class="acc">BUILT</span></h2>
-    <div class="proj-grid">
 
-      <div class="proj-card reveal">
-        <div class="corner-tl"></div><div class="corner-br"></div>
-        <div class="proj-head">
-          <div class="proj-name">Heat Management System</div>
-          <div class="proj-links">
-            <a href="https://github.com/dwijjoshi14/heat-management-system" target="_blank" class="proj-link" title="GitHub">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            </a>
+    <div class="card-deck-container reveal">
+      <div class="card-deck-stage" id="deckStage">
+
+        <!-- Card 0: RTOS -->
+        <div class="deck-card" data-index="0" data-pos="0">
+          <div class="card-num"><span>01 / 04</span><span class="suit">⚡</span></div>
+          <div class="card-name">RTOS Task Scheduler</div>
+          <p class="card-desc">Three-task FreeRTOS system: SensorTask pushes temperature readings to a typed queue every 500ms. ControlTask applies threshold-based PWM logic and fires a binary semaphore on critical temp. DisplayTask renders live LCD-style output. POSIX simulation layer — STM32-portable.</p>
+          <div class="card-tags">
+            <span class="c-tag">C11</span><span class="c-tag">FreeRTOS</span>
+            <span class="c-tag">Queue</span><span class="c-tag">Semaphore</span>
+            <span class="c-tag">Mutex</span><span class="c-tag">STM32</span>
+          </div>
+          <a href="https://github.com/dwijjoshi14/rtos-task-scheduler" target="_blank" class="card-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+
+        <!-- Card 1: Heat Management -->
+        <div class="deck-card" data-index="1" data-pos="1">
+          <div class="card-num"><span>02 / 04</span><span class="suit">⚡</span></div>
+          <div class="card-name">Heat Management System</div>
+          <span class="card-badge">Group Project · MTE301 · Fall 2025</span>
+          <p class="card-desc">Closed-loop thermal control on Arduino Uno. TMP36 ADC sensing, threshold-based PWM fan control via PMOS high-side driver. Synchronized 16×2 LCD output and 80-LED NeoPixel strip with color-coded thermal zones. Simulated in Tinkercad Circuits.</p>
+          <div class="card-tags">
+            <span class="c-tag">C++</span><span class="c-tag">Arduino</span>
+            <span class="c-tag">PWM</span><span class="c-tag">TMP36</span>
+            <span class="c-tag">NeoPixel</span>
+          </div>
+          <a href="https://github.com/dwijjoshi14/heat-management-system" target="_blank" class="card-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+
+        <!-- Card 2: DC Circuit -->
+        <div class="deck-card" data-index="2" data-pos="2">
+          <div class="card-num"><span>03 / 04</span><span class="suit">⚡</span></div>
+          <div class="card-name">DC Circuit Analyzer</div>
+          <p class="card-desc">Command-line C++ tool applying Ohm's Law and Kirchhoff's Laws to series and parallel DC resistive circuits. Computes total resistance, branch currents, per-component voltage drops, and power — with automatic KVL/KCL self-verification after every run.</p>
+          <div class="card-tags">
+            <span class="c-tag">C++17</span><span class="c-tag">OOP</span>
+            <span class="c-tag">KVL/KCL</span><span class="c-tag">Ohm's Law</span><span class="c-tag">Make</span>
+          </div>
+          <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" class="card-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            View on GitHub →
+          </a>
+        </div>
+
+        <!-- Card 3: Smart Parking -->
+        <div class="deck-card" data-index="3" data-pos="3">
+          <div class="card-num"><span>04 / 04</span><span class="suit">⚡</span></div>
+          <div class="card-name">Smart Parking Assistant</div>
+          <span class="card-badge">High School Capstone · Jun 2024</span>
+          <p class="card-desc">Proximity-feedback parking system achieving 95% distance detection accuracy across 5–100 cm. Sub-50ms real-time feedback loop with proportional buzzer and LED guidance. 10+ edge-case test scenarios hardened system reliability from 65% to 88%.</p>
+          <div class="card-tags">
+            <span class="c-tag">C++</span><span class="c-tag">Arduino</span>
+            <span class="c-tag">Ultrasonic</span><span class="c-tag">PWM</span>
           </div>
         </div>
-        <span class="proj-badge">Group Project · MTE301 · Fall 2025</span>
-        <p class="proj-desc">Closed-loop thermal control system on Arduino Uno. TMP36 ADC sensing, threshold-based PWM fan control via PMOS high-side driver. Dual feedback: 16×2 LCD and an 80-LED NeoPixel strip with color-coded thermal zones. Simulated and debugged in Tinkercad Circuits.</p>
-        <div class="proj-tags">
-          <span class="p-tag">C++</span><span class="p-tag">Arduino</span><span class="p-tag">PWM</span>
-          <span class="p-tag">TMP36</span><span class="p-tag">NeoPixel</span><span class="p-tag">Tinkercad</span>
-        </div>
-      </div>
 
-      <div class="proj-card reveal">
-        <div class="corner-tl"></div><div class="corner-br"></div>
-        <div class="proj-head">
-          <div class="proj-name">DC Circuit Analyzer</div>
-          <div class="proj-links">
-            <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" class="proj-link" title="GitHub">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            </a>
-          </div>
-        </div>
-        <p class="proj-desc">Command-line C++ tool applying Ohm's Law and Kirchhoff's Laws to series and parallel DC resistive circuits. Computes total resistance, branch currents, per-component voltage drops, and power — with automatic KVL/KCL self-verification.</p>
-        <div class="proj-tags">
-          <span class="p-tag">C++17</span><span class="p-tag">OOP</span>
-          <span class="p-tag">KVL/KCL</span><span class="p-tag">Ohm's Law</span><span class="p-tag">Make</span>
-        </div>
-      </div>
+      </div><!-- /deck-stage -->
 
-      <div class="proj-card reveal">
-        <div class="corner-tl"></div><div class="corner-br"></div>
-        <div class="proj-head">
-          <div class="proj-name">Smart Parking Assistant</div>
+      <!-- Controls -->
+      <div class="deck-controls">
+        <button class="deck-btn deck-btn-prev" id="deckPrev">← PREV</button>
+        <div class="deck-dots" id="deckDots">
+          <div class="deck-dot active" data-i="0"></div>
+          <div class="deck-dot" data-i="1"></div>
+          <div class="deck-dot" data-i="2"></div>
+          <div class="deck-dot" data-i="3"></div>
         </div>
-        <span class="proj-badge">High School Capstone · Jun 2024</span>
-        <p class="proj-desc">Proximity-feedback parking system achieving 95% distance detection accuracy across 5–100 cm. Sub-50 ms real-time feedback loop with proportional buzzer and LED guidance. 10+ edge-case test scenarios hardened system reliability from 65% to 88%.</p>
-        <div class="proj-tags">
-          <span class="p-tag">C++</span><span class="p-tag">Arduino</span>
-          <span class="p-tag">Ultrasonic</span><span class="p-tag">PWM</span>
-        </div>
+        <button class="deck-btn deck-btn-next" id="deckNext">NEXT →</button>
       </div>
-
-      <div class="proj-card reveal">
-  <div class="corner-tl"></div><div class="corner-br"></div>
-  <div class="proj-head">
-    <div class="proj-name">RTOS Task Scheduler</div>
-    <div class="proj-links">
-      <a href="https://github.com/dwijjoshi14/rtos-task-scheduler"
-         target="_blank" class="proj-link" title="GitHub">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385
-          .6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795
-          -.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78
-          -.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495
-          .99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305
-          .465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3
-          1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23
-          3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0
-          4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605
-          -.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024
-          12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-      </a>
     </div>
-  </div>
-  <p class="proj-desc">
-    Three-task FreeRTOS system implementing real-time temperature monitoring
-    and fan control. SensorTask pushes readings to a typed queue every 500ms.
-    ControlTask applies threshold logic and fires a binary semaphore on critical
-    temp. DisplayTask renders live LCD-style output and handles alerts. Built
-    against the standard FreeRTOS API — POSIX simulation layer makes it runnable
-    on Linux; STM32 port requires three HAL function swaps only.
-  </p>
-  <div class="proj-tags">
-    <span class="p-tag">C11</span>
-    <span class="p-tag">FreeRTOS</span>
-    <span class="p-tag">Queue</span>
-    <span class="p-tag">Semaphore</span>
-    <span class="p-tag">Mutex</span>
-    <span class="p-tag">STM32</span>
-    <span class="p-tag">POSIX</span>
-  </div>
-</div>
-      </div>
 
-    </div>
   </div>
 </section>
 
@@ -203,7 +184,7 @@
         <div class="sk-title">Languages</div>
         <div class="sk-tags">
           <span class="sk-tag">C</span><span class="sk-tag">C++</span><span class="sk-tag">Python</span>
-          <span class="sk-tag">Java</span><span class="sk-tag">SQL</span><span class="sk-tag">HTML/CSS</span>
+          <span class="sk-tag">Java</span><span class="sk-tag">SQL</span>
         </div>
       </div>
       <div class="sk-group">
@@ -217,16 +198,16 @@
       <div class="sk-group">
         <div class="sk-title">Tools & Platforms</div>
         <div class="sk-tags">
-          <span class="sk-tag">Git</span><span class="sk-tag">PlatformIO</span>
-          <span class="sk-tag">Tinkercad</span><span class="sk-tag">MATLAB</span>
-          <span class="sk-tag">VS Code</span><span class="sk-tag">Make</span>
+          <span class="sk-tag">Git</span><span class="sk-tag">FreeRTOS</span>
+          <span class="sk-tag">PlatformIO</span><span class="sk-tag">Tinkercad</span>
+          <span class="sk-tag">MATLAB</span><span class="sk-tag">Make</span>
         </div>
       </div>
       <div class="sk-group">
         <div class="sk-title">Testing & QA</div>
         <div class="sk-tags">
           <span class="sk-tag">Test Case Design</span><span class="sk-tag">Black-box</span>
-          <span class="sk-tag">White-box</span><span class="sk-tag">Defect Tracking</span><span class="sk-tag">V&V</span>
+          <span class="sk-tag">White-box</span><span class="sk-tag">Defect Tracking</span>
         </div>
       </div>
     </div>
@@ -241,12 +222,8 @@
     <div class="s-label">04 — EXPERIENCE</div>
     <h2 class="s-title">WHERE I'VE <span class="acc">WORKED</span></h2>
     <div class="exp-list">
-
       <div class="exp-item reveal">
-        <div>
-          <div class="exp-date">Jul 2024 – Aug 2025</div>
-          <span class="exp-type">Contract</span>
-        </div>
+        <div><div class="exp-date">Jul 2024 – Aug 2025</div><span class="exp-type">Contract</span></div>
         <div>
           <div class="exp-role">Administrative Assistant</div>
           <div class="exp-org">Rosalie Hall Mental Health Institution · Toronto, ON</div>
@@ -257,12 +234,8 @@
           </ul>
         </div>
       </div>
-
       <div class="exp-item reveal">
-        <div>
-          <div class="exp-date">Feb 2023 – Oct 2025</div>
-          <span class="exp-type">Part-time</span>
-        </div>
+        <div><div class="exp-date">Feb 2023 – Oct 2025</div><span class="exp-type">Part-time</span></div>
         <div>
           <div class="exp-role">Senior Program Assistant</div>
           <div class="exp-org">Leacock Foundation · Toronto, ON</div>
@@ -272,12 +245,8 @@
           </ul>
         </div>
       </div>
-
       <div class="exp-item reveal">
-        <div>
-          <div class="exp-date">Sept 2022 – Dec 2022</div>
-          <span class="exp-type">Contract</span>
-        </div>
+        <div><div class="exp-date">Sept 2022 – Dec 2022</div><span class="exp-type">Contract</span></div>
         <div>
           <div class="exp-role">League Ambassador</div>
           <div class="exp-org">JAM Sports · Toronto, ON</div>
@@ -286,7 +255,6 @@
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -299,7 +267,7 @@
     <div class="contact-inner reveal">
       <div class="s-label" style="justify-content:center;">05 — CONTACT</div>
       <h2 class="contact-big">LET'S<br/><span class="acc">CONNECT.</span></h2>
-      <p class="contact-sub">Open to co-op and internship opportunities in embedded systems, mechatronics, and hardware-software integration. Also open to non-technical roles where precision and initiative matter.</p>
+      <p class="contact-sub">Open to co-op and internship opportunities in embedded systems, mechatronics, and hardware-software integration starting January 2027.</p>
       <div class="contact-links">
         <a href="mailto:dwijjoshi14@gmail.com" class="c-link">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -318,240 +286,337 @@
   </div>
 </section>
 
-<footer>
-  <span>Built by Dwij Joshi &nbsp;⚡&nbsp; dwijjoshi14.github.io</span>
-</footer>
+<footer><span>Built by Dwij Joshi &nbsp;⚡&nbsp; dwijjoshi14.github.io</span></footer>
+
+<!-- ── AI CHAT WIDGET ─────────────────────────────────────── -->
+<button class="chat-bubble" id="chatBubble" aria-label="Chat with Dwij's AI">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+  </svg>
+</button>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="chat-avatar">DJ</div>
+    <div class="chat-header-info">
+      <div class="chat-header-name">Dwij's AI Agent</div>
+      <div class="chat-header-status"><div class="status-dot"></div>Online — ask me anything</div>
+    </div>
+    <button class="chat-close" id="chatClose">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-suggestions" id="chatSuggestions">
+    <button class="suggestion">Who is Dwij?</button>
+    <button class="suggestion">What projects?</button>
+    <button class="suggestion">Skills?</button>
+    <button class="suggestion">Available for co-op?</button>
+  </div>
+  <div class="chat-input-area">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Ask me about Dwij..." maxlength="200"/>
+    <button class="chat-send" id="chatSend">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
 
 <!-- ── SCRIPTS ───────────────────────────────────────────── -->
 <script>
-// ── LIGHTNING CANVAS ────────────────────────────────────────
-const lCanvas = document.getElementById('lightning-canvas');
-const lCtx    = lCanvas.getContext('2d');
+// ── LIGHTNING CANVAS ─────────────────────────────────────────
+const lc = document.getElementById('lightning-canvas');
+const lx = lc.getContext('2d');
+function resizeLC() { lc.width = innerWidth; lc.height = innerHeight; }
+resizeLC(); addEventListener('resize', resizeLC);
 
-function resizeLC() {
-  lCanvas.width  = window.innerWidth;
-  lCanvas.height = window.innerHeight;
-}
-resizeLC();
-window.addEventListener('resize', resizeLC);
-
-function bolt(ctx, x1, y1, x2, y2, rough, branches) {
-  const dx = x2 - x1, dy = y2 - y1;
-  const dist = Math.hypot(dx, dy);
-  if (dist < 12 || branches < 0) { ctx.lineTo(x2, y2); return; }
-  const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * rough;
-  const my = (y1 + y2) / 2 + (Math.random() - 0.5) * rough;
-  bolt(ctx, x1, y1, mx, my, rough * 0.55, branches - 1);
-  bolt(ctx, mx, my, x2, y2, rough * 0.55, branches - 1);
-  // Random sub-branch
-  if (Math.random() < 0.35 && branches > 1) {
-    const bx = mx + (Math.random() - 0.5) * dist * 0.7;
-    const by = my + Math.random() * dist * 0.5;
-    ctx.moveTo(mx, my);
-    bolt(ctx, mx, my, bx, by, rough * 0.4, branches - 2);
+function bolt(ctx, x1,y1,x2,y2,rough,branches) {
+  const dist = Math.hypot(x2-x1, y2-y1);
+  if (dist < 12 || branches < 0) { ctx.lineTo(x2,y2); return; }
+  const mx = (x1+x2)/2 + (Math.random()-.5)*rough;
+  const my = (y1+y2)/2 + (Math.random()-.5)*rough;
+  bolt(ctx, x1,y1,mx,my, rough*.55, branches-1);
+  bolt(ctx, mx,my,x2,y2, rough*.55, branches-1);
+  if (Math.random()<.35 && branches>1) {
+    const bx = mx+(Math.random()-.5)*dist*.7, by = my+Math.random()*dist*.5;
+    ctx.moveTo(mx,my); bolt(ctx,mx,my,bx,by,rough*.4,branches-2);
   }
 }
 
 function flashLightning() {
-  const x1 = Math.random() * lCanvas.width;
-  const x2 = x1 + (Math.random() - 0.5) * 300;
-  const y2 = Math.random() * lCanvas.height * 0.7 + lCanvas.height * 0.15;
+  const x1 = Math.random()*lc.width, x2 = x1+(Math.random()-.5)*300;
+  const y2 = Math.random()*lc.height*.7+lc.height*.15;
   let alpha = 1;
-
-  function drawFrame() {
-    lCtx.clearRect(0, 0, lCanvas.width, lCanvas.height);
-    if (alpha <= 0) return;
-
-    // Outer glow
-    lCtx.save();
-    lCtx.strokeStyle = `rgba(255,60,60,${alpha * 0.18})`;
-    lCtx.lineWidth = 8;
-    lCtx.shadowColor = '#FF1A1A';
-    lCtx.shadowBlur = 30;
-    lCtx.beginPath(); lCtx.moveTo(x1, 0);
-    bolt(lCtx, x1, 0, x2, y2, 120, 6);
-    lCtx.stroke();
-
-    // Core bolt
-    lCtx.strokeStyle = `rgba(255,200,200,${alpha * 0.9})`;
-    lCtx.lineWidth = 1.5;
-    lCtx.shadowBlur = 12;
-    lCtx.beginPath(); lCtx.moveTo(x1, 0);
-    bolt(lCtx, x1, 0, x2, y2, 120, 6);
-    lCtx.stroke();
-    lCtx.restore();
-
-    alpha -= 0.045;
-    requestAnimationFrame(drawFrame);
+  function draw() {
+    lx.clearRect(0,0,lc.width,lc.height);
+    if (alpha<=0) return;
+    lx.save();
+    lx.strokeStyle=`rgba(255,60,60,${alpha*.18})`; lx.lineWidth=8;
+    lx.shadowColor='#FF1A1A'; lx.shadowBlur=30;
+    lx.beginPath(); lx.moveTo(x1,0); bolt(lx,x1,0,x2,y2,120,6); lx.stroke();
+    lx.strokeStyle=`rgba(255,200,200,${alpha*.9})`; lx.lineWidth=1.5; lx.shadowBlur=12;
+    lx.beginPath(); lx.moveTo(x1,0); bolt(lx,x1,0,x2,y2,120,6); lx.stroke();
+    lx.restore(); alpha-=.045; requestAnimationFrame(draw);
   }
-  drawFrame();
+  draw();
 }
-
-// Fire lightning randomly
 flashLightning();
-setInterval(() => { if (Math.random() < 0.7) flashLightning(); }, 3500);
+setInterval(()=>{ if(Math.random()<.7) flashLightning(); }, 3500);
 
-// ── SPARK CANVAS (cursor trail) ─────────────────────────────
-const sCanvas = document.getElementById('spark-canvas');
-const sCtx    = sCanvas.getContext('2d');
-
-function resizeSC() {
-  sCanvas.width  = window.innerWidth;
-  sCanvas.height = window.innerHeight;
-}
-resizeSC();
-window.addEventListener('resize', resizeSC);
-
+// ── SPARK CANVAS ─────────────────────────────────────────────
+const sc = document.getElementById('spark-canvas');
+const sx = sc.getContext('2d');
+function resizeSC() { sc.width = innerWidth; sc.height = innerHeight; }
+resizeSC(); addEventListener('resize', resizeSC);
 const sparks = [];
-let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
+let mx=innerWidth/2, my=innerHeight/2;
+document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; });
 function spawnSparks() {
-  const count = 2 + Math.floor(Math.random() * 2);
-  for (let i = 0; i < count; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const speed = 0.5 + Math.random() * 2.5;
-    sparks.push({
-      x: mx, y: my,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed - 0.5,
-      life: 1,
-      decay: 0.04 + Math.random() * 0.06,
-      size: 1.5 + Math.random() * 2,
-    });
+  for(let i=0;i<2+Math.floor(Math.random()*2);i++) {
+    const a=Math.random()*Math.PI*2, s=.5+Math.random()*2.5;
+    sparks.push({x:mx,y:my,vx:Math.cos(a)*s,vy:Math.sin(a)*s-.5,life:1,decay:.04+Math.random()*.06,size:1.5+Math.random()*2});
   }
 }
-
 function animSparks() {
-  sCtx.clearRect(0, 0, sCanvas.width, sCanvas.height);
-  spawnSparks();
-  for (let i = sparks.length - 1; i >= 0; i--) {
-    const s = sparks[i];
-    s.x += s.vx; s.y += s.vy;
-    s.vy += 0.06; // gravity
-    s.life -= s.decay;
-    if (s.life <= 0) { sparks.splice(i, 1); continue; }
-    sCtx.save();
-    sCtx.globalAlpha = s.life * 0.7;
-    sCtx.fillStyle = s.life > 0.6 ? '#FF6B6B' : '#FF1A1A';
-    sCtx.shadowColor = '#FF1A1A';
-    sCtx.shadowBlur = 6;
-    sCtx.beginPath();
-    sCtx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
-    sCtx.fill();
-    sCtx.restore();
+  sx.clearRect(0,0,sc.width,sc.height); spawnSparks();
+  for(let i=sparks.length-1;i>=0;i--) {
+    const s=sparks[i]; s.x+=s.vx; s.y+=s.vy; s.vy+=.06; s.life-=s.decay;
+    if(s.life<=0){sparks.splice(i,1);continue;}
+    sx.save(); sx.globalAlpha=s.life*.7;
+    sx.fillStyle=s.life>.6?'#FF6B6B':'#FF1A1A';
+    sx.shadowColor='#FF1A1A'; sx.shadowBlur=6;
+    sx.beginPath(); sx.arc(s.x,s.y,s.size*s.life,0,Math.PI*2); sx.fill();
+    sx.restore();
   }
   requestAnimationFrame(animSparks);
 }
 animSparks();
 
-// ── CUSTOM CURSOR ────────────────────────────────────────────
-const cDot  = document.getElementById('cDot');
-const cRing = document.getElementById('cRing');
-let rx2 = mx, ry2 = my;
-
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cDot.style.left = mx + 'px';
-  cDot.style.top  = my + 'px';
-});
-function animRing() {
-  rx2 += (mx - rx2) * 0.14;
-  ry2 += (my - ry2) * 0.14;
-  cRing.style.left = rx2 + 'px';
-  cRing.style.top  = ry2 + 'px';
-  requestAnimationFrame(animRing);
-}
+// ── CURSOR ───────────────────────────────────────────────────
+const cDot=document.getElementById('cDot'), cRing=document.getElementById('cRing');
+let rx=mx, ry=my;
+document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cDot.style.left=mx+'px'; cDot.style.top=my+'px'; });
+function animRing(){ rx+=(mx-rx)*.14; ry+=(my-ry)*.14; cRing.style.left=rx+'px'; cRing.style.top=ry+'px'; requestAnimationFrame(animRing); }
 animRing();
-
-document.querySelectorAll('a, button, .proj-card, .stat-card, .sk-tag').forEach(el => {
-  el.addEventListener('mouseenter', () => cRing.classList.add('active'));
-  el.addEventListener('mouseleave', () => cRing.classList.remove('active'));
+document.querySelectorAll('a,button,.deck-card,.stat-card,.sk-tag').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cRing.classList.add('active'));
+  el.addEventListener('mouseleave',()=>cRing.classList.remove('active'));
 });
 
 // ── CLICK BURST ──────────────────────────────────────────────
-document.addEventListener('click', e => {
-  const burst = document.createElement('div');
-  burst.className = 'burst';
-  burst.style.left = e.clientX + 'px';
-  burst.style.top  = e.clientY + 'px';
-  document.body.appendChild(burst);
-
-  const count = 10 + Math.floor(Math.random() * 8);
-  for (let i = 0; i < count; i++) {
-    const arc = document.createElement('div');
-    arc.className = 'burst-arc';
-    const angle = (i / count) * 360;
-    const length = 30 + Math.random() * 50;
-    arc.style.cssText = `
-      transform: rotate(${angle}deg);
-      height: ${length}px;
-      animation-delay: ${Math.random() * 0.08}s;
-      animation-duration: ${0.35 + Math.random() * 0.25}s;
-      background: linear-gradient(to top, ${Math.random() > 0.5 ? '#FF1A1A' : '#FF6B6B'}, transparent);
-    `;
-    burst.appendChild(arc);
+document.addEventListener('click',e=>{
+  const b=document.createElement('div'); b.className='burst';
+  b.style.left=e.clientX+'px'; b.style.top=e.clientY+'px';
+  document.body.appendChild(b);
+  for(let i=0;i<14;i++){
+    const a=document.createElement('div'); a.className='burst-arc';
+    const angle=(i/14)*360, len=30+Math.random()*50;
+    a.style.cssText=`transform:rotate(${angle}deg);height:${len}px;animation-delay:${Math.random()*.08}s;animation-duration:${.35+Math.random()*.25}s;background:linear-gradient(to top,${Math.random()>.5?'#FF1A1A':'#FF6B6B'},transparent);`;
+    b.appendChild(a);
   }
-
-  // Also flash lightning at click position
-  const bx = e.clientX, by = e.clientY;
-  let ba = 0.8;
-  function drawClickBolt() {
-    if (ba <= 0) return;
-    lCtx.save();
-    lCtx.strokeStyle = `rgba(255,100,100,${ba * 0.5})`;
-    lCtx.lineWidth = 3;
-    lCtx.shadowColor = '#FF1A1A';
-    lCtx.shadowBlur = 20;
-    for (let i = 0; i < 4; i++) {
-      const ex = bx + (Math.random() - 0.5) * 120;
-      const ey = by + (Math.random() - 0.5) * 120;
-      lCtx.beginPath(); lCtx.moveTo(bx, by);
-      bolt(lCtx, bx, by, ex, ey, 30, 3);
-      lCtx.stroke();
+  let ba=.8;
+  function clickBolt(){
+    if(ba<=0)return;
+    lx.save(); lx.strokeStyle=`rgba(255,100,100,${ba*.5})`; lx.lineWidth=3; lx.shadowColor='#FF1A1A'; lx.shadowBlur=20;
+    for(let i=0;i<4;i++){
+      const ex=e.clientX+(Math.random()-.5)*120, ey=e.clientY+(Math.random()-.5)*120;
+      lx.beginPath(); lx.moveTo(e.clientX,e.clientY); bolt(lx,e.clientX,e.clientY,ex,ey,30,3); lx.stroke();
     }
-    lCtx.restore();
-    ba -= 0.12;
-    requestAnimationFrame(drawClickBolt);
+    lx.restore(); ba-=.12; requestAnimationFrame(clickBolt);
   }
-  drawClickBolt();
-
-  setTimeout(() => burst.remove(), 600);
+  clickBolt();
+  setTimeout(()=>b.remove(),600);
 });
 
 // ── NAV SCROLL ───────────────────────────────────────────────
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+
+// ── REVEAL ───────────────────────────────────────────────────
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('on'),60);
+      e.target.querySelectorAll('.sk-group,.stat-card,.exp-item').forEach((c,j)=>{
+        setTimeout(()=>c.classList.add('reveal','on'),j*100);
+      });
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Section lightning
+const sObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ setTimeout(flashLightning,200); sObs.unobserve(e.target); } });
+},{threshold:.3});
+document.querySelectorAll('.s-title').forEach(el=>sObs.observe(el));
+
+// ── CARD DECK ────────────────────────────────────────────────
+const cards = Array.from(document.querySelectorAll('.deck-card'));
+const dots  = Array.from(document.querySelectorAll('.deck-dot'));
+let current = 0;
+const total = cards.length;
+
+function getPos(cardIndex) {
+  // Returns visual position (0=top, 1,2,3=behind)
+  return (cardIndex - current + total) % total;
+}
+
+function updateDeck(animate=false, direction=1) {
+  cards.forEach((card,i) => {
+    const pos = getPos(i);
+    card.dataset.pos = pos;
+    card.style.transition = animate ? 'transform .55s cubic-bezier(.4,0,.2,1), opacity .4s, box-shadow .3s' : '';
+  });
+  dots.forEach((d,i)=>d.classList.toggle('active', i===current));
+}
+
+function nextCard() {
+  current = (current + 1) % total;
+  updateDeck(true, 1);
+  flashLightning();
+}
+
+function prevCard() {
+  current = (current - 1 + total) % total;
+  updateDeck(true, -1);
+}
+
+document.getElementById('deckNext').addEventListener('click', nextCard);
+document.getElementById('deckPrev').addEventListener('click', prevCard);
+dots.forEach(d=>d.addEventListener('click',()=>{ current=+d.dataset.i; updateDeck(true); }));
+
+// Click active card to advance
+document.getElementById('deckStage').addEventListener('click', e=>{
+  const card = e.target.closest('.deck-card');
+  if(card && card.dataset.pos === '0') nextCard();
 });
 
-// ── REVEAL ON SCROLL ─────────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('on'), 60);
-      e.target.querySelectorAll('.proj-card,.sk-group,.stat-card,.exp-item').forEach((c, j) => {
-        setTimeout(() => { c.classList.add('reveal','on'); }, j * 100);
-      });
-      observer.unobserve(e.target);
+// 3D tilt on active card
+document.getElementById('deckStage').addEventListener('mousemove', e=>{
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width - .5;
+  const y = (e.clientY - rect.top)  / rect.height - .5;
+  cards.forEach(card=>{
+    if(card.dataset.pos === '0') {
+      card.style.transform = `translateY(0px) rotate(0deg) scale(1) rotateX(${-y*10}deg) rotateY(${x*10}deg)`;
     }
   });
-}, { threshold: 0.07 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// ── SECTION LIGHTNING ON ENTER ───────────────────────────────
-const sObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      // Fire a small bolt near the section title
-      setTimeout(flashLightning, 200);
-      sObserver.unobserve(e.target);
-    }
+});
+document.getElementById('deckStage').addEventListener('mouseleave',()=>{
+  cards.forEach(card=>{
+    if(card.dataset.pos==='0') card.style.transform='translateY(0px) rotate(0deg) scale(1)';
   });
-}, { threshold: 0.3 });
-document.querySelectorAll('.s-title').forEach(el => sObserver.observe(el));
+});
+
+updateDeck(false);
+
+// ── AI CHAT ──────────────────────────────────────────────────
+const chatBubble  = document.getElementById('chatBubble');
+const chatPanel   = document.getElementById('chatPanel');
+const chatClose   = document.getElementById('chatClose');
+const chatMessages= document.getElementById('chatMessages');
+const chatInput   = document.getElementById('chatInput');
+const chatSend    = document.getElementById('chatSend');
+const chatSuggs   = document.getElementById('chatSuggestions');
+let chatOpen = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  chatPanel.classList.toggle('open', chatOpen);
+  if(chatOpen && chatMessages.children.length === 0) {
+    setTimeout(()=>addBotMsg("Hey! I'm Dwij's AI agent. Ask me anything about his background, projects, skills, or availability. ⚡"), 400);
+  }
+}
+
+chatBubble.addEventListener('click', toggleChat);
+chatClose.addEventListener('click', toggleChat);
+
+chatSuggs.querySelectorAll('.suggestion').forEach(s=>{
+  s.addEventListener('click',()=>{ sendMessage(s.textContent); });
+});
+
+function getTime() {
+  return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+}
+
+function addUserMsg(text) {
+  const m=document.createElement('div'); m.className='msg user';
+  m.innerHTML=`<div class="msg-bubble">${text}</div><div class="msg-time">${getTime()}</div>`;
+  chatMessages.appendChild(m); chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+
+function addBotMsg(text) {
+  const m=document.createElement('div'); m.className='msg bot';
+  m.innerHTML=`<div class="msg-bubble">${text}</div><div class="msg-time">${getTime()}</div>`;
+  chatMessages.appendChild(m); chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+
+function showTyping() {
+  const t=document.createElement('div'); t.className='typing-indicator'; t.id='typingIndicator';
+  t.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  chatMessages.appendChild(t); chatMessages.scrollTop=chatMessages.scrollHeight;
+  return t;
+}
+
+function getResponse(msg) {
+  const m = msg.toLowerCase();
+
+  if(m.match(/who|about|introduce|tell me about dwij|background|himself/))
+    return "Dwij Joshi is a Mechatronics Engineering student at Toronto Metropolitan University (Class of 2029), transferred from Computer Engineering. He works at the intersection of embedded firmware, hardware control systems, and software testing. Outside of engineering, he has 3+ years of work experience across clinical data administration, youth education, and community programs. Ontario Scholar and Certificate of Recognition recipient.";
+
+  if(m.match(/rtos|freertos|scheduler|task|semaphore|queue|mutex/))
+    return "The RTOS Task Scheduler is his strongest technical project — a three-task FreeRTOS system in C. SensorTask reads temperature every 500ms and pushes to a typed queue. ControlTask (highest priority) applies threshold logic and fires a binary semaphore on critical temp. DisplayTask renders output and handles alerts. Built with a POSIX simulation layer, so it runs on Linux and ports to STM32 by swapping three HAL function calls. github.com/dwijjoshi14/rtos-task-scheduler";
+
+  if(m.match(/heat|fan|tmp36|neopixel|thermal|temperature control/))
+    return "The Heat Management System is a closed-loop thermal control system built on Arduino Uno for his MTE301 course at TMU. It uses a TMP36 sensor for ADC temperature readings, controls a PMOS-driven cooling fan via PWM, and provides dual feedback through a 16×2 LCD and an 80-LED NeoPixel strip. Simulated and debugged in Tinkercad Circuits. github.com/dwijjoshi14/heat-management-system";
+
+  if(m.match(/circuit|dc|ohm|kirchhoff|kvl|kcl|resistor/))
+    return "The DC Circuit Analyzer is a solo C++17 command-line tool that applies Ohm's Law and Kirchhoff's Laws to series and parallel resistive circuits. It computes total resistance, branch currents, voltage drops, and power dissipation — with automatic KVL/KCL self-verification after every run. Built with proper OOP structure using a Circuit class and Resistor type. github.com/dwijjoshi14/dc-circuit-analyzer";
+
+  if(m.match(/parking|ultrasonic|proximity|sensor/))
+    return "The Smart Parking Assistant was his high school capstone project. It achieved 95% distance detection accuracy across a 5–100cm range with a sub-50ms feedback loop using proportional buzzer and LED guidance. He designed 10+ edge-case test scenarios that improved system reliability from 65% to 88%.";
+
+  if(m.match(/project|built|github|repo|work/))
+    return "Dwij has 3 public GitHub repos: ⚡ RTOS Task Scheduler (FreeRTOS, C, queue/semaphore/mutex), ⚡ Heat Management System (Arduino, C++, PWM control), ⚡ DC Circuit Analyzer (C++17, Ohm's Law, KVL/KCL). All at github.com/dwijjoshi14. A GPIO demo project is coming once his Arduino hardware arrives.";
+
+  if(m.match(/skill|language|tech|know|cpp|c\+\+|embedded|arduino/))
+    return "His core technical skills: Languages — C, C++, Python, Java, SQL. Embedded — Arduino, PWM, ADC, UART, I2C, SPI, GPIO, PMOS driver circuits. Tools — Git, FreeRTOS, PlatformIO, Tinkercad, MATLAB. Testing & QA — test case design, black-box and white-box testing, defect tracking. His primary language is C++.";
+
+  if(m.match(/experience|work|job|rosalie|leacock|jam|foundation/))
+    return "Dwij has 3+ years of professional experience: Administrative Assistant at Rosalie Hall Mental Health Institution (Jul 2024–Aug 2025) — rebuilt client data systems, cut report generation from 3 hours to 45 minutes. Senior Program Assistant at Leacock Foundation (Feb 2023–Oct 2025) — tracked 100+ students, improved funder reporting. League Ambassador at JAM Sports (Sept–Dec 2022). Certificate of Recognition from Leacock Foundation.";
+
+  if(m.match(/coop|co-op|intern|hire|available|opportu|job|position|recruit/))
+    return "Dwij is seeking co-op and internship opportunities starting January 2027 in embedded systems, mechatronics, or hardware-software integration. He's based in Toronto, ON. You can reach him at dwijjoshi14@gmail.com or connect on LinkedIn at linkedin.com/in/dwij-joshi-14-tron.";
+
+  if(m.match(/education|school|tmu|toronto met|program|degree|study|course/))
+    return "Dwij is studying Bachelor of Engineering in Mechatronics Engineering at Toronto Metropolitan University, expected to graduate April 2029. He transferred from Computer Engineering. He's an Ontario Scholar and previously attended Woburn Collegiate Institute.";
+
+  if(m.match(/contact|email|reach|linkedin|github|portfolio|site|website/))
+    return "📧 dwijjoshi14@gmail.com\n💼 linkedin.com/in/dwij-joshi-14-tron\n⚡ github.com/dwijjoshi14\n🌐 dwijjoshi14.github.io";
+
+  if(m.match(/resume|cv/))
+    return "You can download Dwij's resume directly from the navigation bar at the top of this page — click 'resume.pdf'.";
+
+  if(m.match(/hello|hi|hey|sup|yo/))
+    return "Hey! I'm Dwij's AI agent. I can tell you about his projects, skills, work experience, or availability for co-op. What would you like to know? ⚡";
+
+  return "Good question — I might not have that specific info. Try asking about Dwij's projects, skills, work experience, or co-op availability. Or reach him directly at dwijjoshi14@gmail.com.";
+}
+
+function sendMessage(text) {
+  const msg = text || chatInput.value.trim();
+  if(!msg) return;
+  chatInput.value='';
+  chatSuggs.style.display='none';
+  addUserMsg(msg);
+  const t = showTyping();
+  setTimeout(()=>{
+    t.remove();
+    addBotMsg(getResponse(msg));
+  }, 800 + Math.random()*600);
+}
+
+chatSend.addEventListener('click',()=>sendMessage());
+chatInput.addEventListener('keydown',e=>{ if(e.key==='Enter') sendMessage(); });
 </script>
 
 </body>
