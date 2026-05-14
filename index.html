@@ -9,40 +9,85 @@
 </head>
 <body>
 
-<!-- Progress bar -->
-<div id="progress-bar"></div>
+<!-- ── INTRO OVERLAY ──────────────────────────────────────── -->
+<div id="intro-overlay">
+  <canvas id="intro-canvas"></canvas>
+  <div class="intro-flash" id="introFlash"></div>
+  <div class="intro-text" id="introText">
+    DWIJ<br/><span class="red">JOSHI.</span>
+  </div>
+</div>
 
-<!-- Canvases -->
+<!-- ── GAME MODAL ─────────────────────────────────────────── -->
+<div class="game-modal" id="gameModal">
+  <div class="game-box">
+    <div class="game-top">
+      <div class="game-title">⚡ LIGHTNING REFLEX</div>
+      <button class="game-close" id="gameClose">✕</button>
+    </div>
+    <div class="game-arena" id="gameArena">
+      <div class="game-arena-msg" id="arenaMsg">
+        <div class="big">⚡</div>
+        <div class="small">CLICK BOLTS AS FAST AS YOU CAN</div>
+        <div class="small" style="color:var(--tx-3)">10 SECOND CHALLENGE</div>
+      </div>
+    </div>
+    <div class="game-stats">
+      <div class="game-stat"><div class="game-stat-n" id="gameScore">0</div><div class="game-stat-l">SCORE</div></div>
+      <div class="game-stat"><div class="game-stat-n" id="gameTimer">10</div><div class="game-stat-l">SECONDS</div></div>
+      <div class="game-stat"><div class="game-stat-n" id="gameHigh">0</div><div class="game-stat-l">BEST</div></div>
+    </div>
+    <div class="game-controls">
+      <button class="game-btn game-btn-start" id="gameStart">START GAME</button>
+      <button class="game-btn game-btn-secondary" id="gameCloseBtn">CLOSE</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── FULLSCREEN NAV ──────────────────────────────────────── -->
+<div id="fs-nav">
+  <button class="fs-nav-close" id="fsNavClose">[ CLOSE ]</button>
+  <ul class="fs-nav-items">
+    <li class="fs-nav-item"><a href="#about"      class="fs-nav-link" data-close><span class="num">01</span>About</a></li>
+    <li class="fs-nav-item"><a href="#projects"   class="fs-nav-link" data-close><span class="num">02</span>Projects</a></li>
+    <li class="fs-nav-item"><a href="#skills"     class="fs-nav-link" data-close><span class="num">03</span>Skills</a></li>
+    <li class="fs-nav-item"><a href="#experience" class="fs-nav-link" data-close><span class="num">04</span>Experience</a></li>
+    <li class="fs-nav-item"><a href="#contact"    class="fs-nav-link" data-close><span class="num">05</span>Contact</a></li>
+  </ul>
+  <div class="fs-social">
+    <a href="https://github.com/dwijjoshi14" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/dwij-joshi-14-tron" target="_blank">LinkedIn</a>
+    <a href="mailto:dwijjoshi14@gmail.com">Email</a>
+  </div>
+</div>
+
+<!-- ── CANVASES + CURSOR ───────────────────────────────────── -->
+<div id="progress-bar"></div>
 <canvas id="lightning-canvas"></canvas>
 <canvas id="spark-canvas"></canvas>
-
-<!-- Cursor -->
 <div class="c-dot" id="cDot"></div>
 <div class="c-ring" id="cRing"></div>
 
-<!-- ── NAV ──────────────────────────────────────────────── -->
+<!-- ── TOP NAV ────────────────────────────────────────────── -->
 <nav id="nav">
   <div class="nav-logo">&lt;dwij-joshi /&gt;</div>
-  <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#experience">experience</a></li>
-    <li><a href="#contact">contact</a></li>
-  </ul>
-  <a href="Dwij_Joshi_Resume_Technical.pdf" target="_blank" class="nav-cta">resume.pdf</a>
+  <div class="nav-right">
+    <button class="nav-game-btn" id="navGameBtn">⚡ GAME</button>
+    <a href="Dwij_Joshi_Resume_Technical.pdf" target="_blank" class="nav-cta">resume.pdf</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-<!-- ── HERO ─────────────────────────────────────────────── -->
+<!-- ── HERO ───────────────────────────────────────────────── -->
 <section id="hero">
   <canvas id="particle-canvas" style="position:absolute;inset:0;z-index:1;pointer-events:none;"></canvas>
   <div class="hero-bg-text" id="heroBgText" aria-hidden="true">DWIJ</div>
   <div class="hero-inner">
     <div class="hero-eyebrow">MECHATRONICS ENGINEERING · TMU · CLASS OF 2029</div>
     <h1 class="hero-name" id="heroName"></h1>
-    <p class="hero-sub">
-      Embedded Systems<span class="sep">⚡</span>C++<span class="sep">⚡</span>Hardware-Software Integration
-    </p>
+    <p class="hero-sub">Embedded Systems<span class="sep">⚡</span>C++<span class="sep">⚡</span>Hardware-Software Integration</p>
     <div class="hero-btns">
       <a href="#projects" class="btn-red magnetic">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -58,23 +103,18 @@
       </a>
     </div>
   </div>
-  <div class="scroll-ind">
-    <span>SCROLL</span>
-    <div class="scroll-bolt"></div>
-  </div>
+  <div class="scroll-ind"><span>SCROLL</span><div class="scroll-bolt"></div></div>
 </section>
 
-<div class="e-divider e-divider-animated" id="div1"></div>
-
-<!-- ── ABOUT ─────────────────────────────────────────────── -->
+<!-- ── ABOUT ───────────────────────────────────────────────── -->
 <section id="about">
   <div class="s-wrap">
     <div class="s-label">01 — ABOUT</div>
-    <h2 class="s-title scramble" data-text="WHO I AM">WHO I <span class="acc">AM</span></h2>
+    <h2 class="s-title glitch-title" data-text="WHO I AM">WHO I <span class="acc">AM</span></h2>
     <div class="about-grid">
       <div class="about-text slide-left">
         <p>I'm a <strong>Mechatronics Engineering student at Toronto Metropolitan University</strong>, transferred from Computer Engineering because the problems I care about most live at the intersection of electronics, mechanics, and firmware.</p>
-        <p>My technical work spans <span class="hl">embedded C++ firmware</span>, <span class="hl">sensor integration</span>, ADC-to-output control loops, FreeRTOS real-time systems, and software QA. I don't just write code — I stress-test it, document it, and hand it off in a state others can actually use.</p>
+        <p>My technical work spans <span class="hl">embedded C++ firmware</span>, <span class="hl">sensor integration</span>, ADC-to-output control loops, FreeRTOS real-time systems, and software QA. I don't just write code — I stress-test it, document it, and hand it off in a state others can use.</p>
         <p>Outside engineering, 3+ years across clinical data management, youth education, and community operations. Equally comfortable in a lab, a spreadsheet, or a stakeholder meeting.</p>
         <p><strong>Ontario Scholar</strong> · Certificate of Recognition (Leacock Foundation)</p>
       </div>
@@ -88,25 +128,19 @@
   </div>
 </section>
 
-<div class="e-divider e-divider-animated" id="div2"></div>
-
-<!-- ── PROJECTS ──────────────────────────────────────────── -->
+<!-- ── PROJECTS ────────────────────────────────────────────── -->
 <section id="projects">
   <div class="s-wrap">
     <div class="s-label">02 — PROJECTS</div>
-    <h2 class="s-title scramble" data-text="THINGS IVE BUILT">THINGS I'VE <span class="acc">BUILT</span></h2>
-
+    <h2 class="s-title glitch-title" data-text="THINGS IVE BUILT">THINGS I'VE <span class="acc">BUILT</span></h2>
     <div class="card-deck-container reveal">
       <div class="card-deck-stage" id="deckStage">
 
         <div class="deck-card" data-index="0" data-pos="0">
           <div class="card-num"><span>01 / 04</span><span class="suit">⚡</span></div>
           <div class="card-name">RTOS Task Scheduler</div>
-          <p class="card-desc">Three-task FreeRTOS system in C. SensorTask pushes temperature readings to a typed queue every 500ms. ControlTask (highest priority) applies threshold logic and fires a binary semaphore on critical temp. DisplayTask renders live output. POSIX simulation layer — STM32-portable with three HAL swaps.</p>
-          <div class="card-tags">
-            <span class="c-tag">C11</span><span class="c-tag">FreeRTOS</span><span class="c-tag">Queue</span>
-            <span class="c-tag">Semaphore</span><span class="c-tag">Mutex</span><span class="c-tag">STM32</span>
-          </div>
+          <p class="card-desc">Three-task FreeRTOS system in C. SensorTask pushes temperature readings to a typed queue every 500ms. ControlTask applies threshold logic and fires a binary semaphore on critical temp. DisplayTask renders live output. POSIX simulation — STM32-portable with three HAL swaps.</p>
+          <div class="card-tags"><span class="c-tag">C11</span><span class="c-tag">FreeRTOS</span><span class="c-tag">Queue</span><span class="c-tag">Semaphore</span><span class="c-tag">Mutex</span><span class="c-tag">STM32</span></div>
           <a href="https://github.com/dwijjoshi14/rtos-task-scheduler" target="_blank" class="card-link">View on GitHub →</a>
         </div>
 
@@ -114,22 +148,16 @@
           <div class="card-num"><span>02 / 04</span><span class="suit">⚡</span></div>
           <div class="card-name">Heat Management System</div>
           <span class="card-badge">Group Project · MTE301 · Fall 2025</span>
-          <p class="card-desc">Closed-loop thermal control on Arduino Uno. TMP36 ADC sensing, threshold-based PWM fan control via PMOS high-side driver. Synchronized 16×2 LCD and 80-LED NeoPixel strip with color-coded thermal zones. Simulated in Tinkercad Circuits.</p>
-          <div class="card-tags">
-            <span class="c-tag">C++</span><span class="c-tag">Arduino</span>
-            <span class="c-tag">PWM</span><span class="c-tag">TMP36</span><span class="c-tag">NeoPixel</span>
-          </div>
+          <p class="card-desc">Closed-loop thermal control on Arduino Uno. TMP36 ADC sensing, PMOS-driven PWM fan control. Synchronized 16×2 LCD and 80-LED NeoPixel strip with color-coded thermal zones. Simulated in Tinkercad Circuits.</p>
+          <div class="card-tags"><span class="c-tag">C++</span><span class="c-tag">Arduino</span><span class="c-tag">PWM</span><span class="c-tag">TMP36</span><span class="c-tag">NeoPixel</span></div>
           <a href="https://github.com/dwijjoshi14/heat-management-system" target="_blank" class="card-link">View on GitHub →</a>
         </div>
 
         <div class="deck-card" data-index="2" data-pos="2">
           <div class="card-num"><span>03 / 04</span><span class="suit">⚡</span></div>
           <div class="card-name">DC Circuit Analyzer</div>
-          <p class="card-desc">Solo C++17 command-line tool applying Ohm's Law and Kirchhoff's Laws to series and parallel DC resistive circuits. Computes total resistance, branch currents, voltage drops, and power — with automatic KVL/KCL self-verification after every run. Proper OOP with Circuit class and Resistor type.</p>
-          <div class="card-tags">
-            <span class="c-tag">C++17</span><span class="c-tag">OOP</span>
-            <span class="c-tag">KVL/KCL</span><span class="c-tag">Ohm's Law</span><span class="c-tag">Make</span>
-          </div>
+          <p class="card-desc">Solo C++17 command-line tool applying Ohm's Law and Kirchhoff's Laws to series and parallel DC resistive circuits. Computes resistance, branch currents, voltage drops, and power — with automatic KVL/KCL self-verification after every run.</p>
+          <div class="card-tags"><span class="c-tag">C++17</span><span class="c-tag">OOP</span><span class="c-tag">KVL/KCL</span><span class="c-tag">Ohm's Law</span><span class="c-tag">Make</span></div>
           <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" class="card-link">View on GitHub →</a>
         </div>
 
@@ -137,15 +165,11 @@
           <div class="card-num"><span>04 / 04</span><span class="suit">⚡</span></div>
           <div class="card-name">Smart Parking Assistant</div>
           <span class="card-badge">High School Capstone · Jun 2024</span>
-          <p class="card-desc">Proximity-feedback parking system achieving 95% distance detection accuracy across 5–100cm. Sub-50ms real-time feedback loop with proportional buzzer and LED guidance. 10+ edge-case test scenarios hardened system reliability from 65% to 88%.</p>
-          <div class="card-tags">
-            <span class="c-tag">C++</span><span class="c-tag">Arduino</span>
-            <span class="c-tag">Ultrasonic</span><span class="c-tag">PWM</span>
-          </div>
+          <p class="card-desc">Proximity-feedback parking system achieving 95% distance detection accuracy across 5–100cm. Sub-50ms real-time feedback loop with proportional buzzer and LED guidance. 10+ edge-case test scenarios improved reliability from 65% to 88%.</p>
+          <div class="card-tags"><span class="c-tag">C++</span><span class="c-tag">Arduino</span><span class="c-tag">Ultrasonic</span><span class="c-tag">PWM</span></div>
         </div>
 
       </div>
-
       <div class="deck-controls">
         <button class="deck-btn deck-btn-prev" id="deckPrev">← PREV</button>
         <div class="deck-dots" id="deckDots">
@@ -160,96 +184,101 @@
   </div>
 </section>
 
-<div class="e-divider e-divider-animated" id="div3"></div>
-
-<!-- ── SKILLS ────────────────────────────────────────────── -->
+<!-- ── SKILLS ──────────────────────────────────────────────── -->
 <section id="skills">
   <div class="s-wrap">
     <div class="s-label">03 — SKILLS</div>
-    <h2 class="s-title scramble" data-text="WHAT I WORK WITH">WHAT I <span class="acc">WORK WITH</span></h2>
+    <h2 class="s-title glitch-title" data-text="WHAT I WORK WITH">WHAT I <span class="acc">WORK WITH</span></h2>
     <div class="skills-grid">
-      <div class="sk-group">
-        <div class="sk-title">Languages</div>
-        <div class="sk-tags">
-          <span class="sk-tag">C</span><span class="sk-tag">C++</span><span class="sk-tag">Python</span>
-          <span class="sk-tag">Java</span><span class="sk-tag">SQL</span>
-        </div>
-      </div>
-      <div class="sk-group">
-        <div class="sk-title">Embedded & Hardware</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Arduino</span><span class="sk-tag">PWM</span><span class="sk-tag">ADC</span>
-          <span class="sk-tag">UART</span><span class="sk-tag">I2C</span><span class="sk-tag">SPI</span>
-          <span class="sk-tag">GPIO</span><span class="sk-tag">PMOS Driver</span>
-        </div>
-      </div>
-      <div class="sk-group">
-        <div class="sk-title">Tools & Platforms</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Git</span><span class="sk-tag">FreeRTOS</span>
-          <span class="sk-tag">PlatformIO</span><span class="sk-tag">Tinkercad</span>
-          <span class="sk-tag">MATLAB</span><span class="sk-tag">Make</span>
-        </div>
-      </div>
-      <div class="sk-group">
-        <div class="sk-title">Testing & QA</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Test Case Design</span><span class="sk-tag">Black-box</span>
-          <span class="sk-tag">White-box</span><span class="sk-tag">Defect Tracking</span>
-        </div>
-      </div>
+      <div class="sk-group"><div class="sk-title">Languages</div><div class="sk-tags"><span class="sk-tag">C</span><span class="sk-tag">C++</span><span class="sk-tag">Python</span><span class="sk-tag">Java</span><span class="sk-tag">SQL</span></div></div>
+      <div class="sk-group"><div class="sk-title">Embedded & Hardware</div><div class="sk-tags"><span class="sk-tag">Arduino</span><span class="sk-tag">PWM</span><span class="sk-tag">ADC</span><span class="sk-tag">UART</span><span class="sk-tag">I2C</span><span class="sk-tag">SPI</span><span class="sk-tag">GPIO</span><span class="sk-tag">PMOS Driver</span></div></div>
+      <div class="sk-group"><div class="sk-title">Tools & Platforms</div><div class="sk-tags"><span class="sk-tag">Git</span><span class="sk-tag">FreeRTOS</span><span class="sk-tag">PlatformIO</span><span class="sk-tag">Tinkercad</span><span class="sk-tag">MATLAB</span><span class="sk-tag">Make</span></div></div>
+      <div class="sk-group"><div class="sk-title">Testing & QA</div><div class="sk-tags"><span class="sk-tag">Test Case Design</span><span class="sk-tag">Black-box</span><span class="sk-tag">White-box</span><span class="sk-tag">Defect Tracking</span></div></div>
     </div>
   </div>
 </section>
 
-<div class="e-divider e-divider-animated" id="div4"></div>
-
-<!-- ── EXPERIENCE ────────────────────────────────────────── -->
+<!-- ── EXPERIENCE ──────────────────────────────────────────── -->
 <section id="experience">
   <div class="s-wrap">
     <div class="s-label">04 — EXPERIENCE</div>
-    <h2 class="s-title scramble" data-text="WHERE IVE WORKED">WHERE I'VE <span class="acc">WORKED</span></h2>
-    <div class="exp-list" id="expList">
-      <div class="exp-item">
-        <div><div class="exp-date">Jul 2024 – Aug 2025</div><span class="exp-type">Contract</span></div>
-        <div>
-          <div class="exp-role">Administrative Assistant</div>
-          <div class="exp-org">Rosalie Hall Mental Health Institution · Toronto, ON</div>
-          <ul class="exp-buls">
-            <li>Rebuilt Excel-based client tracking for 50+ users, cutting report generation from ~3 hours to under 45 minutes.</li>
-            <li>Designed a standardized data-entry protocol adopted across 3 program teams, improving audit readiness.</li>
-            <li>Produced monthly outcome dashboards for clinical leadership informing staffing and resource decisions.</li>
+    <h2 class="s-title glitch-title" data-text="WHERE IVE WORKED">WHERE I'VE <span class="acc">WORKED</span></h2>
+    <div class="timeline-wrap">
+      <div class="timeline-line" id="timelineLine">
+        <div class="timeline-spark"></div>
+      </div>
+
+      <div class="tl-entry" id="tlEntry0">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div class="tl-header-left">
+            <div class="tl-role">Administrative Assistant</div>
+            <div class="tl-org">Rosalie Hall Mental Health Institution · Toronto, ON</div>
+          </div>
+          <div class="tl-meta">
+            <div class="tl-date">Jul 2024 – Aug 2025</div>
+            <div class="tl-type">Contract</div>
+            <div class="tl-toggle">[ + EXPAND ]</div>
+          </div>
+        </div>
+        <div class="tl-body">
+          <ul class="tl-bullets">
+            <li>Rebuilt Excel-based client tracking for 50+ users, cutting report generation from ~3 hours to under 45 minutes and reducing manual entry errors by 35%.</li>
+            <li>Designed a standardized data-entry protocol adopted across 3 program teams, improving cross-department consistency and audit readiness.</li>
+            <li>Produced monthly outcome dashboards for clinical leadership, translating raw data into actionable summaries informing staffing and resource decisions.</li>
+            <li>Operated with consistent professionalism and confidentiality in a regulated mental health environment from week one.</li>
           </ul>
         </div>
       </div>
-      <div class="exp-item">
-        <div><div class="exp-date">Feb 2023 – Oct 2025</div><span class="exp-type">Part-time</span></div>
-        <div>
-          <div class="exp-role">Senior Program Assistant</div>
-          <div class="exp-org">Leacock Foundation · Toronto, ON</div>
-          <ul class="exp-buls">
-            <li>Tracked engagement for 100+ students across 4 streams; identified 15% attendance drop-off prompting a schedule change that recovered participation within 6 weeks.</li>
-            <li>Redesigned evaluation documentation, reducing compilation by 30% enabling same-week funder submissions.</li>
+
+      <div class="tl-entry" id="tlEntry1">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div class="tl-header-left">
+            <div class="tl-role">Senior Program Assistant</div>
+            <div class="tl-org">Leacock Foundation · Toronto, ON</div>
+          </div>
+          <div class="tl-meta">
+            <div class="tl-date">Feb 2023 – Oct 2025</div>
+            <div class="tl-type">Part-time</div>
+            <div class="tl-toggle">[ + EXPAND ]</div>
+          </div>
+        </div>
+        <div class="tl-body">
+          <ul class="tl-bullets">
+            <li>Tracked engagement metrics for 100+ students across 4 program streams; identified a 15% attendance drop-off trend prompting a schedule restructuring that recovered participation within 6 weeks.</li>
+            <li>Redesigned program evaluation documentation, reducing report compilation time by 30% and enabling same-week funder submissions.</li>
+            <li>Awarded Certificate of Recognition for professionalism and initiative above role expectations.</li>
           </ul>
         </div>
       </div>
-      <div class="exp-item">
-        <div><div class="exp-date">Sept 2022 – Dec 2022</div><span class="exp-type">Contract</span></div>
-        <div>
-          <div class="exp-role">League Ambassador</div>
-          <div class="exp-org">JAM Sports · Toronto, ON</div>
-          <ul class="exp-buls">
-            <li>Coordinated logistics for 30+ participants per session; zero-incident operational record throughout engagement.</li>
+
+      <div class="tl-entry" id="tlEntry2">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div class="tl-header-left">
+            <div class="tl-role">League Ambassador</div>
+            <div class="tl-org">JAM Sports · Toronto, ON</div>
+          </div>
+          <div class="tl-meta">
+            <div class="tl-date">Sept – Dec 2022</div>
+            <div class="tl-type">Contract</div>
+            <div class="tl-toggle">[ + EXPAND ]</div>
+          </div>
+        </div>
+        <div class="tl-body">
+          <ul class="tl-bullets">
+            <li>Coordinated logistics and real-time issue resolution for recreational sports sessions of 30+ participants, maintaining a zero-incident operational record over the entire engagement.</li>
+            <li>Served as the on-ground point of contact handling scheduling conflicts, rule disputes, and equipment management with minimal escalation.</li>
           </ul>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<div class="e-divider e-divider-animated" id="div5"></div>
-
-<!-- ── CONTACT ───────────────────────────────────────────── -->
+<!-- ── CONTACT ─────────────────────────────────────────────── -->
 <section id="contact">
   <div class="s-wrap">
     <div class="contact-inner reveal">
@@ -276,15 +305,11 @@
 
 <footer><span>Built by Dwij Joshi &nbsp;⚡&nbsp; dwijjoshi14.github.io</span></footer>
 
-<!-- ── AI CHAT ────────────────────────────────────────────── -->
-<div class="chat-hint" id="chatHint">⚡ Ask my AI anything</div>
-
+<!-- ── AI CHAT ─────────────────────────────────────────────── -->
+<div class="chat-hint" id="chatHint">Ask my AI about me</div>
 <button class="chat-bubble" id="chatBubble" aria-label="Chat with Dwij's AI">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-  </svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
 </button>
-
 <div class="chat-panel" id="chatPanel">
   <div class="chat-header">
     <div class="chat-avatar">DJ</div>
@@ -309,415 +334,348 @@
   </div>
 </div>
 
-<!-- ── ALL SCRIPTS ───────────────────────────────────────── -->
+<!-- ── ALL SCRIPTS ─────────────────────────────────────────── -->
 <script>
 // ─── LIGHTNING CANVAS ────────────────────────────────────────
 const lc=document.getElementById('lightning-canvas'),lx=lc.getContext('2d');
-function resizeLC(){lc.width=innerWidth;lc.height=innerHeight;}
-resizeLC();addEventListener('resize',resizeLC);
-function bolt(ctx,x1,y1,x2,y2,rough,branches){
-  const dist=Math.hypot(x2-x1,y2-y1);
-  if(dist<12||branches<0){ctx.lineTo(x2,y2);return;}
-  const mx=(x1+x2)/2+(Math.random()-.5)*rough,my=(y1+y2)/2+(Math.random()-.5)*rough;
-  bolt(ctx,x1,y1,mx,my,rough*.55,branches-1);
-  bolt(ctx,mx,my,x2,y2,rough*.55,branches-1);
-  if(Math.random()<.35&&branches>1){
-    const bx=mx+(Math.random()-.5)*dist*.7,by=my+Math.random()*dist*.5;
-    ctx.moveTo(mx,my);bolt(ctx,mx,my,bx,by,rough*.4,branches-2);
-  }
+function resLC(){lc.width=innerWidth;lc.height=innerHeight;}resLC();
+addEventListener('resize',resLC);
+function bolt(ctx,x1,y1,x2,y2,r,b){
+  if(Math.hypot(x2-x1,y2-y1)<12||b<0){ctx.lineTo(x2,y2);return;}
+  const mx=(x1+x2)/2+(Math.random()-.5)*r,my=(y1+y2)/2+(Math.random()-.5)*r;
+  bolt(ctx,x1,y1,mx,my,r*.55,b-1);bolt(ctx,mx,my,x2,y2,r*.55,b-1);
+  if(Math.random()<.35&&b>1){ctx.moveTo(mx,my);bolt(ctx,mx,my,mx+(Math.random()-.5)*Math.hypot(x2-x1,y2-y1)*.7,my+Math.random()*Math.hypot(x2-x1,y2-y1)*.5,r*.4,b-2);}
 }
-function flashLightning(){
-  const x1=Math.random()*lc.width,x2=x1+(Math.random()-.5)*300,y2=Math.random()*lc.height*.7+lc.height*.15;
-  let alpha=1;
+function flash(x1,y1,x2,y2,intensity){
+  if(!x1){x1=Math.random()*lc.width;x2=x1+(Math.random()-.5)*300;y1=0;y2=Math.random()*lc.height*.7+lc.height*.15;}
+  let a=intensity||1;
   function draw(){
-    lx.clearRect(0,0,lc.width,lc.height);
-    if(alpha<=0)return;
-    lx.save();lx.strokeStyle=`rgba(255,60,60,${alpha*.18})`;lx.lineWidth=8;lx.shadowColor='#FF1A1A';lx.shadowBlur=30;
-    lx.beginPath();lx.moveTo(x1,0);bolt(lx,x1,0,x2,y2,120,6);lx.stroke();
-    lx.strokeStyle=`rgba(255,200,200,${alpha*.9})`;lx.lineWidth=1.5;lx.shadowBlur=12;
-    lx.beginPath();lx.moveTo(x1,0);bolt(lx,x1,0,x2,y2,120,6);lx.stroke();
-    lx.restore();alpha-=.045;requestAnimationFrame(draw);
-  }
-  draw();
+    lx.clearRect(0,0,lc.width,lc.height);if(a<=0)return;
+    lx.save();lx.strokeStyle=`rgba(255,60,60,${a*.18})`;lx.lineWidth=8;lx.shadowColor='#FF1A1A';lx.shadowBlur=30;
+    lx.beginPath();lx.moveTo(x1,y1);bolt(lx,x1,y1,x2,y2,120,6);lx.stroke();
+    lx.strokeStyle=`rgba(255,200,200,${a*.9})`;lx.lineWidth=1.5;lx.shadowBlur=12;
+    lx.beginPath();lx.moveTo(x1,y1);bolt(lx,x1,y1,x2,y2,120,6);lx.stroke();
+    lx.restore();a-=.045;requestAnimationFrame(draw);
+  }draw();
 }
-flashLightning();
-setInterval(()=>{if(Math.random()<.7)flashLightning();},3500);
+flash();setInterval(()=>{if(Math.random()<.7)flash();},3500);
 
-// ─── SPARK CURSOR TRAIL ──────────────────────────────────────
+// ─── SPARK CANVAS ────────────────────────────────────────────
 const sc=document.getElementById('spark-canvas'),sx=sc.getContext('2d');
-function resizeSC(){sc.width=innerWidth;sc.height=innerHeight;}
-resizeSC();addEventListener('resize',resizeSC);
-const sparks=[];let mx=innerWidth/2,my=innerHeight/2;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-function spawnSparks(){
-  for(let i=0;i<2+Math.floor(Math.random()*2);i++){
-    const a=Math.random()*Math.PI*2,s=.5+Math.random()*2.5;
-    sparks.push({x:mx,y:my,vx:Math.cos(a)*s,vy:Math.sin(a)*s-.5,life:1,decay:.04+Math.random()*.06,size:1.5+Math.random()*2});
-  }
-}
-function animSparks(){
-  sx.clearRect(0,0,sc.width,sc.height);spawnSparks();
-  for(let i=sparks.length-1;i>=0;i--){
-    const s=sparks[i];s.x+=s.vx;s.y+=s.vy;s.vy+=.06;s.life-=s.decay;
-    if(s.life<=0){sparks.splice(i,1);continue;}
-    sx.save();sx.globalAlpha=s.life*.7;sx.fillStyle=s.life>.6?'#FF6B6B':'#FF1A1A';
-    sx.shadowColor='#FF1A1A';sx.shadowBlur=6;
-    sx.beginPath();sx.arc(s.x,s.y,s.size*s.life,0,Math.PI*2);sx.fill();sx.restore();
-  }
-  requestAnimationFrame(animSparks);
-}
-animSparks();
+function resSC(){sc.width=innerWidth;sc.height=innerHeight;}resSC();addEventListener('resize',resSC);
+const sparks=[];let MX=innerWidth/2,MY=innerHeight/2;
+document.addEventListener('mousemove',e=>{MX=e.clientX;MY=e.clientY;});
+function spawnS(){for(let i=0;i<2+~~(Math.random()*2);i++){const a=Math.random()*Math.PI*2,s=.5+Math.random()*2.5;sparks.push({x:MX,y:MY,vx:Math.cos(a)*s,vy:Math.sin(a)*s-.5,life:1,decay:.04+Math.random()*.06,size:1.5+Math.random()*2});}}
+function animS(){sx.clearRect(0,0,sc.width,sc.height);spawnS();for(let i=sparks.length-1;i>=0;i--){const s=sparks[i];s.x+=s.vx;s.y+=s.vy;s.vy+=.06;s.life-=s.decay;if(s.life<=0){sparks.splice(i,1);continue;}sx.save();sx.globalAlpha=s.life*.7;sx.fillStyle=s.life>.6?'#FF6B6B':'#FF1A1A';sx.shadowColor='#FF1A1A';sx.shadowBlur=6;sx.beginPath();sx.arc(s.x,s.y,s.size*s.life,0,Math.PI*2);sx.fill();sx.restore();}requestAnimationFrame(animS);}
+animS();
 
 // ─── CURSOR ──────────────────────────────────────────────────
 const cDot=document.getElementById('cDot'),cRing=document.getElementById('cRing');
-let rx=mx,ry=my;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cDot.style.left=mx+'px';cDot.style.top=my+'px';});
-function animRing(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;cRing.style.left=rx+'px';cRing.style.top=ry+'px';requestAnimationFrame(animRing);}
-animRing();
-document.querySelectorAll('a,button,.deck-card,.stat-card,.sk-tag').forEach(el=>{
+let rx=MX,ry=MY;
+document.addEventListener('mousemove',e=>{MX=e.clientX;MY=e.clientY;cDot.style.left=MX+'px';cDot.style.top=MY+'px';});
+(function tickR(){rx+=(MX-rx)*.14;ry+=(MY-ry)*.14;cRing.style.left=rx+'px';cRing.style.top=ry+'px';requestAnimationFrame(tickR);})();
+document.querySelectorAll('a,button,.deck-card,.stat-card,.sk-tag,.tl-entry').forEach(el=>{
   el.addEventListener('mouseenter',()=>cRing.classList.add('active'));
   el.addEventListener('mouseleave',()=>cRing.classList.remove('active'));
 });
 
-// ─── CLICK BURST + LOCAL BOLT ────────────────────────────────
+// ─── CLICK BURST ─────────────────────────────────────────────
 document.addEventListener('click',e=>{
+  if(e.target.closest('#intro-overlay')||e.target.closest('#gameArena'))return;
   const b=document.createElement('div');b.className='burst';
-  b.style.left=e.clientX+'px';b.style.top=e.clientY+'px';
-  document.body.appendChild(b);
-  for(let i=0;i<14;i++){
-    const arc=document.createElement('div');arc.className='burst-arc';
-    const angle=(i/14)*360,len=30+Math.random()*50;
-    arc.style.cssText=`transform:rotate(${angle}deg);height:${len}px;animation-delay:${Math.random()*.08}s;animation-duration:${.35+Math.random()*.25}s;background:linear-gradient(to top,${Math.random()>.5?'#FF1A1A':'#FF6B6B'},transparent);`;
-    b.appendChild(arc);
-  }
+  b.style.left=e.clientX+'px';b.style.top=e.clientY+'px';document.body.appendChild(b);
+  for(let i=0;i<14;i++){const a=document.createElement('div');a.className='burst-arc';
+    a.style.cssText=`transform:rotate(${(i/14)*360}deg);height:${30+Math.random()*50}px;animation-delay:${Math.random()*.08}s;animation-duration:${.35+Math.random()*.25}s;background:linear-gradient(to top,${Math.random()>.5?'#FF1A1A':'#FF6B6B'},transparent);`;
+    b.appendChild(a);}
   let ba=.8;
-  function cb(){
-    if(ba<=0)return;
-    lx.save();lx.strokeStyle=`rgba(255,100,100,${ba*.5})`;lx.lineWidth=3;lx.shadowColor='#FF1A1A';lx.shadowBlur=20;
-    for(let i=0;i<4;i++){
-      const ex=e.clientX+(Math.random()-.5)*120,ey=e.clientY+(Math.random()-.5)*120;
-      lx.beginPath();lx.moveTo(e.clientX,e.clientY);bolt(lx,e.clientX,e.clientY,ex,ey,30,3);lx.stroke();
-    }
-    lx.restore();ba-=.12;requestAnimationFrame(cb);
-  }
-  cb();
+  (function cb(){if(ba<=0)return;lx.save();lx.strokeStyle=`rgba(255,100,100,${ba*.5})`;lx.lineWidth=3;lx.shadowColor='#FF1A1A';lx.shadowBlur=20;
+    for(let i=0;i<4;i++){const ex=e.clientX+(Math.random()-.5)*120,ey=e.clientY+(Math.random()-.5)*120;lx.beginPath();lx.moveTo(e.clientX,e.clientY);bolt(lx,e.clientX,e.clientY,ex,ey,30,3);lx.stroke();}
+    lx.restore();ba-=.12;requestAnimationFrame(cb);})();
   setTimeout(()=>b.remove(),600);
 });
 
-// ─── HERO LETTER ANIMATION ───────────────────────────────────
-const heroNameEl=document.getElementById('heroName');
-const line1='DWIJ', line2='JOSHI.';
-function buildHeroName(){
-  heroNameEl.innerHTML='';
-  // Line 1
-  const l1=document.createElement('span');
-  [...line1].forEach((ch,i)=>{
-    const s=document.createElement('span');s.className='hero-letter';
-    s.textContent=ch==' '?'\u00A0':ch;
-    s.style.transitionDelay=`${.5+i*.07}s`;l1.appendChild(s);
+// ─── INTRO SEQUENCE ──────────────────────────────────────────
+const introOverlay=document.getElementById('intro-overlay');
+const introCanvas=document.getElementById('intro-canvas');
+const introFlash=document.getElementById('introFlash');
+const introText=document.getElementById('introText');
+const ic=introCanvas.getContext('2d');
+introCanvas.width=innerWidth;introCanvas.height=innerHeight;
+
+function introLightning(){
+  // Fire 4 simultaneous bolts from top
+  const positions=[[.2,.4],[.4,.6],[.6,.4],[.8,.6]];
+  positions.forEach(([xr,xr2])=>{
+    const x1=xr*innerWidth,x2=xr2*innerWidth;
+    let a=1.5;
+    (function draw(){
+      ic.save();
+      ic.strokeStyle=`rgba(255,80,80,${a*.25})`;ic.lineWidth=12;ic.shadowColor='#FF1A1A';ic.shadowBlur=40;
+      ic.beginPath();ic.moveTo(x1,0);bolt(ic,x1,0,x2,innerHeight*.8,180,7);ic.stroke();
+      ic.strokeStyle=`rgba(255,220,220,${a})`;ic.lineWidth=2;ic.shadowBlur=16;
+      ic.beginPath();ic.moveTo(x1,0);bolt(ic,x1,0,x2,innerHeight*.8,180,7);ic.stroke();
+      ic.restore();a-=.06;if(a>0)requestAnimationFrame(draw);
+    })();
   });
-  heroNameEl.appendChild(l1);
-  // Line 2
-  const l2=document.createElement('span');l2.className='red-line';l2.style.display='block';
-  [...line2].forEach((ch,i)=>{
-    const s=document.createElement('span');s.className='hero-letter';
-    s.textContent=ch==' '?'\u00A0':ch;
-    s.style.transitionDelay=`${.7+i*.07}s`;l2.appendChild(s);
-  });
-  heroNameEl.appendChild(l2);
-  setTimeout(()=>{ document.querySelectorAll('.hero-letter').forEach(l=>l.classList.add('visible')); },100);
 }
-buildHeroName();
+
+// Sequence
+setTimeout(()=>{
+  introLightning();
+  // Flash 1
+  setTimeout(()=>{introFlash.classList.add('on');},300);
+  setTimeout(()=>{introFlash.classList.remove('on');},450);
+  // Show text
+  setTimeout(()=>{introText.classList.add('show');},500);
+  // Flash 2
+  setTimeout(()=>{introFlash.classList.add('on');},900);
+  setTimeout(()=>{introFlash.classList.remove('on');},1000);
+  // Exit
+  setTimeout(()=>{introOverlay.classList.add('gone');},1600);
+},200);
 
 // ─── HERO PARTICLES ──────────────────────────────────────────
-const pc=document.getElementById('particle-canvas');
-const px=pc.getContext('2d');
-function resizePC(){pc.width=pc.parentElement.offsetWidth;pc.height=pc.parentElement.offsetHeight;}
-resizePC();addEventListener('resize',resizePC);
-const particles=[];
-for(let i=0;i<40;i++){
-  particles.push({
-    x:Math.random()*pc.width, y:Math.random()*pc.height,
-    vy:-.3-Math.random()*.5, vx:(Math.random()-.5)*.3,
-    size:.8+Math.random()*1.8, life:Math.random(), maxLife:1,
-    decay:.003+Math.random()*.004
-  });
-}
-function animParticles(){
-  px.clearRect(0,0,pc.width,pc.height);
-  particles.forEach(p=>{
-    p.y+=p.vy;p.x+=p.vx;p.life-=p.decay;
-    if(p.life<=0||p.y<0){p.y=pc.height+10;p.x=Math.random()*pc.width;p.life=1;}
-    px.save();px.globalAlpha=p.life*.4;
-    px.fillStyle=p.life>.5?'#FF6B6B':'#FF1A1A';
-    px.shadowColor='#FF1A1A';px.shadowBlur=4;
-    px.beginPath();px.arc(p.x,p.y,p.size,0,Math.PI*2);px.fill();px.restore();
-  });
-  requestAnimationFrame(animParticles);
-}
-animParticles();
+const pc=document.getElementById('particle-canvas'),px=pc.getContext('2d');
+function resPC(){pc.width=pc.parentElement.offsetWidth;pc.height=pc.parentElement.offsetHeight;}resPC();addEventListener('resize',resPC);
+const ptcls=[];for(let i=0;i<40;i++)ptcls.push({x:Math.random()*pc.width,y:Math.random()*pc.height,vy:-.3-Math.random()*.5,vx:(Math.random()-.5)*.3,size:.8+Math.random()*1.8,life:Math.random(),decay:.003+Math.random()*.004});
+(function animP(){px.clearRect(0,0,pc.width,pc.height);ptcls.forEach(p=>{p.y+=p.vy;p.x+=p.vx;p.life-=p.decay;if(p.life<=0||p.y<0){p.y=pc.height+10;p.x=Math.random()*pc.width;p.life=1;}px.save();px.globalAlpha=p.life*.4;px.fillStyle=p.life>.5?'#FF6B6B':'#FF1A1A';px.shadowColor='#FF1A1A';px.shadowBlur=4;px.beginPath();px.arc(p.x,p.y,p.size,0,Math.PI*2);px.fill();px.restore();});requestAnimationFrame(animP);})();
 
-// ─── PARALLAX HERO BG TEXT ───────────────────────────────────
+// ─── HERO LETTERS ────────────────────────────────────────────
+const heroNameEl=document.getElementById('heroName');
+function buildName(){
+  heroNameEl.innerHTML='';
+  const l1=document.createElement('span');
+  [...'DWIJ'].forEach((c,i)=>{const s=document.createElement('span');s.className='hero-letter';s.textContent=c;s.style.transitionDelay=`${1.8+i*.07}s`;l1.appendChild(s);});
+  heroNameEl.appendChild(l1);
+  const l2=document.createElement('span');l2.className='red-line';
+  [...'JOSHI.'].forEach((c,i)=>{const s=document.createElement('span');s.className='hero-letter';s.textContent=c;s.style.transitionDelay=`${2.0+i*.07}s`;l2.appendChild(s);});
+  heroNameEl.appendChild(l2);
+  setTimeout(()=>document.querySelectorAll('.hero-letter').forEach(l=>l.classList.add('vis')),100);
+}
+buildName();
+
+// ─── PARALLAX BG TEXT ────────────────────────────────────────
 const heroBg=document.getElementById('heroBgText');
-addEventListener('scroll',()=>{
-  const y=scrollY;heroBg.style.transform=`translate(-50%,calc(-50% + ${y*.15}px))`;
-});
+addEventListener('scroll',()=>{heroBg.style.transform=`translate(-50%,calc(-50% + ${scrollY*.15}px))`;});
 
-// ─── SCROLL PROGRESS BAR ─────────────────────────────────────
-const progressBar=document.getElementById('progress-bar');
-addEventListener('scroll',()=>{
-  const total=document.body.scrollHeight-innerHeight;
-  progressBar.style.width=(scrollY/total*100)+'%';
-});
+// ─── SMOOTH SCROLL ───────────────────────────────────────────
+let sCurrent=0,sTarget=0;
+addEventListener('wheel',e=>{
+  e.preventDefault();
+  sTarget+=e.deltaY*.85;
+  sTarget=Math.max(0,Math.min(sTarget,document.body.scrollHeight-innerHeight));
+},{passive:false});
+let tStart=0;
+addEventListener('touchstart',e=>{tStart=e.touches[0].clientY;},{passive:false});
+addEventListener('touchmove',e=>{
+  e.preventDefault();
+  const d=tStart-e.touches[0].clientY;
+  sTarget=Math.max(0,Math.min(sTarget+d*1.5,document.body.scrollHeight-innerHeight));
+  tStart=e.touches[0].clientY;
+},{passive:false});
+(function tickScroll(){sCurrent+=(sTarget-sCurrent)*.09;window.scrollTo(0,sCurrent);requestAnimationFrame(tickScroll);})();
+
+// ─── PROGRESS BAR ────────────────────────────────────────────
+const pb=document.getElementById('progress-bar');
+addEventListener('scroll',()=>{pb.style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';});
 
 // ─── NAV SCROLL ──────────────────────────────────────────────
-const nav=document.getElementById('nav');
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+const navEl=document.getElementById('nav');
+addEventListener('scroll',()=>navEl.classList.toggle('scrolled',scrollY>40));
 
-// ─── SCRAMBLE TEXT ───────────────────────────────────────────
-const CHARS='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
-function scramble(el){
-  const final=el.dataset.text;
-  const html=el.innerHTML;
-  let frame=0,total=30;
-  const interval=setInterval(()=>{
-    let out='';
-    for(let i=0;i<final.length;i++){
-      if(final[i]===' '){out+=' ';continue;}
-      if(frame/total>i/final.length){out+=final[i];}
-      else{out+=CHARS[Math.floor(Math.random()*CHARS.length)];}
-    }
-    // Preserve the ACC span coloring by replacing text but keeping structure
-    const acc=el.querySelector('.acc');
-    if(acc){
-      const accText=acc.textContent;
-      const baseText=out.replace(accText,'').trim();
-      el.childNodes[0].textContent=baseText+' ';
-      acc.textContent=accText;
-    } else {
-      el.textContent=out;
-    }
-    frame++;
-    if(frame>=total){clearInterval(interval); el.innerHTML=html;}
-  },40);
-}
-
-// ─── ELECTRIC DIVIDERS ───────────────────────────────────────
-const divObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('drawn');divObs.unobserve(e.target);}});
-},{threshold:.5});
-document.querySelectorAll('.e-divider-animated').forEach(d=>divObs.observe(d));
+// ─── GLITCH MATERIALIZE ──────────────────────────────────────
+const glitchObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('fired');flash();glitchObs.unobserve(e.target);}});
+},{threshold:.4});
+document.querySelectorAll('.glitch-title').forEach(el=>glitchObs.observe(el));
 
 // ─── STAT COUNTERS ───────────────────────────────────────────
-function animCount(el,target,suffix,duration=1400){
-  const start=performance.now();
-  function update(now){
-    const p=Math.min((now-start)/duration,1);
-    const e=1-Math.pow(1-p,3);
+function animCount(el,target,suffix,dur=1400){
+  const s=performance.now();
+  (function u(now){const p=Math.min((now-s)/dur,1),e=1-Math.pow(1-p,3);
     el.querySelector('.stat-n').textContent=Math.floor(e*target)+suffix;
-    if(p<1)requestAnimationFrame(update);
-    else el.querySelector('.stat-n').textContent=target+suffix;
-  }
-  requestAnimationFrame(update);
+    if(p<1)requestAnimationFrame(u);else el.querySelector('.stat-n').textContent=target+suffix;
+  })(s);
 }
 const statObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const el=e.target;
-      el.classList.add('on');
-      const count=el.dataset.count,suffix=el.dataset.suffix||'';
-      if(count) animCount(el,+count,suffix);
-      statObs.unobserve(el);
-    }
-  });
+  entries.forEach(e=>{if(e.isIntersecting){const el=e.target;el.classList.add('on');if(el.dataset.count)animCount(el,+el.dataset.count,el.dataset.suffix||'');statObs.unobserve(el);}});
 },{threshold:.3});
-document.querySelectorAll('.stat-card').forEach((c,i)=>{
-  c.style.transitionDelay=i*.1+'s';
-  statObs.observe(c);
-});
+document.querySelectorAll('.stat-card').forEach((c,i)=>{c.style.transitionDelay=i*.1+'s';statObs.observe(c);});
 
-// ─── SKILL TAGS STAGGER ──────────────────────────────────────
+// ─── SKILL TAGS ──────────────────────────────────────────────
 const skObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('on');
-      e.target.querySelectorAll('.sk-tag').forEach((tag,i)=>{
-        setTimeout(()=>tag.classList.add('on'),i*55);
-      });
-      skObs.unobserve(e.target);
-    }
-  });
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll('.sk-tag').forEach((t,i)=>setTimeout(()=>t.classList.add('on'),i*55));skObs.unobserve(e.target);}});
 },{threshold:.2});
-document.querySelectorAll('.sk-group').forEach((g,i)=>{
-  g.style.transitionDelay=i*.1+'s';
-  skObs.observe(g);
-});
+document.querySelectorAll('.sk-group').forEach((g,i)=>{g.style.transitionDelay=i*.1+'s';skObs.observe(g);});
 
-// ─── EXPERIENCE TIMELINE ─────────────────────────────────────
-const expList=document.getElementById('expList');
-const expObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      expList.classList.add('drawn');
-      expList.querySelectorAll('.exp-item').forEach((item,i)=>{
-        setTimeout(()=>item.classList.add('on'),i*200);
-      });
-      expObs.unobserve(e.target);
-    }
-  });
+// ─── TIMELINE ────────────────────────────────────────────────
+const tlObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){
+    document.getElementById('timelineLine').classList.add('drawn');
+    document.querySelectorAll('.tl-entry').forEach((en,i)=>setTimeout(()=>en.classList.add('on'),i*200));
+    tlObs.disconnect();
+  }});
 },{threshold:.1});
-expObs.observe(expList);
+tlObs.observe(document.getElementById('experience'));
 
-// ─── SCRAMBLE ON SECTION ENTER ───────────────────────────────
-const scObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ scramble(e.target); flashLightning(); scObs.unobserve(e.target); }
+document.querySelectorAll('.tl-entry').forEach(entry=>{
+  entry.addEventListener('click',()=>{
+    const body=entry.querySelector('.tl-body');
+    const toggle=entry.querySelector('.tl-toggle');
+    const isOpen=body.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.tl-body').forEach(b=>b.classList.remove('open'));
+    document.querySelectorAll('.tl-entry').forEach(e=>e.classList.remove('active'));
+    document.querySelectorAll('.tl-toggle').forEach(t=>t.textContent='[ + EXPAND ]');
+    if(!isOpen){body.classList.add('open');entry.classList.add('active');toggle.textContent='[ − CLOSE ]';flash();}
   });
-},{threshold:.4});
-document.querySelectorAll('.scramble').forEach(el=>scObs.observe(el));
+});
 
 // ─── GENERIC REVEAL ──────────────────────────────────────────
-const revObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('on');revObs.unobserve(e.target);} });
-},{threshold:.08});
-document.querySelectorAll('.reveal,.slide-left,.clip-reveal').forEach(el=>revObs.observe(el));
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');revObs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal,.slide-left').forEach(el=>revObs.observe(el));
 
 // ─── MAGNETIC BUTTONS ────────────────────────────────────────
 document.querySelectorAll('.magnetic').forEach(btn=>{
-  btn.addEventListener('mousemove',e=>{
-    const r=btn.getBoundingClientRect();
-    const x=(e.clientX-r.left-r.width/2)*.25;
-    const y=(e.clientY-r.top-r.height/2)*.25;
-    btn.style.transform=`translate(${x}px,${y}px)`;
-  });
-  btn.addEventListener('mouseleave',()=>{ btn.style.transform=''; });
+  btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.25}px)`;});
+  btn.addEventListener('mouseleave',()=>btn.style.transform='');
 });
+
+// ─── FULLSCREEN NAV ──────────────────────────────────────────
+const fsNav=document.getElementById('fs-nav');
+document.getElementById('hamburger').addEventListener('click',()=>fsNav.classList.add('open'));
+document.getElementById('fsNavClose').addEventListener('click',()=>fsNav.classList.remove('open'));
+document.querySelectorAll('[data-close]').forEach(a=>{
+  a.addEventListener('click',()=>{fsNav.classList.remove('open');const href=a.getAttribute('href');if(href){sTarget=document.querySelector(href)?.offsetTop-62||0;}});
+});
+// Lightning on nav item hover
+document.querySelectorAll('.fs-nav-link').forEach(link=>{link.addEventListener('mouseenter',()=>flash());});
 
 // ─── CARD DECK ───────────────────────────────────────────────
 const cards=Array.from(document.querySelectorAll('.deck-card'));
 const dots=Array.from(document.querySelectorAll('.deck-dot'));
-let current=0;const total=cards.length;
-
-function updateDeck(animate=false){
-  cards.forEach((card,i)=>{
-    const pos=(i-current+total)%total;
-    card.dataset.pos=pos;
-    if(animate) card.style.transition='transform .6s cubic-bezier(.34,1.56,.64,1), opacity .4s ease, box-shadow .3s';
-    else card.style.transition='none';
-  });
-  dots.forEach((d,i)=>d.classList.toggle('active',i===current));
+let cur=0;const tot=cards.length;
+function updateDeck(anim=false){
+  cards.forEach((c,i)=>{c.dataset.pos=(i-cur+tot)%tot;if(anim)c.style.transition='transform .6s cubic-bezier(.34,1.56,.64,1),opacity .4s,box-shadow .3s';else c.style.transition='none';});
+  dots.forEach((d,i)=>d.classList.toggle('active',i===cur));
 }
-
-function nextCard(){ current=(current+1)%total; updateDeck(true); flashLightning(); }
-function prevCard(){ current=(current-1+total)%total; updateDeck(true); }
-
-document.getElementById('deckNext').addEventListener('click',nextCard);
-document.getElementById('deckPrev').addEventListener('click',prevCard);
-dots.forEach(d=>d.addEventListener('click',()=>{ current=+d.dataset.i; updateDeck(true); }));
-
-// Click active card to advance
+function nextC(){cur=(cur+1)%tot;updateDeck(true);flash();}
+function prevC(){cur=(cur-1+tot)%tot;updateDeck(true);}
+document.getElementById('deckNext').addEventListener('click',nextC);
+document.getElementById('deckPrev').addEventListener('click',prevC);
+dots.forEach(d=>d.addEventListener('click',()=>{cur=+d.dataset.i;updateDeck(true);}));
 document.getElementById('deckStage').addEventListener('click',e=>{
   if(e.target.tagName==='A'||e.target.closest('a'))return;
-  const card=e.target.closest('.deck-card');
-  if(card&&card.dataset.pos==='0')nextCard();
+  if(e.target.closest('.deck-card')?.dataset.pos==='0')nextC();
 });
-
-// 3D tilt
 document.getElementById('deckStage').addEventListener('mousemove',e=>{
-  const r=e.currentTarget.getBoundingClientRect();
-  const x=(e.clientX-r.left)/r.width-.5;
-  const y=(e.clientY-r.top)/r.height-.5;
-  cards.forEach(c=>{ if(c.dataset.pos==='0') c.style.transform=`translateY(0) rotate(0) scale(1) rotateX(${-y*12}deg) rotateY(${x*12}deg)`; });
+  const r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  cards.forEach(c=>{if(c.dataset.pos==='0')c.style.transform=`translateY(0) rotate(0) scale(1) rotateX(${-y*12}deg) rotateY(${x*12}deg)`;});
 });
-document.getElementById('deckStage').addEventListener('mouseleave',()=>{
-  cards.forEach(c=>{ if(c.dataset.pos==='0') c.style.transform='translateY(0) rotate(0) scale(1)'; });
-});
-
+document.getElementById('deckStage').addEventListener('mouseleave',()=>{cards.forEach(c=>{if(c.dataset.pos==='0')c.style.transform='translateY(0) rotate(0) scale(1)';});});
 updateDeck(false);
 
-// ─── AI CHAT HINT ────────────────────────────────────────────
-const chatHint=document.getElementById('chatHint');
-setTimeout(()=>chatHint.classList.add('visible'),2000);
-
-// ─── AI CHAT PANEL ───────────────────────────────────────────
-const chatBubble=document.getElementById('chatBubble'),chatPanel=document.getElementById('chatPanel');
-const chatClose=document.getElementById('chatClose'),chatMessages=document.getElementById('chatMessages');
-const chatInput=document.getElementById('chatInput'),chatSend=document.getElementById('chatSend');
-const chatSuggs=document.getElementById('chatSuggestions');
+// ─── AI CHAT ─────────────────────────────────────────────────
+const chatHint=document.getElementById('chatHint'),chatPanel=document.getElementById('chatPanel');
+const chatBubble=document.getElementById('chatBubble'),chatClose=document.getElementById('chatClose');
+const chatMessages=document.getElementById('chatMessages'),chatInput=document.getElementById('chatInput');
+const chatSend=document.getElementById('chatSend'),chatSuggs=document.getElementById('chatSuggestions');
 let chatOpen=false;
-
+setTimeout(()=>chatHint.classList.add('visible'),3000);
 function toggleChat(){
-  chatOpen=!chatOpen;
-  chatPanel.classList.toggle('open',chatOpen);
-  chatHint.classList.remove('visible');
-  if(chatOpen&&chatMessages.children.length===0){
-    setTimeout(()=>addBotMsg("Hey! I'm Dwij's AI agent ⚡ Ask me anything about his projects, skills, experience, or co-op availability."),400);
-  }
+  chatOpen=!chatOpen;chatPanel.classList.toggle('open',chatOpen);chatHint.classList.remove('visible');
+  if(chatOpen&&!chatMessages.children.length)setTimeout(()=>addBot("Hey! I'm Dwij's AI agent ⚡ Ask me anything about his projects, skills, experience, or co-op availability."),400);
 }
 chatBubble.addEventListener('click',toggleChat);
 chatClose.addEventListener('click',toggleChat);
-chatSuggs.querySelectorAll('.suggestion').forEach(s=>s.addEventListener('click',()=>sendMessage(s.textContent)));
-
-function getTime(){ return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
-
-function addUserMsg(text){
-  const m=document.createElement('div');m.className='msg user';
-  m.innerHTML=`<div class="msg-bubble">${text}</div><div class="msg-time">${getTime()}</div>`;
-  chatMessages.appendChild(m);chatMessages.scrollTop=chatMessages.scrollHeight;
-}
-function addBotMsg(text){
-  const m=document.createElement('div');m.className='msg bot';
-  m.innerHTML=`<div class="msg-bubble">${text}</div><div class="msg-time">${getTime()}</div>`;
-  chatMessages.appendChild(m);chatMessages.scrollTop=chatMessages.scrollHeight;
-}
-function showTyping(){
-  const t=document.createElement('div');t.className='typing-indicator';t.id='typer';
-  t.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-  chatMessages.appendChild(t);chatMessages.scrollTop=chatMessages.scrollHeight;return t;
-}
-
-function getResponse(msg){
+chatSuggs.querySelectorAll('.suggestion').forEach(s=>s.addEventListener('click',()=>send(s.textContent)));
+function getT(){return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
+function addBot(t){const m=document.createElement('div');m.className='msg bot';m.innerHTML=`<div class="msg-bubble">${t}</div><div class="msg-time">${getT()}</div>`;chatMessages.appendChild(m);chatMessages.scrollTop=chatMessages.scrollHeight;}
+function addUser(t){const m=document.createElement('div');m.className='msg user';m.innerHTML=`<div class="msg-bubble">${t}</div><div class="msg-time">${getT()}</div>`;chatMessages.appendChild(m);chatMessages.scrollTop=chatMessages.scrollHeight;}
+function showTyping(){const t=document.createElement('div');t.className='typing-indicator';t.id='typer';t.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';chatMessages.appendChild(t);chatMessages.scrollTop=chatMessages.scrollHeight;return t;}
+function getResp(msg){
   const m=msg.toLowerCase();
-  if(m.match(/who|about|introduce|tell me|background|himself/))
-    return "Dwij Joshi is a Mechatronics Engineering student at Toronto Metropolitan University (Class of 2029), transferred from Computer Engineering. He works at the intersection of embedded firmware, hardware control systems, and software testing. 3+ years work experience across clinical data administration, youth education, and community programs. Ontario Scholar and Certificate of Recognition recipient.";
-  if(m.match(/rtos|freertos|scheduler|task|semaphore|queue|mutex/))
-    return "The RTOS Task Scheduler is his strongest technical project — a three-task FreeRTOS system in C. SensorTask → ControlTask via typed queue, ControlTask fires a binary semaphore on critical temp, DisplayTask renders output. Built with a POSIX simulation layer for Linux — ports to STM32 with three HAL function swaps. github.com/dwijjoshi14/rtos-task-scheduler";
-  if(m.match(/heat|fan|tmp36|neopixel|thermal/))
-    return "Heat Management System — closed-loop thermal control on Arduino Uno for MTE301 at TMU. TMP36 ADC sensing, PMOS-driven PWM fan control, 16×2 LCD + 80-LED NeoPixel feedback. Simulated in Tinkercad Circuits. github.com/dwijjoshi14/heat-management-system";
-  if(m.match(/circuit|dc|ohm|kirchhoff|kvl|kcl|resistor/))
-    return "DC Circuit Analyzer — solo C++17 tool applying Ohm's Law and KVL/KCL to series and parallel circuits. Computes resistance, currents, voltage drops, power — with automatic self-verification. OOP structure with Circuit class and Resistor type. github.com/dwijjoshi14/dc-circuit-analyzer";
-  if(m.match(/parking|ultrasonic|proximity/))
-    return "Smart Parking Assistant — high school capstone. 95% detection accuracy across 5–100cm, sub-50ms feedback loop, reliability improved from 65% to 88% through 10+ edge-case test scenarios.";
-  if(m.match(/project|built|github|repo/))
-    return "3 public repos: ⚡ RTOS Task Scheduler (FreeRTOS, C, queue/semaphore/mutex) ⚡ Heat Management System (Arduino, C++, PWM) ⚡ DC Circuit Analyzer (C++17, Ohm's Law, KVL/KCL). All at github.com/dwijjoshi14";
-  if(m.match(/skill|language|tech|know|cpp|c\+\+|embedded/))
-    return "Core skills: C, C++, Python, Java, SQL. Embedded: Arduino, PWM, ADC, UART, I2C, SPI, GPIO, PMOS driver circuits. Tools: Git, FreeRTOS, PlatformIO, Tinkercad, MATLAB. Testing: test case design, black-box/white-box, defect tracking.";
-  if(m.match(/experience|work|job|rosalie|leacock|foundation/))
-    return "3+ years professional experience: Administrative Assistant at Rosalie Hall Mental Health Institution — rebuilt client data systems, cut report time from 3 hours to 45 mins. Senior Program Assistant at Leacock Foundation — tracked 100+ students, Certificate of Recognition. League Ambassador at JAM Sports.";
-  if(m.match(/coop|co-op|intern|hire|available|recruit|position/))
-    return "Dwij is seeking co-op/internship opportunities starting January 2027 in embedded systems, mechatronics, or hardware-software integration. Based in Toronto, ON. Contact: dwijjoshi14@gmail.com or linkedin.com/in/dwij-joshi-14-tron";
-  if(m.match(/education|school|tmu|program|degree|study/))
-    return "Bachelor of Engineering in Mechatronics Engineering at Toronto Metropolitan University, expected April 2029. Transferred from Computer Engineering. Ontario Scholar. Previously attended Woburn Collegiate Institute.";
-  if(m.match(/contact|email|reach|linkedin|github|portfolio|site/))
-    return "📧 dwijjoshi14@gmail.com\n💼 linkedin.com/in/dwij-joshi-14-tron\n⚡ github.com/dwijjoshi14\n🌐 dwijjoshi14.github.io";
-  if(m.match(/resume|cv/))
-    return "Click 'resume.pdf' in the top navigation bar to download Dwij's technical resume directly.";
-  if(m.match(/hello|hi|hey|sup|yo/))
-    return "Hey! I'm Dwij's AI agent ⚡ Ask me about his projects, skills, work experience, or co-op availability. What would you like to know?";
-  return "I might not have that specific detail. Try asking about Dwij's projects, skills, work experience, or co-op availability. Or reach him directly at dwijjoshi14@gmail.com ⚡";
+  if(m.match(/who|about|introduce|tell me|background/))return "Dwij Joshi is a Mechatronics Engineering student at Toronto Metropolitan University (Class of 2029), transferred from Computer Engineering. He works at the intersection of embedded firmware, hardware control systems, and software testing. 3+ years work experience across clinical data administration, youth education, and community programs. Ontario Scholar and Certificate of Recognition recipient.";
+  if(m.match(/rtos|freertos|task|semaphore|queue|mutex/))return "The RTOS Task Scheduler is his strongest project — three-task FreeRTOS in C. SensorTask → ControlTask via typed queue, binary semaphore for critical alerts, mutex for shared resources. POSIX simulation layer, STM32-portable. github.com/dwijjoshi14/rtos-task-scheduler";
+  if(m.match(/heat|fan|tmp36|neopixel|thermal/))return "Heat Management System — closed-loop thermal control on Arduino Uno for MTE301. TMP36 ADC sensing, PMOS-driven PWM fan, 16×2 LCD + 80-LED NeoPixel feedback. Tinkercad simulation. github.com/dwijjoshi14/heat-management-system";
+  if(m.match(/circuit|ohm|kirchhoff|kvl|kcl/))return "DC Circuit Analyzer — solo C++17 tool applying Ohm's Law and KVL/KCL to series/parallel circuits. Auto self-verification after every run. github.com/dwijjoshi14/dc-circuit-analyzer";
+  if(m.match(/project|built|github|repo/))return "3 public repos: ⚡ RTOS Task Scheduler (FreeRTOS, C) ⚡ Heat Management System (Arduino, C++) ⚡ DC Circuit Analyzer (C++17, Ohm's Law). All at github.com/dwijjoshi14";
+  if(m.match(/skill|language|tech|cpp|embedded/))return "Languages: C, C++, Python, Java, SQL. Embedded: Arduino, PWM, ADC, UART, I2C, SPI, GPIO, PMOS driver. Tools: Git, FreeRTOS, PlatformIO, Tinkercad, MATLAB. Testing: test case design, black-box/white-box testing.";
+  if(m.match(/experience|work|job|rosalie|leacock/))return "3+ years experience: Administrative Assistant at Rosalie Hall Mental Health Institution — rebuilt data systems, cut report time from 3hr to 45min. Senior Program Assistant at Leacock Foundation — tracked 100+ students, Certificate of Recognition. League Ambassador at JAM Sports.";
+  if(m.match(/coop|intern|hire|available|recruit/))return "Dwij is seeking co-op/internship opportunities starting January 2027 in embedded systems or mechatronics. Based in Toronto. Contact: dwijjoshi14@gmail.com or linkedin.com/in/dwij-joshi-14-tron";
+  if(m.match(/education|school|tmu|program|degree/))return "Bachelor of Engineering in Mechatronics Engineering at Toronto Metropolitan University, expected April 2029. Transferred from Computer Engineering. Ontario Scholar.";
+  if(m.match(/contact|email|reach|linkedin|github|site/))return "📧 dwijjoshi14@gmail.com · 💼 linkedin.com/in/dwij-joshi-14-tron · ⚡ github.com/dwijjoshi14 · 🌐 dwijjoshi14.github.io";
+  if(m.match(/hello|hi|hey/))return "Hey! I'm Dwij's AI agent ⚡ Ask me about his projects, skills, work experience, or co-op availability.";
+  return "I might not have that specific detail — try asking about projects, skills, experience, or co-op availability. Or reach Dwij at dwijjoshi14@gmail.com ⚡";
+}
+function send(text){
+  const msg=text||chatInput.value.trim();if(!msg)return;
+  chatInput.value='';chatSuggs.style.display='none';addUser(msg);
+  const t=showTyping();setTimeout(()=>{t.remove();addBot(getResp(msg));},700+Math.random()*500);
+}
+chatSend.addEventListener('click',()=>send());
+chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
+
+// ─── LIGHTNING REFLEX GAME ───────────────────────────────────
+const gameModal=document.getElementById('gameModal');
+const gameArena=document.getElementById('gameArena');
+const arenaMsg=document.getElementById('arenaMsg');
+const gameScore=document.getElementById('gameScore');
+const gameTimer=document.getElementById('gameTimer');
+const gameHigh=document.getElementById('gameHigh');
+let gScore=0,gHigh=0,gRunning=false,gInterval=null,gTargetTimeout=null,gCountdown=null;
+
+function openGame(){gameModal.classList.add('open');}
+function closeGame(){gameModal.classList.remove('open');stopGame();}
+document.getElementById('navGameBtn').addEventListener('click',openGame);
+document.getElementById('gameClose').addEventListener('click',closeGame);
+document.getElementById('gameCloseBtn').addEventListener('click',closeGame);
+document.getElementById('gameStart').addEventListener('click',startGame);
+
+function spawnTarget(){
+  // Remove existing
+  const old=gameArena.querySelector('.game-target');if(old)old.remove();
+  const margin=30;
+  const x=margin+Math.random()*(gameArena.offsetWidth-margin*2);
+  const y=margin+Math.random()*(gameArena.offsetHeight-margin*2);
+  const t=document.createElement('div');t.className='game-target';
+  t.style.left=x+'px';t.style.top=y+'px';t.textContent='⚡';
+  t.addEventListener('click',e=>{
+    e.stopPropagation();
+    if(!gRunning)return;
+    gScore++;gameScore.textContent=gScore;
+    // Mini burst at target
+    const b=document.createElement('div');b.style.cssText=`position:absolute;left:${x}px;top:${y}px;width:0;height:0;pointer-events:none;`;
+    for(let i=0;i<8;i++){const a=document.createElement('div');a.style.cssText=`position:absolute;width:2px;height:${15+Math.random()*20}px;background:var(--red);transform-origin:0 0;transform:rotate(${(i/8)*360}deg);animation:arcFly .4s ease-out forwards;border-radius:2px;`;b.appendChild(a);}
+    gameArena.appendChild(b);setTimeout(()=>b.remove(),500);
+    t.remove();clearTimeout(gTargetTimeout);
+    gTargetTimeout=setTimeout(spawnTarget,100+Math.random()*200);
+  });
+  gameArena.appendChild(t);
+  // Auto-remove after 1.5s if not clicked
+  gTargetTimeout=setTimeout(()=>{t.remove();if(gRunning)setTimeout(spawnTarget,200+Math.random()*300);},1500);
 }
 
-function sendMessage(text){
-  const msg=text||chatInput.value.trim();
-  if(!msg)return;
-  chatInput.value='';
-  chatSuggs.style.display='none';
-  addUserMsg(msg);
-  const t=showTyping();
-  setTimeout(()=>{ t.remove(); addBotMsg(getResponse(msg)); },700+Math.random()*600);
+function startGame(){
+  gScore=0;gameScore.textContent='0';gRunning=true;
+  arenaMsg.style.display='none';
+  document.getElementById('gameStart').textContent='RESTART';
+  let timeLeft=10;gameTimer.textContent=timeLeft;
+  clearInterval(gCountdown);clearTimeout(gTargetTimeout);
+  const old=gameArena.querySelector('.game-target');if(old)old.remove();
+  spawnTarget();
+  gCountdown=setInterval(()=>{
+    timeLeft--;gameTimer.textContent=timeLeft;
+    if(timeLeft<=0){
+      clearInterval(gCountdown);clearTimeout(gTargetTimeout);gRunning=false;
+      const old2=gameArena.querySelector('.game-target');if(old2)old2.remove();
+      if(gScore>gHigh){gHigh=gScore;gameHigh.textContent=gHigh;}
+      arenaMsg.style.display='flex';
+      arenaMsg.innerHTML=`<div class="big" style="font-size:1.4rem">${gScore}</div><div class="small">BOLTS CAUGHT</div><div class="small" style="color:var(--tx-3)">BEST: ${gHigh}</div>`;
+    }
+  },1000);
 }
-chatSend.addEventListener('click',()=>sendMessage());
-chatInput.addEventListener('keydown',e=>{ if(e.key==='Enter')sendMessage(); });
+function stopGame(){gRunning=false;clearInterval(gCountdown);clearTimeout(gTargetTimeout);const old=gameArena.querySelector('.game-target');if(old)old.remove();}
 </script>
 </body>
 </html>
