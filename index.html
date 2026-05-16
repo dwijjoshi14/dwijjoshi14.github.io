@@ -217,6 +217,22 @@
     <h2 class="s-title glitch-title" data-text="WHERE IVE WORKED">WHERE I'VE <span class="acc">WORKED</span></h2>
     <div class="timeline-wrap">
       <div class="timeline-line" id="timelineLine"><div class="timeline-spark"></div></div>
+      <div class="tl-entry" id="tl-safss">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div><div class="tl-role">Intake Worker</div><div class="tl-org">Settlement Assistance & Family Support Services (SAFSS) · Toronto, ON</div></div>
+          <div class="tl-meta"><div class="tl-date">May 2026 – Jul 2026</div><div class="tl-type">Contract</div><div class="tl-toggle">[ + EXPAND ]</div></div>
+        </div>
+        <div class="tl-body">
+          <ul class="tl-bullets">
+            <li>Processed client intake and registration for 30+ weekly walk-in cases, managing end-to-end data entry into SAFSS client management database with zero data integrity errors across the term.</li>
+            <li>Designed a standardized intake checklist that reduced average client onboarding time by ~20% and improved cross-staff consistency in documentation and file completeness.</li>
+            <li>Maintained confidential records for 150+ active client files in compliance with organizational privacy procedures in a regulated social services environment.</li>
+            <li>Generated weekly participation reports and attendance tracking data for program leadership, consolidating inputs across 4 service streams into structured summaries used in funder reporting.</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="tl-entry" id="tl0">
         <div class="tl-dot"></div>
         <div class="tl-header">
@@ -612,7 +628,7 @@ document.querySelectorAll('.tl-entry').forEach(entry=>{
     document.querySelectorAll('.tl-body').forEach(b=>b.classList.remove('open'));
     document.querySelectorAll('.tl-entry').forEach(e=>e.classList.remove('active'));
     document.querySelectorAll('.tl-toggle').forEach(t=>t.textContent='[ + EXPAND ]');
-    if(!isOpen){body.classList.add('open');entry.classList.add('active');toggle.textContent='[ − CLOSE ]';flash();}
+    if(!isOpen){body.classList.add('open');entry.classList.add('active');toggle.textContent='[ \u2212 CLOSE ]';flash();}
   });
 });
 
