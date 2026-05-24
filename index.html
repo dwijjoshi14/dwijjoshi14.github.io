@@ -3,16 +3,13 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dwij Joshi — Mechatronics Engineering</title>
-  <meta name="description" content="Mechatronics Engineering student at TMU. Embedded systems, C++, hardware-software integration."/>
+  <title>Dwij Joshi</title>
+  <meta name="description" content="Mechatronics Engineering at TMU. I build things at the edge of hardware and software."/>
   <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
-<!-- ── FULL PAGE BG CANVAS ────────────────────────────────── -->
-<canvas id="bg-canvas"></canvas>
-
-<!-- ── INTRO OVERLAY ──────────────────────────────────────── -->
 <div id="intro-overlay">
   <canvas id="intro-canvas"></canvas>
   <div class="intro-static" id="introStatic"></div>
@@ -20,69 +17,58 @@
   <div class="intro-text" id="introText">DWIJ<br/><span class="red">JOSHI.</span></div>
 </div>
 
-<!-- ── GAME MODAL ─────────────────────────────────────────── -->
 <div class="game-modal" id="gameModal">
   <div class="game-box">
-    <div class="game-top">
-      <div class="game-title">⚡ LIGHTNING REFLEX</div>
-      <button class="game-close" id="gameClose">✕</button>
-    </div>
+    <div class="game-top"><div class="game-title">⚡ lightning reflex</div><button class="game-close" id="gameClose">✕</button></div>
     <div class="game-arena" id="gameArena">
-      <div class="game-arena-msg" id="arenaMsg">
-        <div class="big">⚡</div>
-        <div class="small">CLICK BOLTS AS FAST AS YOU CAN</div>
-        <div class="small" style="color:var(--t3)">10 SECOND CHALLENGE</div>
-      </div>
+      <div class="game-arena-msg" id="arenaMsg"><div class="big">⚡</div><div class="small">click every bolt you see</div><div class="small" style="color:var(--t3);margin-top:.2rem">10 seconds. go.</div></div>
     </div>
     <div class="game-stats">
-      <div class="game-stat"><div class="game-stat-n" id="gameScore">0</div><div class="game-stat-l">SCORE</div></div>
-      <div class="game-stat"><div class="game-stat-n" id="gameTimer">10</div><div class="game-stat-l">SECONDS</div></div>
-      <div class="game-stat"><div class="game-stat-n" id="gameHigh">0</div><div class="game-stat-l">BEST</div></div>
+      <div class="game-stat"><div class="game-stat-n" id="gameScore">0</div><div class="game-stat-l">score</div></div>
+      <div class="game-stat"><div class="game-stat-n" id="gameTimer">10</div><div class="game-stat-l">seconds</div></div>
+      <div class="game-stat"><div class="game-stat-n" id="gameHigh">0</div><div class="game-stat-l">best</div></div>
     </div>
     <div class="game-controls">
-      <button class="game-btn game-btn-start" id="gameStart">START GAME</button>
-      <button class="game-btn game-btn-secondary" id="gameCloseBtn">CLOSE</button>
+      <button class="game-btn game-btn-start" id="gameStart">play</button>
+      <button class="game-btn game-btn-secondary" id="gameCloseBtn">close</button>
     </div>
   </div>
 </div>
 
-<!-- ── FULLSCREEN NAV ──────────────────────────────────────── -->
 <div id="fs-nav">
-  <button class="fs-close" id="fsClose">[ CLOSE ]</button>
+  <button class="fs-close" id="fsClose">close</button>
   <ul class="fs-items">
-    <li class="fs-item"><a href="#about"      class="fs-link" data-nav><span class="num">01</span>About</a></li>
-    <li class="fs-item"><a href="#projects"   class="fs-link" data-nav><span class="num">02</span>Projects</a></li>
-    <li class="fs-item"><a href="#skills"     class="fs-link" data-nav><span class="num">03</span>Skills</a></li>
-    <li class="fs-item"><a href="#experience" class="fs-link" data-nav><span class="num">04</span>Experience</a></li>
-    <li class="fs-item"><a href="#contact"    class="fs-link" data-nav><span class="num">05</span>Contact</a></li>
+    <li class="fs-item"><a href="#about"      class="fs-link" data-nav>about</a></li>
+    <li class="fs-item"><a href="#projects"   class="fs-link" data-nav>projects</a></li>
+    <li class="fs-item"><a href="#skills"     class="fs-link" data-nav>skills</a></li>
+    <li class="fs-item"><a href="#experience" class="fs-link" data-nav>experience</a></li>
+    <li class="fs-item"><a href="#contact"    class="fs-link" data-nav>contact</a></li>
   </ul>
   <div class="fs-social">
-    <a href="https://github.com/dwijjoshi14" target="_blank">GitHub</a>
-    <a href="https://linkedin.com/in/dwij-joshi-14-tron" target="_blank">LinkedIn</a>
-    <a href="mailto:dwijjoshi14@gmail.com">Email</a>
+    <a href="https://github.com/dwijjoshi14" target="_blank">github</a>
+    <a href="https://linkedin.com/in/dwij-joshi-14-tron" target="_blank">linkedin</a>
+    <a href="mailto:dwijjoshi14@gmail.com">email</a>
   </div>
 </div>
 
-<!-- ── SIDE SECTION INDICATOR ─────────────────────────────── -->
 <div id="section-indicator">
-  <div class="si-dot active" data-section="hero"       data-label="HOME"></div>
-  <div class="si-dot"        data-section="about"      data-label="ABOUT"></div>
-  <div class="si-dot"        data-section="projects"   data-label="PROJECTS"></div>
-  <div class="si-dot"        data-section="skills"     data-label="SKILLS"></div>
-  <div class="si-dot"        data-section="experience" data-label="EXPERIENCE"></div>
-  <div class="si-dot"        data-section="contact"    data-label="CONTACT"></div>
+  <div class="si-dot active" data-section="hero"       data-label="home"></div>
+  <div class="si-dot"        data-section="about"      data-label="about"></div>
+  <div class="si-dot"        data-section="projects"   data-label="projects"></div>
+  <div class="si-dot"        data-section="skills"     data-label="skills"></div>
+  <div class="si-dot"        data-section="experience" data-label="experience"></div>
+  <div class="si-dot"        data-section="contact"    data-label="contact"></div>
 </div>
 
-<!-- ── FX LAYERS ──────────────────────────────────────────── -->
+<canvas id="galaxy-canvas"></canvas>
 <div id="progress-bar"></div>
 <canvas id="lightning-canvas"></canvas>
 <canvas id="spark-canvas"></canvas>
 <div class="c-dot" id="cDot"></div>
 <div class="c-ring" id="cRing"></div>
 
-<!-- ── TOP NAV ────────────────────────────────────────────── -->
 <nav id="nav">
-  <div class="nav-logo">&lt;dwij-joshi /&gt;</div>
+  <a href="#hero" class="nav-logo">dwij.joshi</a>
   <ul class="nav-links">
     <li><a href="#about">about</a></li>
     <li><a href="#projects">projects</a></li>
@@ -91,435 +77,268 @@
     <li><a href="#contact">contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="nav-game-btn" id="navGameBtn">⚡ GAME</button>
-    <a href="Dwij_Joshi_Resume_Technical.pdf" target="_blank" class="nav-cta">resume.pdf</a>
+    <button class="nav-game-btn" id="navGameBtn">⚡ play</button>
+    <a href="Dwij_Joshi_Resume_Technical.pdf" target="_blank" class="nav-resume">resume</a>
     <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- ── HERO ───────────────────────────────────────────────── -->
 <section id="hero">
-  <canvas id="particle-canvas" style="position:absolute;inset:0;z-index:1;pointer-events:none;"></canvas>
-  <div class="hero-bg-text" id="heroBgText" aria-hidden="true">DWIJ</div>
+  <canvas id="particle-canvas" style="position:absolute;inset:0;z-index:0;pointer-events:none;"></canvas>
   <div class="hero-inner">
-    <div class="hero-eyebrow">MECHATRONICS ENGINEERING · TMU · CLASS OF 2029</div>
+    <div class="hero-tag">mechatronics engineering · tmu · graduating 2029</div>
     <h1 class="hero-name" id="heroName"></h1>
-    <p class="hero-sub">Embedded Systems<span class="sep">⚡</span>C++<span class="sep">⚡</span>Hardware-Software Integration</p>
+    <p class="hero-desc">I build things at the edge of hardware and software — where a bug in your firmware has physical consequences and getting it right actually matters.</p>
     <div class="hero-btns">
-      <a href="#projects" class="btn-red magnetic">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        VIEW PROJECTS
-      </a>
-      <a href="https://github.com/dwijjoshi14" target="_blank" class="btn-ghost magnetic">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        GITHUB
-      </a>
-      <a href="https://linkedin.com/in/dwij-joshi-14-tron" target="_blank" class="btn-ghost magnetic">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LINKEDIN
-      </a>
+      <a href="#projects" class="btn-primary magnetic">see my work</a>
+      <a href="https://github.com/dwijjoshi14" target="_blank" class="btn-outline magnetic">github</a>
+      <a href="https://linkedin.com/in/dwij-joshi-14-tron" target="_blank" class="btn-outline magnetic">linkedin</a>
     </div>
   </div>
-  <div class="scroll-ind"><span>SCROLL</span><div class="scroll-bolt"></div></div>
+  <div class="scroll-ind"><span>scroll</span><div class="scroll-bolt"></div></div>
 </section>
 
-<!-- ── ABOUT ───────────────────────────────────────────────── -->
 <section id="about">
-  <div class="s-wrap">
-    <div class="s-label">01 — ABOUT</div>
-    <h2 class="s-title glitch-title" data-text="WHO I AM">WHO I <span class="acc">AM</span></h2>
+  <div class="glass-wrap">
+    <div class="s-label">about me</div>
+    <h2 class="s-title glitch-title" data-text="who I am">who I <span class="acc">am</span></h2>
     <div class="about-grid">
       <div class="about-text slide-left">
-        <p>I'm a <strong>Mechatronics Engineering student at Toronto Metropolitan University</strong>, transferred from Computer Engineering because the problems I care about most live at the intersection of electronics, mechanics, and firmware.</p>
-        <p>My technical work spans <span class="hl">embedded C++ firmware</span>, <span class="hl">sensor integration</span>, ADC-to-output control loops, FreeRTOS real-time systems, and software QA. I don't just write code — I stress-test it, document it, and hand it off in a state others can use.</p>
-        <p>Outside engineering, 3+ years across clinical data management, youth education, and community operations. Equally comfortable in a lab, a spreadsheet, or a stakeholder meeting.</p>
-        <p><strong>Ontario Scholar</strong> · Certificate of Recognition (Leacock Foundation)</p>
+        <p>I'm a <strong>Mechatronics Engineering student at Toronto Metropolitan University</strong> — transferred from Computer Engineering because I kept being more interested in the hardware side of everything. That intersection of electronics, firmware, and physical systems is where I want to live.</p>
+        <p>On the technical side I've been building with <span class="hl">embedded C++ firmware</span>, working with <span class="hl">sensor integration</span>, real-time control loops, FreeRTOS, and writing tests that actually catch things before they break in the real world.</p>
+        <p>Outside of engineering, I've spent a few years doing real work in clinical data management, youth programs, and community operations. I'm not precious about what kind of problem I'm solving — I just want to solve it well.</p>
+        <p style="color:rgba(255,255,255,.3);font-size:.9rem;">Ontario Scholar · Certificate of Recognition</p>
       </div>
       <div class="stat-grid">
-        <div class="stat-card" data-count="3" data-suffix="+"><div class="stat-n">0</div><div class="stat-l">Years Work Experience</div></div>
-        <div class="stat-card" data-static="C++"><div class="stat-n">C++</div><div class="stat-l">Primary Language</div></div>
-        <div class="stat-card" data-count="2029" data-suffix=""><div class="stat-n">0</div><div class="stat-l">Expected Graduation</div></div>
-        <div class="stat-card" data-static="TMU"><div class="stat-n">TMU</div><div class="stat-l">Toronto Met University</div></div>
+        <div class="stat-card" data-count="4" data-suffix="+"><div class="stat-n">0</div><div class="stat-l">years experience</div></div>
+        <div class="stat-card" data-static="C++"><div class="stat-n">C++</div><div class="stat-l">primary language</div></div>
+        <div class="stat-card" data-count="2029" data-suffix=""><div class="stat-n">0</div><div class="stat-l">graduating</div></div>
+        <div class="stat-card" data-static="TMU"><div class="stat-n">TMU</div><div class="stat-l">toronto met</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── PROJECTS ────────────────────────────────────────────── -->
 <section id="projects">
-  <div class="s-wrap">
-    <div class="s-label">02 — PROJECTS</div>
-    <h2 class="s-title glitch-title" data-text="THINGS IVE BUILT">THINGS I'VE <span class="acc">BUILT</span></h2>
+  <div class="glass-wrap">
+    <div class="s-label">what I've built</div>
+    <h2 class="s-title glitch-title" data-text="projects">proj<span class="acc">ects</span></h2>
     <div class="card-deck-container reveal">
       <div class="card-deck-stage" id="deckStage">
         <div class="deck-card" data-index="0" data-pos="0">
-          <div class="card-num"><span>01 / 04</span><span class="suit">⚡</span></div>
+          <div class="card-num"><span>01 / 04</span><span class="card-suit">⚡</span></div>
           <div class="card-name">RTOS Task Scheduler</div>
-          <p class="card-desc">Three-task FreeRTOS system in C. SensorTask pushes temperature readings to a typed queue every 500ms. ControlTask applies threshold logic and fires a binary semaphore on critical temp. DisplayTask renders live output. POSIX simulation — STM32-portable with three HAL swaps.</p>
-          <div class="card-tags"><span class="c-tag">C11</span><span class="c-tag">FreeRTOS</span><span class="c-tag">Queue</span><span class="c-tag">Semaphore</span><span class="c-tag">Mutex</span><span class="c-tag">STM32</span></div>
-          <a href="https://github.com/dwijjoshi14/rtos-task-scheduler" target="_blank" class="card-link">View on GitHub →</a>
+          <p class="card-desc">Three-task FreeRTOS system in C. SensorTask feeds a typed queue every 500ms, ControlTask applies threshold logic and fires a binary semaphore when temp goes critical, DisplayTask renders live output. Runs on Linux via POSIX simulation — port to STM32 is three HAL function swaps.</p>
+          <div class="card-tags"><span class="c-tag">C11</span><span class="c-tag">FreeRTOS</span><span class="c-tag">queue</span><span class="c-tag">semaphore</span><span class="c-tag">mutex</span><span class="c-tag">STM32</span></div>
+          <a href="https://github.com/dwijjoshi14/rtos-task-scheduler" target="_blank" class="card-link">view on github →</a>
         </div>
         <div class="deck-card" data-index="1" data-pos="1">
-          <div class="card-num"><span>02 / 04</span><span class="suit">⚡</span></div>
+          <div class="card-num"><span>02 / 04</span><span class="card-suit">⚡</span></div>
           <div class="card-name">Heat Management System</div>
-          <span class="card-badge">Group Project · MTE301 · Fall 2025</span>
-          <p class="card-desc">Closed-loop thermal control on Arduino Uno. TMP36 ADC sensing, PMOS-driven PWM fan control. Synchronized 16×2 LCD and 80-LED NeoPixel strip with color-coded thermal zones. Simulated in Tinkercad Circuits.</p>
+          <span class="card-badge">group project · MTE301 · fall 2025</span>
+          <p class="card-desc">Closed-loop thermal control on Arduino Uno. TMP36 ADC sensing, PMOS-driven PWM fan, 16×2 LCD and 80-LED NeoPixel strip. The interesting bug was the inverted PWM logic from the PMOS high-side driver — caught it in Tinkercad before it hit hardware.</p>
           <div class="card-tags"><span class="c-tag">C++</span><span class="c-tag">Arduino</span><span class="c-tag">PWM</span><span class="c-tag">TMP36</span><span class="c-tag">NeoPixel</span></div>
-          <a href="https://github.com/dwijjoshi14/heat-management-system" target="_blank" class="card-link">View on GitHub →</a>
+          <a href="https://github.com/dwijjoshi14/heat-management-system" target="_blank" class="card-link">view on github →</a>
         </div>
         <div class="deck-card" data-index="2" data-pos="2">
-          <div class="card-num"><span>03 / 04</span><span class="suit">⚡</span></div>
+          <div class="card-num"><span>03 / 04</span><span class="card-suit">⚡</span></div>
           <div class="card-name">DC Circuit Analyzer</div>
-          <p class="card-desc">Solo C++17 command-line tool applying Ohm's Law and Kirchhoff's Laws to series and parallel DC resistive circuits. Computes resistance, branch currents, voltage drops, and power — with automatic KVL/KCL self-verification after every run.</p>
+          <p class="card-desc">Solo C++17 tool that applies Ohm's Law and Kirchhoff's Laws to series and parallel circuits. Computes resistance, branch currents, voltage drops, and power — then verifies the result against KVL/KCL automatically. Started as a way to stop doing this by hand in physics lab.</p>
           <div class="card-tags"><span class="c-tag">C++17</span><span class="c-tag">OOP</span><span class="c-tag">KVL/KCL</span><span class="c-tag">Ohm's Law</span><span class="c-tag">Make</span></div>
-          <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" class="card-link">View on GitHub →</a>
+          <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" class="card-link">view on github →</a>
         </div>
         <div class="deck-card" data-index="3" data-pos="3">
-          <div class="card-num"><span>04 / 04</span><span class="suit">⚡</span></div>
+          <div class="card-num"><span>04 / 04</span><span class="card-suit">⚡</span></div>
           <div class="card-name">Smart Parking Assistant</div>
-          <span class="card-badge">High School Capstone · Jun 2024</span>
-          <p class="card-desc">Proximity-feedback parking system achieving 95% distance detection accuracy across 5–100cm. Sub-50ms real-time feedback loop with proportional buzzer and LED guidance. 10+ edge-case test scenarios improved reliability from 65% to 88%.</p>
-          <div class="card-tags"><span class="c-tag">C++</span><span class="c-tag">Arduino</span><span class="c-tag">Ultrasonic</span><span class="c-tag">PWM</span></div>
+          <span class="card-badge">high school capstone · jun 2024</span>
+          <p class="card-desc">Proximity-feedback parking system — 95% detection accuracy from 5 to 100cm, sub-50ms feedback loop. Ran 10+ edge-case scenarios and got reliability from 65% to 88%. First project where I really understood what testing is actually for.</p>
+          <div class="card-tags"><span class="c-tag">C++</span><span class="c-tag">Arduino</span><span class="c-tag">ultrasonic</span><span class="c-tag">PWM</span></div>
         </div>
       </div>
       <div class="deck-controls">
-        <button class="deck-btn deck-btn-prev" id="deckPrev">← PREV</button>
+        <button class="deck-btn deck-btn-prev" id="deckPrev">← prev</button>
         <div class="deck-dots" id="deckDots">
           <div class="deck-dot active" data-i="0"></div>
           <div class="deck-dot" data-i="1"></div>
           <div class="deck-dot" data-i="2"></div>
           <div class="deck-dot" data-i="3"></div>
         </div>
-        <button class="deck-btn deck-btn-next" id="deckNext">NEXT →</button>
+        <button class="deck-btn deck-btn-next" id="deckNext">next →</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── SKILLS ──────────────────────────────────────────────── -->
 <section id="skills">
-  <div class="s-wrap">
-    <div class="s-label">03 — SKILLS</div>
-    <h2 class="s-title glitch-title" data-text="WHAT I WORK WITH">WHAT I <span class="acc">WORK WITH</span></h2>
+  <div class="glass-wrap">
+    <div class="s-label">tools of the trade</div>
+    <h2 class="s-title glitch-title" data-text="skills">my <span class="acc">toolkit</span></h2>
     <div class="skills-grid">
-      <div class="sk-group"><div class="sk-title">Languages</div><div class="sk-tags"><span class="sk-tag">C</span><span class="sk-tag">C++</span><span class="sk-tag">Python</span><span class="sk-tag">Java</span><span class="sk-tag">SQL</span></div></div>
-      <div class="sk-group"><div class="sk-title">Embedded & Hardware</div><div class="sk-tags"><span class="sk-tag">Arduino</span><span class="sk-tag">PWM</span><span class="sk-tag">ADC</span><span class="sk-tag">UART</span><span class="sk-tag">I2C</span><span class="sk-tag">SPI</span><span class="sk-tag">GPIO</span><span class="sk-tag">PMOS Driver</span></div></div>
-      <div class="sk-group"><div class="sk-title">Tools & Platforms</div><div class="sk-tags"><span class="sk-tag">Git</span><span class="sk-tag">FreeRTOS</span><span class="sk-tag">PlatformIO</span><span class="sk-tag">Tinkercad</span><span class="sk-tag">MATLAB</span><span class="sk-tag">Make</span></div></div>
-      <div class="sk-group"><div class="sk-title">Testing & QA</div><div class="sk-tags"><span class="sk-tag">Test Case Design</span><span class="sk-tag">Black-box</span><span class="sk-tag">White-box</span><span class="sk-tag">Defect Tracking</span></div></div>
+      <div class="sk-group"><div class="sk-title">languages</div><div class="sk-tags"><span class="sk-tag">C</span><span class="sk-tag">C++</span><span class="sk-tag">Python</span><span class="sk-tag">Java</span><span class="sk-tag">SQL</span></div></div>
+      <div class="sk-group"><div class="sk-title">embedded + hardware</div><div class="sk-tags"><span class="sk-tag">Arduino</span><span class="sk-tag">PWM</span><span class="sk-tag">ADC</span><span class="sk-tag">UART</span><span class="sk-tag">I2C</span><span class="sk-tag">SPI</span><span class="sk-tag">GPIO</span><span class="sk-tag">PMOS driver</span></div></div>
+      <div class="sk-group"><div class="sk-title">tools + platforms</div><div class="sk-tags"><span class="sk-tag">Git</span><span class="sk-tag">FreeRTOS</span><span class="sk-tag">PlatformIO</span><span class="sk-tag">Tinkercad</span><span class="sk-tag">MATLAB</span><span class="sk-tag">Make</span></div></div>
+      <div class="sk-group"><div class="sk-title">testing + QA</div><div class="sk-tags"><span class="sk-tag">test case design</span><span class="sk-tag">black-box</span><span class="sk-tag">white-box</span><span class="sk-tag">defect tracking</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- ── EXPERIENCE ──────────────────────────────────────────── -->
 <section id="experience">
-  <div class="s-wrap">
-    <div class="s-label">04 — EXPERIENCE</div>
-    <h2 class="s-title glitch-title" data-text="WHERE IVE WORKED">WHERE I'VE <span class="acc">WORKED</span></h2>
+  <div class="glass-wrap">
+    <div class="s-label">where I've been</div>
+    <h2 class="s-title glitch-title" data-text="experience">experi<span class="acc">ence</span></h2>
     <div class="timeline-wrap">
       <div class="timeline-line" id="timelineLine"><div class="timeline-spark"></div></div>
-      <div class="tl-entry" id="tl-safss">
+      <div class="tl-entry">
         <div class="tl-dot"></div>
         <div class="tl-header">
-          <div><div class="tl-role">Intake Worker</div><div class="tl-org">Settlement Assistance & Family Support Services (SAFSS) · Toronto, ON</div></div>
-          <div class="tl-meta"><div class="tl-date">May 2026 – Jul 2026</div><div class="tl-type">Contract</div><div class="tl-toggle">[ + EXPAND ]</div></div>
+          <div><div class="tl-role">Intake Worker</div><div class="tl-org">SAFSS · Toronto</div></div>
+          <div class="tl-meta"><div class="tl-date">May – Jul 2026</div><div class="tl-type">contract</div><div class="tl-toggle">expand</div></div>
         </div>
-        <div class="tl-body">
-          <ul class="tl-bullets">
-            <li>Processed client intake and registration for 30+ weekly walk-in cases, managing end-to-end data entry into SAFSS client management database with zero data integrity errors across the term.</li>
-            <li>Designed a standardized intake checklist that reduced average client onboarding time by ~20% and improved cross-staff consistency in documentation and file completeness.</li>
-            <li>Maintained confidential records for 150+ active client files in compliance with organizational privacy procedures in a regulated social services environment.</li>
-            <li>Generated weekly participation reports and attendance tracking data for program leadership, consolidating inputs across 4 service streams into structured summaries used in funder reporting.</li>
-          </ul>
-        </div>
+        <div class="tl-body"><ul class="tl-bullets">
+          <li>Processed intake for 30+ weekly walk-in cases, end-to-end data entry into the client management database with zero integrity errors.</li>
+          <li>Built a standardized intake checklist that cut average onboarding time by ~20% and made documentation consistent across the team.</li>
+          <li>Maintained confidential records for 150+ active client files; weekly participation reports across 4 service streams for funder reporting.</li>
+        </ul></div>
       </div>
-
-      <div class="tl-entry" id="tl0">
+      <div class="tl-entry">
         <div class="tl-dot"></div>
         <div class="tl-header">
-          <div><div class="tl-role">Administrative Assistant</div><div class="tl-org">Rosalie Hall Mental Health Institution · Toronto, ON</div></div>
-          <div class="tl-meta"><div class="tl-date">Jul 2024 – Aug 2025</div><div class="tl-type">Contract</div><div class="tl-toggle">[ + EXPAND ]</div></div>
+          <div><div class="tl-role">Administrative Assistant</div><div class="tl-org">Rosalie Hall Mental Health Institution · Toronto</div></div>
+          <div class="tl-meta"><div class="tl-date">Jul 2024 – Aug 2025</div><div class="tl-type">contract</div><div class="tl-toggle">expand</div></div>
         </div>
-        <div class="tl-body">
-          <ul class="tl-bullets">
-            <li>Rebuilt Excel-based client tracking for 50+ users, cutting report generation from ~3 hours to under 45 minutes and reducing manual entry errors by 35%.</li>
-            <li>Designed a standardized data-entry protocol adopted across 3 program teams, improving audit readiness.</li>
-            <li>Produced monthly outcome dashboards for clinical leadership informing staffing and resource decisions.</li>
-            <li>Operated with professionalism and confidentiality in a regulated mental health environment from week one.</li>
-          </ul>
-        </div>
+        <div class="tl-body"><ul class="tl-bullets">
+          <li>Rebuilt the client tracking system for 50+ users — cut report generation from ~3 hours to under 45 minutes.</li>
+          <li>Designed a data-entry protocol adopted across 3 program teams that fixed cross-department reporting inconsistencies.</li>
+          <li>Monthly dashboards for clinical leadership that went directly into staffing and resource decisions.</li>
+        </ul></div>
       </div>
-      <div class="tl-entry" id="tl1">
+      <div class="tl-entry">
         <div class="tl-dot"></div>
         <div class="tl-header">
-          <div><div class="tl-role">Senior Program Assistant</div><div class="tl-org">Leacock Foundation · Toronto, ON</div></div>
-          <div class="tl-meta"><div class="tl-date">Feb 2023 – Oct 2025</div><div class="tl-type">Part-time</div><div class="tl-toggle">[ + EXPAND ]</div></div>
+          <div><div class="tl-role">Senior Program Assistant</div><div class="tl-org">Leacock Foundation · Toronto</div></div>
+          <div class="tl-meta"><div class="tl-date">Feb 2023 – Oct 2025</div><div class="tl-type">part-time</div><div class="tl-toggle">expand</div></div>
         </div>
-        <div class="tl-body">
-          <ul class="tl-bullets">
-            <li>Tracked engagement for 100+ students across 4 streams; identified 15% attendance drop-off prompting a schedule change that recovered participation within 6 weeks.</li>
-            <li>Redesigned evaluation documentation, reducing compilation by 30% enabling same-week funder submissions.</li>
-            <li>Awarded Certificate of Recognition for professionalism and initiative above role expectations.</li>
-          </ul>
-        </div>
+        <div class="tl-body"><ul class="tl-bullets">
+          <li>Tracked engagement for 100+ students across 4 streams. Spotted a 15% attendance drop, flagged it — schedule change recovered participation within 6 weeks.</li>
+          <li>Cut evaluation documentation compilation by 30%, enabled same-week funder submissions. Got a Certificate of Recognition for it.</li>
+        </ul></div>
       </div>
-      <div class="tl-entry" id="tl2">
+      <div class="tl-entry">
         <div class="tl-dot"></div>
         <div class="tl-header">
-          <div><div class="tl-role">League Ambassador</div><div class="tl-org">JAM Sports · Toronto, ON</div></div>
-          <div class="tl-meta"><div class="tl-date">Sept – Dec 2022</div><div class="tl-type">Contract</div><div class="tl-toggle">[ + EXPAND ]</div></div>
+          <div><div class="tl-role">League Ambassador</div><div class="tl-org">JAM Sports · Toronto</div></div>
+          <div class="tl-meta"><div class="tl-date">Sept – Dec 2022</div><div class="tl-type">contract</div><div class="tl-toggle">expand</div></div>
         </div>
-        <div class="tl-body">
-          <ul class="tl-bullets">
-            <li>Coordinated logistics for 30+ participants per session; zero-incident operational record throughout engagement.</li>
-            <li>Handled scheduling conflicts, rule disputes, and equipment management with minimal escalation.</li>
-          </ul>
-        </div>
+        <div class="tl-body"><ul class="tl-bullets">
+          <li>On-ground coordinator for 30+ participants per session. Handled everything in real time — zero incidents across the whole engagement.</li>
+        </ul></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CONTACT ─────────────────────────────────────────────── -->
 <section id="contact">
-  <div class="s-wrap">
+  <div class="glass-wrap">
     <div class="contact-inner reveal">
-      <div class="s-label" style="justify-content:center;">05 — CONTACT</div>
-      <h2 class="contact-big">LET'S<br/><span class="acc">CONNECT.</span></h2>
-      <p class="contact-sub">Open to co-op and internship opportunities in embedded systems, mechatronics, and hardware-software integration starting January 2027.</p>
+      <div class="s-label" style="justify-content:center;">get in touch</div>
+      <h2 class="contact-big">let's<br/><span class="acc">talk.</span></h2>
+      <p class="contact-sub">Looking for co-op and internship opportunities in embedded systems and mechatronics starting January 2027. If you're building something real and need someone who cares about getting the details right — reach out.</p>
       <div class="contact-links">
         <a href="mailto:dwijjoshi14@gmail.com" class="c-link">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          dwijjoshi14@gmail.com
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          email me
         </a>
-        <a href="https://linkedin.com/in/dwij-joshi-14-tron" target="_blank" class="c-link">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/dwijjoshi14" target="_blank" class="c-link">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
-        </a>
+        <a href="https://linkedin.com/in/dwij-joshi-14-tron" target="_blank" class="c-link">linkedin</a>
+        <a href="https://github.com/dwijjoshi14" target="_blank" class="c-link">github</a>
+        <a href="Dwij_Joshi_Resume_Technical.pdf" target="_blank" class="c-link">resume</a>
       </div>
     </div>
   </div>
 </section>
 
-<footer><span>Dwij Joshi &nbsp;⚡&nbsp; dwijjoshi14.github.io</span></footer>
+<footer>dwij joshi · dwijjoshi14.github.io</footer>
 
-<!-- ── AI CHAT ─────────────────────────────────────────────── -->
-<div class="chat-hint" id="chatHint">Ask my AI about me</div>
+<div class="chat-hint" id="chatHint">ask my AI about me</div>
 <button class="chat-bubble" id="chatBubble">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
 </button>
 <div class="chat-panel" id="chatPanel">
   <div class="chat-header">
     <div class="chat-avatar">DJ</div>
-    <div class="chat-header-info">
-      <div class="chat-header-name">Dwij's AI Agent</div>
-      <div class="chat-header-status"><div class="status-dot"></div>Online — ask me anything</div>
-    </div>
+    <div class="chat-header-info"><div class="chat-header-name">dwij's AI</div><div class="chat-header-status"><div class="status-dot"></div>online</div></div>
     <button class="chat-close" id="chatClose">✕</button>
   </div>
   <div class="chat-messages" id="chatMessages"></div>
   <div class="chat-suggestions" id="chatSuggs">
-    <button class="suggestion">Who is Dwij?</button>
-    <button class="suggestion">Projects?</button>
-    <button class="suggestion">Skills?</button>
-    <button class="suggestion">Co-op available?</button>
+    <button class="suggestion">who's dwij?</button>
+    <button class="suggestion">his projects?</button>
+    <button class="suggestion">what can he do?</button>
+    <button class="suggestion">available for co-op?</button>
   </div>
   <div class="chat-input-area">
-    <input class="chat-input" id="chatInput" type="text" placeholder="Ask me about Dwij..." maxlength="200"/>
-    <button class="chat-send" id="chatSend">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    </button>
+    <input class="chat-input" id="chatInput" type="text" placeholder="ask anything..." maxlength="200"/>
+    <button class="chat-send" id="chatSend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
   </div>
 </div>
 
 <script>
-// ─── FULL PAGE BACKGROUND CANVAS ─────────────────────────────
-const bgC=document.getElementById('bg-canvas'),bgX=bgC.getContext('2d');
-function resBG(){bgC.width=innerWidth;bgC.height=document.body.scrollHeight||innerHeight;}
-setTimeout(resBG,100);addEventListener('resize',()=>setTimeout(resBG,100));
+// THREE.JS GALAXY
+const galaxyCanvas=document.getElementById('galaxy-canvas');
+const renderer=new THREE.WebGLRenderer({canvas:galaxyCanvas,antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.setClearColor(0x050505,1);
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,100);
+camera.position.set(0,6,8);
+addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();});
 
-// Background particles — slow drifting embers
-const bgPts=[];for(let i=0;i<80;i++)bgPts.push({
-  x:Math.random()*3000,y:Math.random()*5000,
-  vx:(Math.random()-.5)*.15,vy:-.1-Math.random()*.2,
-  size:.5+Math.random()*1.5,life:Math.random(),decay:.001+Math.random()*.002,
-  hue:Math.random()<.7?'rgba(255,26,26,':'rgba(255,120,120,'
+const COUNT=22000;
+const pos=new Float32Array(COUNT*3),col=new Float32Array(COUNT*3);
+for(let i=0;i<COUNT;i++){
+  const i3=i*3,radius=Math.pow(Math.random(),.6)*9,arms=3,spinAngle=radius*2.2;
+  const armAngle=(i%arms)/arms*Math.PI*2,scatter=Math.pow(Math.random(),2)*1.8,angle=armAngle+spinAngle;
+  pos[i3]=Math.cos(angle)*radius+(Math.random()-.5)*scatter;
+  pos[i3+1]=(Math.random()-.5)*scatter*.25;
+  pos[i3+2]=Math.sin(angle)*radius+(Math.random()-.5)*scatter;
+  const t=radius/9,inner=Math.max(0,1-t*1.2);
+  col[i3]=1;col[i3+1]=inner*.7;col[i3+2]=inner*.5;
+}
+for(let i=COUNT-800;i<COUNT;i++){
+  const i3=i*3,r=Math.random()*.4,a=Math.random()*Math.PI*2;
+  pos[i3]=Math.cos(a)*r;pos[i3+1]=(Math.random()-.5)*.1;pos[i3+2]=Math.sin(a)*r;
+  col[i3]=1;col[i3+1]=.9;col[i3+2]=.8;
+}
+const geo=new THREE.BufferGeometry();
+geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+const mat=new THREE.PointsMaterial({size:.045,vertexColors:true,transparent:true,opacity:.85,sizeAttenuation:true,depthWrite:false});
+const galaxy=new THREE.Points(geo,mat);
+scene.add(galaxy);
+const glowMesh=new THREE.Mesh(new THREE.SphereGeometry(.3,16,16),new THREE.MeshBasicMaterial({color:0xff2222,transparent:true,opacity:.15}));
+scene.add(glowMesh);
+
+let camX=0,camY=6,camZ=8,tCamX=0,tCamY=6,tCamZ=8,galaxyTime=0;
+addEventListener('scroll',()=>{
+  const r=scrollY/(document.body.scrollHeight-innerHeight);
+  tCamY=6-r*5.5;tCamZ=8-r*13;tCamX=Math.sin(r*Math.PI)*1.5;
 });
-// Background circuit traces — static decorative lines
-const bgTraces=[];for(let i=0;i<12;i++){
-  const x=Math.random()*3000,y=Math.random()*5000;
-  bgTraces.push({x,y,w:60+Math.random()*200,a:Math.random()>.5?0:Math.PI/2,alpha:.015+Math.random()*.02});
-}
-
-function drawBG(){
-  bgX.clearRect(0,0,bgC.width,bgC.height);
-  // Gradient zones per section
-  const secs=[
-    {id:'about',      color:'rgba(0,30,20,'},
-    {id:'projects',   color:'rgba(5,0,10,'},
-    {id:'skills',     color:'rgba(10,5,20,'},
-    {id:'experience', color:'rgba(0,5,20,'},
-    {id:'contact',    color:'rgba(20,0,0,'},
-  ];
-  secs.forEach(s=>{
-    const el=document.getElementById(s.id);
-    if(!el)return;
-    const top=el.offsetTop,h=el.offsetHeight;
-    const g=bgX.createLinearGradient(0,top,0,top+h);
-    g.addColorStop(0,'transparent');
-    g.addColorStop(.15,s.color+'0.4)');
-    g.addColorStop(.85,s.color+'0.4)');
-    g.addColorStop(1,'transparent');
-    bgX.fillStyle=g;bgX.fillRect(0,top,bgC.width,h);
-  });
-
-  // Circuit traces
-  bgTraces.forEach(t=>{
-    bgX.save();bgX.strokeStyle=`rgba(255,26,26,${t.alpha})`;bgX.lineWidth=1;
-    bgX.beginPath();bgX.moveTo(t.x,t.y);
-    if(t.a===0)bgX.lineTo(t.x+t.w,t.y);
-    else bgX.lineTo(t.x,t.y+t.w);
-    bgX.stroke();
-    // Node dot
-    bgX.fillStyle=`rgba(255,26,26,${t.alpha*2})`;
-    bgX.beginPath();bgX.arc(t.x,t.y,2,0,Math.PI*2);bgX.fill();
-    bgX.restore();
-  });
-
-  // Ember particles
-  bgPts.forEach(p=>{
-    p.x+=p.vx;p.y+=p.vy;p.life-=p.decay;
-    if(p.life<=0||p.y<0){p.y=bgC.height;p.x=Math.random()*bgC.width;p.life=.8+Math.random()*.2;}
-    bgX.save();bgX.globalAlpha=p.life*.25;
-    bgX.fillStyle=p.hue+p.life+')';
-    bgX.shadowColor='#FF1A1A';bgX.shadowBlur=3;
-    bgX.beginPath();bgX.arc(p.x,p.y,p.size,0,Math.PI*2);bgX.fill();
-    bgX.restore();
-  });
-  requestAnimationFrame(drawBG);
-}
-drawBG();
-
-// ─── LIGHTNING CANVAS ─────────────────────────────────────────
-const lc=document.getElementById('lightning-canvas'),lx=lc.getContext('2d');
-function resLC(){lc.width=innerWidth;lc.height=innerHeight;}resLC();addEventListener('resize',resLC);
-
-function bolt(ctx,x1,y1,x2,y2,r,b){
-  if(Math.hypot(x2-x1,y2-y1)<12||b<0){ctx.lineTo(x2,y2);return;}
-  const mx=(x1+x2)/2+(Math.random()-.5)*r,my=(y1+y2)/2+(Math.random()-.5)*r;
-  bolt(ctx,x1,y1,mx,my,r*.55,b-1);bolt(ctx,mx,my,x2,y2,r*.55,b-1);
-  if(Math.random()<.35&&b>1){ctx.moveTo(mx,my);bolt(ctx,mx,my,mx+(Math.random()-.5)*100,my+Math.random()*80,r*.4,b-2);}
-}
-
-function flash(x1,y1,x2,y2){
-  if(!x1){x1=Math.random()*lc.width;x2=x1+(Math.random()-.5)*300;y1=0;y2=Math.random()*lc.height*.7+lc.height*.15;}
-  let a=1;
-  (function draw(){
-    lx.clearRect(0,0,lc.width,lc.height);if(a<=0)return;
-    lx.save();lx.strokeStyle=`rgba(255,60,60,${a*.18})`;lx.lineWidth=8;lx.shadowColor='#FF1A1A';lx.shadowBlur=30;
-    lx.beginPath();lx.moveTo(x1,y1);bolt(lx,x1,y1,x2,y2,120,6);lx.stroke();
-    lx.strokeStyle=`rgba(255,220,220,${a*.9})`;lx.lineWidth=1.5;lx.shadowBlur=12;
-    lx.beginPath();lx.moveTo(x1,y1);bolt(lx,x1,y1,x2,y2,120,6);lx.stroke();
-    lx.restore();a-=.045;requestAnimationFrame(draw);
-  })();
-}
-flash();setInterval(()=>{if(Math.random()<.7)flash();},3500);
-
-// ─── INTRO SEQUENCE ──────────────────────────────────────────
-const introOvl=document.getElementById('intro-overlay');
-const introC=document.getElementById('intro-canvas'),ic=introC.getContext('2d');
-const introFlash=document.getElementById('introFlash');
-const introText=document.getElementById('introText');
-const introStatic=document.getElementById('introStatic');
-introC.width=innerWidth;introC.height=innerHeight;
-
-// Intro spark particles
-const introSparks=[];
-function spawnIntroSparks(x,y,count){
-  for(let i=0;i<count;i++){
-    const a=Math.random()*Math.PI*2;
-    const s=1+Math.random()*6;
-    introSparks.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-3,life:1,decay:.025+Math.random()*.04,size:.8+Math.random()*2.5});
-  }
-}
-
-let introRunning=true;
-(function animIntroSparks(){
-  if(!introRunning)return;
-  ic.clearRect(0,0,introC.width,introC.height);
-  for(let i=introSparks.length-1;i>=0;i--){
-    const s=introSparks[i];s.x+=s.vx;s.y+=s.vy;s.vy+=.15;s.life-=s.decay;
-    if(s.life<=0){introSparks.splice(i,1);continue;}
-    ic.save();ic.globalAlpha=s.life*.9;
-    ic.fillStyle=s.life>.5?'#FF6B6B':'#FF1A1A';
-    ic.shadowColor='#FF1A1A';ic.shadowBlur=8;
-    ic.beginPath();ic.arc(s.x,s.y,s.size*s.life,0,Math.PI*2);ic.fill();
-    // Spark line trail
-    ic.strokeStyle=`rgba(255,100,100,${s.life*.6})`;ic.lineWidth=s.size*.4;
-    ic.beginPath();ic.moveTo(s.x,s.y);ic.lineTo(s.x-s.vx*3,s.y-s.vy*3);ic.stroke();
-    ic.restore();
-  }
-  requestAnimationFrame(animIntroSparks);
+(function renderG(){
+  requestAnimationFrame(renderG);galaxyTime+=.001;
+  camX+=(tCamX-camX)*.04;camY+=(tCamY-camY)*.04;camZ+=(tCamZ-camZ)*.04;
+  camera.position.set(camX,camY,camZ);camera.lookAt(0,0,0);
+  galaxy.rotation.y=galaxyTime;
+  renderer.render(scene,camera);
 })();
 
-// Crackle effect
-function crackle(x,y,dur){
-  const end=Date.now()+dur;
-  function tick(){
-    if(Date.now()>end)return;
-    const a=Math.random()*Math.PI*2,len=15+Math.random()*60;
-    const ex=x+Math.cos(a)*len,ey=y+Math.sin(a)*len;
-    ic.save();ic.strokeStyle=`rgba(255,180,180,${.4+Math.random()*.6})`;ic.lineWidth=.5+Math.random()*.8;
-    ic.shadowColor='#FF1A1A';ic.shadowBlur=6;
-    ic.beginPath();ic.moveTo(x,y);
-    const mx=(x+ex)/2+(Math.random()-.5)*15,my=(y+ey)/2+(Math.random()-.5)*15;
-    ic.quadraticCurveTo(mx,my,ex,ey);ic.stroke();ic.restore();
-    setTimeout(tick,20+Math.random()*40);
-  }tick();
-}
+// LIGHTNING
+const lc=document.getElementById('lightning-canvas'),lx=lc.getContext('2d');
+function resLC(){lc.width=innerWidth;lc.height=innerHeight;}resLC();addEventListener('resize',resLC);
+function bolt(ctx,x1,y1,x2,y2,r,b){if(Math.hypot(x2-x1,y2-y1)<12||b<0){ctx.lineTo(x2,y2);return;}const mx=(x1+x2)/2+(Math.random()-.5)*r,my=(y1+y2)/2+(Math.random()-.5)*r;bolt(ctx,x1,y1,mx,my,r*.55,b-1);bolt(ctx,mx,my,x2,y2,r*.55,b-1);if(Math.random()<.35&&b>1){ctx.moveTo(mx,my);bolt(ctx,mx,my,mx+(Math.random()-.5)*80,my+Math.random()*70,r*.4,b-2);}}
+function flash(x1,y1,x2,y2){if(!x1){x1=Math.random()*lc.width;x2=x1+(Math.random()-.5)*300;y1=0;y2=Math.random()*lc.height*.7+lc.height*.15;}let a=1;(function d(){lx.clearRect(0,0,lc.width,lc.height);if(a<=0)return;lx.save();lx.strokeStyle=`rgba(255,60,60,${a*.18})`;lx.lineWidth=8;lx.shadowColor='#FF1A1A';lx.shadowBlur=30;lx.beginPath();lx.moveTo(x1,y1);bolt(lx,x1,y1,x2,y2,120,6);lx.stroke();lx.strokeStyle=`rgba(255,220,220,${a*.9})`;lx.lineWidth=1.5;lx.shadowBlur=12;lx.beginPath();lx.moveTo(x1,y1);bolt(lx,x1,y1,x2,y2,120,6);lx.stroke();lx.restore();a-=.045;requestAnimationFrame(d);})();}
+flash();setInterval(()=>{if(Math.random()<.7)flash();},3500);
 
-// Fire intro bolts
-function introLightning(){
-  const hits=[];
-  [[.2,.5],[.4,.3],[.6,.55],[.8,.4]].forEach(([xr1,xr2],i)=>{
-    setTimeout(()=>{
-      const x1=xr1*introC.width,x2=xr2*introC.width,y2=introC.height*.75+Math.random()*introC.height*.2;
-      hits.push({x:x2,y:y2});
-      let a=1.8;
-      (function draw(){
-        if(a<=0){
-          spawnIntroSparks(x2,y2,25);
-          crackle(x2,y2,600);
-          return;
-        }
-        ic.save();
-        ic.strokeStyle=`rgba(255,80,80,${a*.3})`;ic.lineWidth=14;ic.shadowColor='#FF1A1A';ic.shadowBlur=50;
-        ic.beginPath();ic.moveTo(x1,0);bolt(ic,x1,0,x2,y2,160,7);ic.stroke();
-        ic.strokeStyle=`rgba(255,230,230,${a})`;ic.lineWidth=2;ic.shadowBlur=16;
-        ic.beginPath();ic.moveTo(x1,0);bolt(ic,x1,0,x2,y2,160,7);ic.stroke();
-        ic.restore();a-=.05;requestAnimationFrame(draw);
-      })();
-    },i*80);
-  });
-}
-
-// Sequence timing
-setTimeout(()=>{
-  introStatic.classList.add('on');
-  introLightning();
-  setTimeout(()=>{introFlash.style.opacity='.9';},350);
-  setTimeout(()=>{introFlash.style.opacity='0';},480);
-  setTimeout(()=>{introText.classList.add('show');},520);
-  setTimeout(()=>{introFlash.style.opacity='.7';},950);
-  setTimeout(()=>{introFlash.style.opacity='0';},1050);
-  setTimeout(()=>{introStatic.classList.remove('on');},1100);
-  setTimeout(()=>{introOvl.classList.add('gone');introRunning=false;},1700);
-},100);
-
-// ─── SPARK CURSOR TRAIL ───────────────────────────────────────
+// SPARKS
 const sc=document.getElementById('spark-canvas'),sx=sc.getContext('2d');
 function resSC(){sc.width=innerWidth;sc.height=innerHeight;}resSC();addEventListener('resize',resSC);
 const sparks=[];let MX=innerWidth/2,MY=innerHeight/2;
@@ -527,17 +346,14 @@ document.addEventListener('mousemove',e=>{MX=e.clientX;MY=e.clientY;});
 function spawnS(){for(let i=0;i<2+~~(Math.random()*2);i++){const a=Math.random()*Math.PI*2,s=.5+Math.random()*2.5;sparks.push({x:MX,y:MY,vx:Math.cos(a)*s,vy:Math.sin(a)*s-.5,life:1,decay:.04+Math.random()*.06,size:1.5+Math.random()*2});}}
 (function animS(){sx.clearRect(0,0,sc.width,sc.height);spawnS();for(let i=sparks.length-1;i>=0;i--){const s=sparks[i];s.x+=s.vx;s.y+=s.vy;s.vy+=.06;s.life-=s.decay;if(s.life<=0){sparks.splice(i,1);continue;}sx.save();sx.globalAlpha=s.life*.7;sx.fillStyle=s.life>.6?'#FF6B6B':'#FF1A1A';sx.shadowColor='#FF1A1A';sx.shadowBlur=6;sx.beginPath();sx.arc(s.x,s.y,s.size*s.life,0,Math.PI*2);sx.fill();sx.restore();}requestAnimationFrame(animS);})();
 
-// ─── CURSOR ───────────────────────────────────────────────────
+// CURSOR
 const cDot=document.getElementById('cDot'),cRing=document.getElementById('cRing');
 let rx=MX,ry=MY;
 document.addEventListener('mousemove',e=>{MX=e.clientX;MY=e.clientY;cDot.style.left=MX+'px';cDot.style.top=MY+'px';});
 (function tickR(){rx+=(MX-rx)*.14;ry+=(MY-ry)*.14;cRing.style.left=rx+'px';cRing.style.top=ry+'px';requestAnimationFrame(tickR);})();
-document.querySelectorAll('a,button,.deck-card,.stat-card,.sk-tag,.tl-entry').forEach(el=>{
-  el.addEventListener('mouseenter',()=>cRing.classList.add('active'));
-  el.addEventListener('mouseleave',()=>cRing.classList.remove('active'));
-});
+document.querySelectorAll('a,button,.deck-card,.stat-card,.sk-tag,.tl-entry').forEach(el=>{el.addEventListener('mouseenter',()=>cRing.classList.add('active'));el.addEventListener('mouseleave',()=>cRing.classList.remove('active'));});
 
-// ─── CLICK BURST ──────────────────────────────────────────────
+// BURST
 document.addEventListener('click',e=>{
   if(e.target.closest('#intro-overlay,.game-modal'))return;
   const b=document.createElement('div');b.className='burst';b.style.left=e.clientX+'px';b.style.top=e.clientY+'px';document.body.appendChild(b);
@@ -546,30 +362,17 @@ document.addEventListener('click',e=>{
   setTimeout(()=>b.remove(),600);
 });
 
-// ─── HERO PARTICLES ───────────────────────────────────────────
+// HERO PARTICLES
 const pc=document.getElementById('particle-canvas'),px=pc.getContext('2d');
 function resPC(){pc.width=pc.parentElement.offsetWidth;pc.height=pc.parentElement.offsetHeight;}resPC();addEventListener('resize',resPC);
-const ptcls=[];for(let i=0;i<40;i++)ptcls.push({x:Math.random()*pc.width,y:Math.random()*pc.height,vy:-.3-Math.random()*.5,vx:(Math.random()-.5)*.3,size:.8+Math.random()*1.8,life:Math.random(),decay:.003+Math.random()*.004});
-(function animP(){px.clearRect(0,0,pc.width,pc.height);ptcls.forEach(p=>{p.y+=p.vy;p.x+=p.vx;p.life-=p.decay;if(p.life<=0||p.y<0){p.y=pc.height+10;p.x=Math.random()*pc.width;p.life=1;}px.save();px.globalAlpha=p.life*.4;px.fillStyle=p.life>.5?'#FF6B6B':'#FF1A1A';px.shadowColor='#FF1A1A';px.shadowBlur=4;px.beginPath();px.arc(p.x,p.y,p.size,0,Math.PI*2);px.fill();px.restore();});requestAnimationFrame(animP);})();
+const ptcls=[];for(let i=0;i<35;i++)ptcls.push({x:Math.random()*pc.width,y:Math.random()*pc.height,vy:-.25-Math.random()*.4,vx:(Math.random()-.5)*.25,size:.6+Math.random()*1.4,life:Math.random(),decay:.003+Math.random()*.003});
+(function animP(){px.clearRect(0,0,pc.width,pc.height);ptcls.forEach(p=>{p.y+=p.vy;p.x+=p.vx;p.life-=p.decay;if(p.life<=0||p.y<0){p.y=pc.height+10;p.x=Math.random()*pc.width;p.life=1;}px.save();px.globalAlpha=p.life*.35;px.fillStyle=p.life>.5?'#FF6B6B':'#FF1A1A';px.shadowColor='#FF1A1A';px.shadowBlur=4;px.beginPath();px.arc(p.x,p.y,p.size,0,Math.PI*2);px.fill();px.restore();});requestAnimationFrame(animP);})();
 
-// ─── HERO LETTERS ─────────────────────────────────────────────
+// HERO NAME
 const heroN=document.getElementById('heroName');
-(function buildName(){
-  heroN.innerHTML='';
-  const l1=document.createElement('span');
-  [...'DWIJ'].forEach((c,i)=>{const s=document.createElement('span');s.className='hero-letter';s.textContent=c;s.style.transitionDelay=`${1.9+i*.07}s`;l1.appendChild(s);});
-  heroN.appendChild(l1);
-  const l2=document.createElement('span');l2.className='red-line';
-  [...'JOSHI.'].forEach((c,i)=>{const s=document.createElement('span');s.className='hero-letter';s.textContent=c;s.style.transitionDelay=`${2.1+i*.07}s`;l2.appendChild(s);});
-  heroN.appendChild(l2);
-  setTimeout(()=>document.querySelectorAll('.hero-letter').forEach(l=>l.classList.add('vis')),100);
-})();
+(function buildName(){heroN.innerHTML='';const l1=document.createElement('span');[...'DWIJ'].forEach((c,i)=>{const s=document.createElement('span');s.className='hero-letter';s.textContent=c;s.style.transitionDelay=`${1.9+i*.07}s`;l1.appendChild(s);});heroN.appendChild(l1);const l2=document.createElement('span');l2.className='red-line';[...'JOSHI.'].forEach((c,i)=>{const s=document.createElement('span');s.className='hero-letter';s.textContent=c;s.style.transitionDelay=`${2.1+i*.07}s`;l2.appendChild(s);});heroN.appendChild(l2);setTimeout(()=>document.querySelectorAll('.hero-letter').forEach(l=>l.classList.add('vis')),100);})();
 
-// ─── PARALLAX BG TEXT ─────────────────────────────────────────
-const heroBg=document.getElementById('heroBgText');
-addEventListener('scroll',()=>{heroBg.style.transform=`translate(-50%,calc(-50% + ${scrollY*.15}px))`;});
-
-// ─── SMOOTH SCROLL ────────────────────────────────────────────
+// SMOOTH SCROLL
 let sC=0,sT=0;
 addEventListener('wheel',e=>{e.preventDefault();sT=Math.max(0,Math.min(sT+e.deltaY*.85,document.body.scrollHeight-innerHeight));},{passive:false});
 let tch=0;
@@ -577,95 +380,68 @@ addEventListener('touchstart',e=>{tch=e.touches[0].clientY;},{passive:true});
 addEventListener('touchmove',e=>{const d=tch-e.touches[0].clientY;sT=Math.max(0,Math.min(sT+d*1.5,document.body.scrollHeight-innerHeight));tch=e.touches[0].clientY;},{passive:true});
 (function tickScroll(){sC+=(sT-sC)*.09;window.scrollTo(0,sC);requestAnimationFrame(tickScroll);})();
 
-// ─── PROGRESS + NAV ───────────────────────────────────────────
+// PROGRESS + NAV
 const pb=document.getElementById('progress-bar'),navEl=document.getElementById('nav');
-addEventListener('scroll',()=>{
-  pb.style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';
-  navEl.classList.toggle('scrolled',scrollY>40);
-  updateSectionIndicator();
-});
+addEventListener('scroll',()=>{pb.style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';navEl.classList.toggle('scrolled',scrollY>40);updateSI();});
 
-// ─── SECTION INDICATOR ────────────────────────────────────────
+// SECTION INDICATOR
 const siDots=document.querySelectorAll('.si-dot');
-const sections=['hero','about','projects','skills','experience','contact'];
-function updateSectionIndicator(){
-  let active='hero';
-  sections.forEach(id=>{const el=document.getElementById(id);if(el&&scrollY>=el.offsetTop-200)active=id;});
-  siDots.forEach(d=>d.classList.toggle('active',d.dataset.section===active));
-}
-siDots.forEach(d=>d.addEventListener('click',()=>{
-  const el=document.getElementById(d.dataset.section);
-  if(el)sT=el.offsetTop-62;
-}));
+const secs=['hero','about','projects','skills','experience','contact'];
+function updateSI(){let active='hero';secs.forEach(id=>{const el=document.getElementById(id);if(el&&scrollY>=el.offsetTop-200)active=id;});siDots.forEach(d=>d.classList.toggle('active',d.dataset.section===active));}
+siDots.forEach(d=>d.addEventListener('click',()=>{const el=document.getElementById(d.dataset.section);if(el)sT=el.offsetTop-60;}));
 
-// ─── GLITCH MATERIALIZE ───────────────────────────────────────
-const gObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('fired');flash();gObs.unobserve(e.target);}});
-},{threshold:.35});
-document.querySelectorAll('.glitch-title').forEach(el=>gObs.observe(el));
+// NAV
+document.querySelectorAll('.nav-links a,[data-nav]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const el=document.querySelector(a.getAttribute('href'));if(el){sT=el.offsetTop-60;document.getElementById('fs-nav')?.classList.remove('open');}});});
+document.querySelector('.nav-logo').addEventListener('click',e=>{e.preventDefault();sT=0;});
 
-// ─── STAT COUNTERS ────────────────────────────────────────────
-function animCount(el,target,suffix,dur=1400){
-  const s=performance.now();
-  (function u(now){const p=Math.min((now-s)/dur,1),e=1-Math.pow(1-p,3);
-    el.querySelector('.stat-n').textContent=Math.floor(e*target)+suffix;
-    if(p<1)requestAnimationFrame(u);else el.querySelector('.stat-n').textContent=target+suffix;
-  })(s);
-}
-const stObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const el=e.target;el.classList.add('on');if(el.dataset.count)animCount(el,+el.dataset.count,el.dataset.suffix||'');stObs.unobserve(el);}});},{threshold:.3});
-document.querySelectorAll('.stat-card').forEach((c,i)=>{c.style.transitionDelay=i*.1+'s';stObs.observe(c);});
-
-// ─── SKILL TAGS ───────────────────────────────────────────────
-const skObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll('.sk-tag').forEach((t,i)=>setTimeout(()=>t.classList.add('on'),i*55));skObs.unobserve(e.target);}});},{threshold:.2});
-document.querySelectorAll('.sk-group').forEach((g,i)=>{g.style.transitionDelay=i*.1+'s';skObs.observe(g);});
-
-// ─── TIMELINE ─────────────────────────────────────────────────
-const tlObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.getElementById('timelineLine').classList.add('drawn');document.querySelectorAll('.tl-entry').forEach((en,i)=>setTimeout(()=>en.classList.add('on'),i*200));tlObs.disconnect();}});},{threshold:.1});
-tlObs.observe(document.getElementById('experience'));
-document.querySelectorAll('.tl-entry').forEach(entry=>{
-  entry.addEventListener('click',()=>{
-    const body=entry.querySelector('.tl-body'),toggle=entry.querySelector('.tl-toggle'),isOpen=body.classList.contains('open');
-    document.querySelectorAll('.tl-body').forEach(b=>b.classList.remove('open'));
-    document.querySelectorAll('.tl-entry').forEach(e=>e.classList.remove('active'));
-    document.querySelectorAll('.tl-toggle').forEach(t=>t.textContent='[ + EXPAND ]');
-    if(!isOpen){body.classList.add('open');entry.classList.add('active');toggle.textContent='[ \u2212 CLOSE ]';flash();}
-  });
-});
-
-// ─── GENERIC REVEAL ───────────────────────────────────────────
-const rObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rObs.unobserve(e.target);}});},{threshold:.08});
-document.querySelectorAll('.reveal,.slide-left').forEach(el=>rObs.observe(el));
-
-// ─── MAGNETIC BUTTONS ─────────────────────────────────────────
-document.querySelectorAll('.magnetic').forEach(btn=>{
-  btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.25}px)`;});
-  btn.addEventListener('mouseleave',()=>btn.style.transform='');
-});
-
-// ─── FULLSCREEN NAV ───────────────────────────────────────────
+// FULLSCREEN NAV
 const fsNav=document.getElementById('fs-nav');
 document.getElementById('hamburger').addEventListener('click',()=>{fsNav.classList.add('open');flash();});
 document.getElementById('fsClose').addEventListener('click',()=>fsNav.classList.remove('open'));
-document.querySelectorAll('[data-nav]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    e.preventDefault();fsNav.classList.remove('open');
-    const el=document.querySelector(a.getAttribute('href'));
-    if(el)sT=el.offsetTop-62;
-  });
-  a.addEventListener('mouseenter',()=>flash());
-});
-// Nav links smooth scroll
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click',e=>{e.preventDefault();const el=document.querySelector(a.getAttribute('href'));if(el)sT=el.offsetTop-62;});
-});
+document.querySelectorAll('.fs-link').forEach(a=>a.addEventListener('mouseenter',()=>flash()));
 
-// ─── CARD DECK ────────────────────────────────────────────────
-const cards=Array.from(document.querySelectorAll('.deck-card'));
-const dots=Array.from(document.querySelectorAll('.deck-dot'));
+// INTRO
+const introOvl=document.getElementById('intro-overlay'),introC=document.getElementById('intro-canvas'),ic=introC.getContext('2d');
+const introFlash=document.getElementById('introFlash'),introText=document.getElementById('introText'),introStatic=document.getElementById('introStatic');
+introC.width=innerWidth;introC.height=innerHeight;
+const iSparks=[];
+function spawnIS(x,y,n){for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,s=1+Math.random()*6;iSparks.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-3,life:1,decay:.025+Math.random()*.04,size:.8+Math.random()*2.5});}}
+function crackle(x,y,dur){const end=Date.now()+dur;function tick(){if(Date.now()>end)return;const a=Math.random()*Math.PI*2,len=15+Math.random()*60,ex=x+Math.cos(a)*len,ey=y+Math.sin(a)*len;ic.save();ic.strokeStyle=`rgba(255,180,180,${.3+Math.random()*.6})`;ic.lineWidth=.5+Math.random()*.8;ic.shadowColor='#FF1A1A';ic.shadowBlur=6;ic.beginPath();ic.moveTo(x,y);const mx2=(x+ex)/2+(Math.random()-.5)*15,my2=(y+ey)/2+(Math.random()-.5)*15;ic.quadraticCurveTo(mx2,my2,ex,ey);ic.stroke();ic.restore();setTimeout(tick,20+Math.random()*40);}tick();}
+let iRun=true;
+(function animIS(){if(!iRun)return;ic.clearRect(0,0,introC.width,introC.height);for(let i=iSparks.length-1;i>=0;i--){const s=iSparks[i];s.x+=s.vx;s.y+=s.vy;s.vy+=.15;s.life-=s.decay;if(s.life<=0){iSparks.splice(i,1);continue;}ic.save();ic.globalAlpha=s.life*.9;ic.fillStyle=s.life>.5?'#FF6B6B':'#FF1A1A';ic.shadowColor='#FF1A1A';ic.shadowBlur=8;ic.beginPath();ic.arc(s.x,s.y,s.size*s.life,0,Math.PI*2);ic.fill();ic.strokeStyle=`rgba(255,100,100,${s.life*.5})`;ic.lineWidth=s.size*.4;ic.beginPath();ic.moveTo(s.x,s.y);ic.lineTo(s.x-s.vx*3,s.y-s.vy*3);ic.stroke();ic.restore();}requestAnimationFrame(animIS);})();
+function introLightning(){[[.15,.45],[.35,.25],[.65,.55],[.85,.4]].forEach(([x1r,x2r],i)=>{setTimeout(()=>{const x1=x1r*introC.width,x2=x2r*introC.width,y2=introC.height*.7+Math.random()*introC.height*.2;let a=1.8;(function d(){if(a<=0){spawnIS(x2,y2,30);crackle(x2,y2,700);return;}ic.save();ic.strokeStyle=`rgba(255,80,80,${a*.3})`;ic.lineWidth=14;ic.shadowColor='#FF1A1A';ic.shadowBlur=50;ic.beginPath();ic.moveTo(x1,0);bolt(ic,x1,0,x2,y2,160,7);ic.stroke();ic.strokeStyle=`rgba(255,230,230,${a})`;ic.lineWidth=2;ic.shadowBlur=16;ic.beginPath();ic.moveTo(x1,0);bolt(ic,x1,0,x2,y2,160,7);ic.stroke();ic.restore();a-=.05;requestAnimationFrame(d);})();},i*80);});}
+setTimeout(()=>{introStatic.classList.add('on');introLightning();setTimeout(()=>{introFlash.style.opacity='.9';},380);setTimeout(()=>{introFlash.style.opacity='0';},510);setTimeout(()=>{introText.classList.add('show');},550);setTimeout(()=>{introFlash.style.opacity='.7';},980);setTimeout(()=>{introFlash.style.opacity='0';},1080);setTimeout(()=>{introStatic.classList.remove('on');},1120);setTimeout(()=>{introOvl.classList.add('gone');iRun=false;},1750);},150);
+
+// GLITCH
+const gObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('fired');flash();gObs.unobserve(e.target);}});},{threshold:.35});
+document.querySelectorAll('.glitch-title').forEach(el=>gObs.observe(el));
+
+// STAT COUNTERS
+function animCount(el,target,suffix,dur=1400){const s=performance.now();(function u(now){const p=Math.min((now-s)/dur,1),ev=1-Math.pow(1-p,3);el.querySelector('.stat-n').textContent=Math.floor(ev*target)+suffix;if(p<1)requestAnimationFrame(u);else el.querySelector('.stat-n').textContent=target+suffix;})(s);}
+const stObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const el=e.target;el.classList.add('on');if(el.dataset.count)animCount(el,+el.dataset.count,el.dataset.suffix||'');stObs.unobserve(el);}});},{threshold:.3});
+document.querySelectorAll('.stat-card').forEach((c,i)=>{c.style.transitionDelay=i*.1+'s';stObs.observe(c);});
+
+// SKILL TAGS
+const skObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll('.sk-tag').forEach((t,i)=>setTimeout(()=>t.classList.add('on'),i*55));skObs.unobserve(e.target);}});},{threshold:.2});
+document.querySelectorAll('.sk-group').forEach((g,i)=>{g.style.transitionDelay=i*.1+'s';skObs.observe(g);});
+
+// TIMELINE
+const tlObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.getElementById('timelineLine').classList.add('drawn');document.querySelectorAll('.tl-entry').forEach((en,i)=>setTimeout(()=>en.classList.add('on'),i*200));tlObs.disconnect();}});},{threshold:.1});
+tlObs.observe(document.getElementById('experience'));
+document.querySelectorAll('.tl-entry').forEach(entry=>{entry.addEventListener('click',()=>{const body=entry.querySelector('.tl-body'),toggle=entry.querySelector('.tl-toggle'),isOpen=body.classList.contains('open');document.querySelectorAll('.tl-body').forEach(b=>b.classList.remove('open'));document.querySelectorAll('.tl-entry').forEach(e=>e.classList.remove('active'));document.querySelectorAll('.tl-toggle').forEach(t=>t.textContent='expand');if(!isOpen){body.classList.add('open');entry.classList.add('active');toggle.textContent='close';flash();}});});
+
+// REVEALS
+const rObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rObs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal,.slide-left').forEach(el=>rObs.observe(el));
+
+// MAGNETIC
+document.querySelectorAll('.magnetic').forEach(btn=>{btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.22}px,${(e.clientY-r.top-r.height/2)*.22}px)`;});btn.addEventListener('mouseleave',()=>btn.style.transform='');});
+
+// CARD DECK
+const cards=Array.from(document.querySelectorAll('.deck-card')),dots=Array.from(document.querySelectorAll('.deck-dot'));
 let cur=0;const tot=cards.length;
 function updDeck(anim=false){cards.forEach((c,i)=>{c.dataset.pos=(i-cur+tot)%tot;if(anim)c.style.transition='transform .6s cubic-bezier(.34,1.56,.64,1),opacity .4s,box-shadow .3s';else c.style.transition='none';});dots.forEach((d,i)=>d.classList.toggle('active',i===cur));}
-function nextC(){cur=(cur+1)%tot;updDeck(true);flash();}
-function prevC(){cur=(cur-1+tot)%tot;updDeck(true);}
+function nextC(){cur=(cur+1)%tot;updDeck(true);flash();}function prevC(){cur=(cur-1+tot)%tot;updDeck(true);}
 document.getElementById('deckNext').addEventListener('click',nextC);
 document.getElementById('deckPrev').addEventListener('click',prevC);
 dots.forEach(d=>d.addEventListener('click',()=>{cur=+d.dataset.i;updDeck(true);}));
@@ -674,84 +450,45 @@ document.getElementById('deckStage').addEventListener('mousemove',e=>{const r=e.
 document.getElementById('deckStage').addEventListener('mouseleave',()=>{cards.forEach(c=>{if(c.dataset.pos==='0')c.style.transform='translateY(0) rotate(0) scale(1)';});});
 updDeck(false);
 
-// ─── AI CHAT ──────────────────────────────────────────────────
-const chatHint=document.getElementById('chatHint'),chatPanel=document.getElementById('chatPanel');
-const chatBubble=document.getElementById('chatBubble'),chatClose=document.getElementById('chatClose');
-const chatMessages=document.getElementById('chatMessages'),chatInput=document.getElementById('chatInput');
-const chatSend=document.getElementById('chatSend'),chatSuggs=document.getElementById('chatSuggs');
+// AI CHAT
+const chatHint=document.getElementById('chatHint'),chatPanel=document.getElementById('chatPanel'),chatBubble=document.getElementById('chatBubble'),chatClose=document.getElementById('chatClose'),chatMessages=document.getElementById('chatMessages'),chatInput=document.getElementById('chatInput'),chatSend=document.getElementById('chatSend'),chatSuggs=document.getElementById('chatSuggs');
 let chatOpen=false;
-setTimeout(()=>chatHint.classList.add('visible'),3500);
-function toggleChat(){chatOpen=!chatOpen;chatPanel.classList.toggle('open',chatOpen);chatHint.classList.remove('visible');if(chatOpen&&!chatMessages.children.length)setTimeout(()=>addBot("Hey! I'm Dwij's AI agent ⚡ Ask me anything about his projects, skills, experience, or co-op availability."),400);}
+setTimeout(()=>chatHint.classList.add('visible'),4000);
+function toggleChat(){chatOpen=!chatOpen;chatPanel.classList.toggle('open',chatOpen);chatHint.classList.remove('visible');if(chatOpen&&!chatMessages.children.length)setTimeout(()=>addBot("hey — I'm an AI that knows dwij's background pretty well. what do you want to know?"),400);}
 chatBubble.addEventListener('click',toggleChat);chatClose.addEventListener('click',toggleChat);
 chatSuggs.querySelectorAll('.suggestion').forEach(s=>s.addEventListener('click',()=>send(s.textContent)));
 function getT(){return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
 function addBot(t){const m=document.createElement('div');m.className='msg bot';m.innerHTML=`<div class="msg-bubble">${t}</div><div class="msg-time">${getT()}</div>`;chatMessages.appendChild(m);chatMessages.scrollTop=chatMessages.scrollHeight;}
 function addUser(t){const m=document.createElement('div');m.className='msg user';m.innerHTML=`<div class="msg-bubble">${t}</div><div class="msg-time">${getT()}</div>`;chatMessages.appendChild(m);chatMessages.scrollTop=chatMessages.scrollHeight;}
 function showTyping(){const t=document.createElement('div');t.className='typing-indicator';t.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';chatMessages.appendChild(t);chatMessages.scrollTop=chatMessages.scrollHeight;return t;}
-function getResp(msg){
-  const m=msg.toLowerCase();
-  if(m.match(/who|about|introduce|tell me|background/))return"Dwij Joshi is a Mechatronics Engineering student at TMU (Class of 2029), transferred from Computer Engineering. Embedded firmware, hardware control, FreeRTOS, software QA. 3+ years work experience. Ontario Scholar and Certificate of Recognition.";
-  if(m.match(/rtos|freertos|task|semaphore|queue|mutex/))return"RTOS Task Scheduler — three-task FreeRTOS in C. SensorTask → queue → ControlTask → semaphore → DisplayTask. POSIX simulation, STM32-portable. github.com/dwijjoshi14/rtos-task-scheduler";
-  if(m.match(/heat|fan|tmp36|neopixel|thermal/))return"Heat Management System — Arduino Uno, TMP36 ADC, PMOS PWM fan, 16×2 LCD, 80-LED NeoPixel. Tinkercad simulation. github.com/dwijjoshi14/heat-management-system";
-  if(m.match(/circuit|ohm|kirchhoff|kvl|kcl/))return"DC Circuit Analyzer — C++17, Ohm's Law + KVL/KCL on series/parallel circuits, auto self-verification. github.com/dwijjoshi14/dc-circuit-analyzer";
-  if(m.match(/project|built|github|repo/))return"3 repos: RTOS Task Scheduler · Heat Management System · DC Circuit Analyzer. All at github.com/dwijjoshi14";
-  if(m.match(/skill|language|tech|cpp|embedded/))return"C, C++, Python, Java, SQL. Embedded: Arduino, PWM, ADC, UART, I2C, SPI, GPIO, PMOS. Tools: Git, FreeRTOS, PlatformIO, Tinkercad, MATLAB.";
-  if(m.match(/experience|work|job|rosalie|leacock/))return"Administrative Assistant at Rosalie Hall (cut report time from 3hr to 45min). Senior Program Assistant at Leacock Foundation (Certificate of Recognition). League Ambassador at JAM Sports.";
-  if(m.match(/coop|intern|hire|available|recruit/))return"Seeking co-op/internship in embedded systems or mechatronics starting January 2027. Toronto, ON. Contact: dwijjoshi14@gmail.com";
-  if(m.match(/education|school|tmu|degree/))return"BEng Mechatronics Engineering, Toronto Metropolitan University. Expected April 2029. Transferred from Computer Engineering. Ontario Scholar.";
-  if(m.match(/contact|email|reach|linkedin|github|site/))return"📧 dwijjoshi14@gmail.com · 💼 linkedin.com/in/dwij-joshi-14-tron · ⚡ github.com/dwijjoshi14 · 🌐 dwijjoshi14.github.io";
-  if(m.match(/hello|hi|hey/))return"Hey! I'm Dwij's AI agent ⚡ Ask about his projects, skills, experience, or co-op availability.";
-  return"Try asking about projects, skills, experience, or co-op availability. Or email dwijjoshi14@gmail.com ⚡";
-}
+function getResp(msg){const m=msg.toLowerCase();
+  if(m.match(/who|about|introduce|background|himself/))return"dwij is a mechatronics engineering student at TMU graduating 2029, transferred from computer engineering. builds embedded firmware in C++, works with FreeRTOS, sensor integration, real-time control. 4+ years work experience. ontario scholar.";
+  if(m.match(/rtos|freertos|task|semaphore|queue|mutex/))return"the RTOS project — three-task FreeRTOS in C. sensor queue every 500ms, binary semaphore for critical temp alerts, mutex for shared output. runs on linux via POSIX simulation, ports to STM32 with three HAL swaps. github.com/dwijjoshi14/rtos-task-scheduler";
+  if(m.match(/heat|fan|tmp36|neopixel|thermal/))return"heat management system — arduino uno, TMP36 ADC, PMOS PWM fan, 16×2 LCD and 80-LED neopixel. group project for MTE301. the interesting part was debugging the inverted PWM logic from the PMOS high-side driver. github.com/dwijjoshi14/heat-management-system";
+  if(m.match(/circuit|ohm|kirchhoff|kvl|kcl/))return"dc circuit analyzer — C++17, ohm's law and kirchhoff's laws on series/parallel circuits with automatic KVL/KCL verification. built it because he was tired of doing this by hand in physics lab. github.com/dwijjoshi14/dc-circuit-analyzer";
+  if(m.match(/project|built|github|repo/))return"three public repos: RTOS Task Scheduler, Heat Management System, DC Circuit Analyzer. all at github.com/dwijjoshi14";
+  if(m.match(/skill|language|tech|cpp|embedded/))return"C and C++ mainly. embedded: Arduino, PWM, ADC, UART, I2C, SPI, GPIO, PMOS driver. tools: Git, FreeRTOS, PlatformIO, Tinkercad, MATLAB. testing: test case design, black-box, white-box.";
+  if(m.match(/experience|work|job|safss|rosalie|leacock/))return"intake worker at SAFSS (may–jul 2026). administrative assistant at rosalie hall mental health institution — rebuilt data systems, cut report time from 3hr to 45min. senior program assistant at leacock foundation, certificate of recognition. league ambassador at jam sports.";
+  if(m.match(/coop|intern|hire|available|recruit/))return"looking for co-op or internship in embedded systems / mechatronics starting january 2027. based in toronto. dwijjoshi14@gmail.com or linkedin.com/in/dwij-joshi-14-tron";
+  if(m.match(/education|school|tmu|degree/))return"beng mechatronics engineering at toronto metropolitan university, graduating april 2029. transferred from computer engineering. ontario scholar.";
+  if(m.match(/contact|email|reach|linkedin|github|site/))return"dwijjoshi14@gmail.com · linkedin.com/in/dwij-joshi-14-tron · github.com/dwijjoshi14 · dwijjoshi14.github.io";
+  if(m.match(/hello|hi|hey/))return"hey! what do you want to know about dwij?";
+  return"not sure i have that — try asking about his projects, skills, experience, or co-op availability. or just email him at dwijjoshi14@gmail.com.";}
 function send(text){const msg=text||chatInput.value.trim();if(!msg)return;chatInput.value='';chatSuggs.style.display='none';addUser(msg);const t=showTyping();setTimeout(()=>{t.remove();addBot(getResp(msg));},700+Math.random()*500);}
 chatSend.addEventListener('click',()=>send());
 chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
 
-// ─── LIGHTNING REFLEX GAME ────────────────────────────────────
-const gameModal=document.getElementById('gameModal');
+// GAME
+const gameModal=document.getElementById('gameModal'),gameArena=document.getElementById('gameArena');
 let gScore=0,gHigh=0,gRunning=false,gCountdown=null,gTargetTO=null;
-function openGame(){gameModal.classList.add('open');}
-function closeGame(){gameModal.classList.remove('open');stopGame();}
+function openGame(){gameModal.classList.add('open');}function closeGame(){gameModal.classList.remove('open');stopGame();}
 document.getElementById('navGameBtn').addEventListener('click',openGame);
 document.getElementById('gameClose').addEventListener('click',closeGame);
 document.getElementById('gameCloseBtn').addEventListener('click',closeGame);
 document.getElementById('gameStart').addEventListener('click',startGame);
-function spawnTarget(){
-  const old=gameArena.querySelector('.game-target');if(old)old.remove();
-  const m=30,x=m+Math.random()*(gameArena.offsetWidth-m*2),y=m+Math.random()*(gameArena.offsetHeight-m*2);
-  const t=document.createElement('div');t.className='game-target';t.style.left=x+'px';t.style.top=y+'px';t.textContent='⚡';
-  t.addEventListener('click',e=>{
-    e.stopPropagation();if(!gRunning)return;
-    gScore++;document.getElementById('gameScore').textContent=gScore;
-    const b=document.createElement('div');b.style.cssText=`position:absolute;left:${x}px;top:${y}px;width:0;height:0;pointer-events:none;`;
-    for(let i=0;i<10;i++){const a=document.createElement('div');a.style.cssText=`position:absolute;width:2px;height:${10+Math.random()*20}px;background:var(--red);transform-origin:0 0;transform:rotate(${(i/10)*360}deg);animation:arcFly .4s ease-out forwards;border-radius:2px;`;b.appendChild(a);}
-    gameArena.appendChild(b);setTimeout(()=>b.remove(),500);
-    t.remove();clearTimeout(gTargetTO);gTargetTO=setTimeout(spawnTarget,80+Math.random()*150);
-  });
-  gameArena.appendChild(t);
-  gTargetTO=setTimeout(()=>{t.remove();if(gRunning)setTimeout(spawnTarget,150+Math.random()*250);},1400);
-}
-function startGame(){
-  gScore=0;document.getElementById('gameScore').textContent='0';gRunning=true;
-  document.getElementById('arenaMsg').style.display='none';
-  document.getElementById('gameStart').textContent='RESTART';
-  let tLeft=10;document.getElementById('gameTimer').textContent=tLeft;
-  clearInterval(gCountdown);clearTimeout(gTargetTO);
-  const old=gameArena.querySelector('.game-target');if(old)old.remove();
-  spawnTarget();
-  gCountdown=setInterval(()=>{
-    tLeft--;document.getElementById('gameTimer').textContent=tLeft;
-    if(tLeft<=0){
-      clearInterval(gCountdown);clearTimeout(gTargetTO);gRunning=false;
-      const old2=gameArena.querySelector('.game-target');if(old2)old2.remove();
-      if(gScore>gHigh){gHigh=gScore;document.getElementById('gameHigh').textContent=gHigh;}
-      document.getElementById('arenaMsg').style.display='flex';
-      document.getElementById('arenaMsg').innerHTML=`<div class="big" style="font-size:1.4rem">${gScore}</div><div class="small">BOLTS CAUGHT ⚡</div><div class="small" style="color:var(--t3)">BEST: ${gHigh}</div>`;
-    }
-  },1000);
-}
+function spawnTarget(){const old=gameArena.querySelector('.game-target');if(old)old.remove();const m=30,x=m+Math.random()*(gameArena.offsetWidth-m*2),y=m+Math.random()*(gameArena.offsetHeight-m*2);const t=document.createElement('div');t.className='game-target';t.style.left=x+'px';t.style.top=y+'px';t.textContent='⚡';t.addEventListener('click',e=>{e.stopPropagation();if(!gRunning)return;gScore++;document.getElementById('gameScore').textContent=gScore;t.remove();clearTimeout(gTargetTO);gTargetTO=setTimeout(spawnTarget,80+Math.random()*150);});gameArena.appendChild(t);gTargetTO=setTimeout(()=>{t.remove();if(gRunning)setTimeout(spawnTarget,150+Math.random()*250);},1400);}
+function startGame(){gScore=0;document.getElementById('gameScore').textContent='0';gRunning=true;document.getElementById('arenaMsg').style.display='none';document.getElementById('gameStart').textContent='restart';let tLeft=10;document.getElementById('gameTimer').textContent=tLeft;clearInterval(gCountdown);clearTimeout(gTargetTO);const old=gameArena.querySelector('.game-target');if(old)old.remove();spawnTarget();gCountdown=setInterval(()=>{tLeft--;document.getElementById('gameTimer').textContent=tLeft;if(tLeft<=0){clearInterval(gCountdown);clearTimeout(gTargetTO);gRunning=false;const o=gameArena.querySelector('.game-target');if(o)o.remove();if(gScore>gHigh){gHigh=gScore;document.getElementById('gameHigh').textContent=gHigh;}document.getElementById('arenaMsg').style.display='flex';document.getElementById('arenaMsg').innerHTML=`<div class="big" style="font-size:1.4rem">${gScore}</div><div class="small">${gScore>=gHigh&&gScore>0?'new best!':'bolts caught'}</div><div class="small" style="color:var(--t3);margin-top:.2rem">best: ${gHigh}</div>`;}},1000);}
 function stopGame(){gRunning=false;clearInterval(gCountdown);clearTimeout(gTargetTO);const o=gameArena.querySelector('.game-target');if(o)o.remove();}
-const gameArena=document.getElementById('gameArena');
 </script>
 </body>
 </html>
