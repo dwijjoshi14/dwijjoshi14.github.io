@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/> 
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dwij Joshi</title>
   <meta name="description" content="Mechatronics Engineering at TMU. I build things at the edge of hardware and software."/>
@@ -106,7 +106,7 @@
       <div class="about-text slide-left">
         <p>I'm a <strong>Mechatronics Engineering student at Toronto Metropolitan University</strong>, transferred from Computer Engineering because I kept being more interested in the hardware side of everything. That intersection of electronics, firmware, and physical systems is where I want to live.</p>
         <p>On the technical side I've been building with <span class="hl">embedded C++ firmware</span>, working with <span class="hl">sensor integration</span>, real-time control loops, FreeRTOS, and writing tests that actually catch things before they break in the real world.</p>
-        <p>Outside of engineering, I've spent a few years doing real work in clinical data management, youth programs, and community operations. I'm not choosy about what kind of problem I'm solving, I just want to solve it well.</p>
+        <p>Outside of engineering, I've spent a few years doing real work in clinical data management, youth programs, and community operations. I'm not choosy about what kind of problem I'm solving — I just want to solve it well.</p>
         <p style="color:rgba(255,255,255,.3);font-size:.9rem;">Ontario Scholar · Certificate of Recognition</p>
       </div>
       <div class="stat-grid">
@@ -125,36 +125,76 @@
     <h2 class="s-title glitch-title" data-text="projects">proj<span class="acc">ects</span></h2>
     <div class="card-deck-container reveal">
       <div class="card-deck-stage" id="deckStage">
+
+        <!-- CARD 1 — ClearShift (new, hackathon full-stack) -->
         <div class="deck-card" data-index="0" data-pos="0">
-          <div class="card-num"><span>01 / 04</span><span class="card-suit">⚡</span></div>
+          <div class="card-num"><span>01 / 06</span><span class="card-suit">⚡</span></div>
+          <div class="card-name">ClearShift</div>
+          <span class="card-badge">hackathon · mind the product world product day · jun 2026</span>
+          <div class="card-screenshot-wrap">
+            <img
+              src="https://raw.githubusercontent.com/dwijjoshi14/ClearShift/main/screenshot.png"
+              alt="ClearShift app screenshot"
+              class="card-screenshot"
+              loading="lazy"
+            />
+          </div>
+          <p class="card-desc">Full-stack shift handoff tool for clinical care teams — structured two-minute form, flagged urgency levels, AI-generated plain-English summaries. Built and shipped live on Vercel within the competition window.</p>
+          <div class="card-tags"><span class="c-tag">Next.js</span><span class="c-tag">Supabase</span><span class="c-tag">Claude API</span><span class="c-tag">TypeScript</span><span class="c-tag">Vercel</span></div>
+          <div class="card-links-row">
+            <a href="https://project-ak4dq-pu47a3emu-dwij-joshi-s-projects.vercel.app/" target="_blank" class="card-link card-link-live">live demo ↗</a>
+            <a href="https://github.com/dwijjoshi14/ClearShift" target="_blank" class="card-link">github →</a>
+          </div>
+        </div>
+
+        <!-- CARD 2 — RTOS Task Scheduler -->
+        <div class="deck-card" data-index="1" data-pos="1">
+          <div class="card-num"><span>02 / 06</span><span class="card-suit">⚡</span></div>
           <div class="card-name">RTOS Task Scheduler</div>
           <p class="card-desc">Three-task FreeRTOS system in C. SensorTask feeds a typed queue every 500ms, ControlTask applies threshold logic and fires a binary semaphore when temp goes critical, DisplayTask renders live output. Runs on Linux via POSIX simulation — port to STM32 is three HAL function swaps.</p>
           <div class="card-tags"><span class="c-tag">C11</span><span class="c-tag">FreeRTOS</span><span class="c-tag">queue</span><span class="c-tag">semaphore</span><span class="c-tag">mutex</span><span class="c-tag">STM32</span></div>
           <a href="https://github.com/dwijjoshi14/rtos-task-scheduler" target="_blank" class="card-link">view on github →</a>
         </div>
-        <div class="deck-card" data-index="1" data-pos="1">
-          <div class="card-num"><span>02 / 04</span><span class="card-suit">⚡</span></div>
+
+        <!-- CARD 3 — IMU Robotic Arm Controller (new) -->
+        <div class="deck-card" data-index="2" data-pos="2">
+          <div class="card-num"><span>03 / 06</span><span class="card-suit">⚡</span></div>
+          <div class="card-name">IMU-Based Robotic Arm</div>
+          <span class="card-badge">in progress · may 2026 – present</span>
+          <p class="card-desc">Implementing a complementary filter fusing MPU-6050 accelerometer and gyroscope data over I2C for drift-free real-time angle estimation on STM32F103. Three-task FreeRTOS architecture — IMU read, angle compute, servo output — with a POSIX simulation layer for full logic testing on Linux before hardware flash.</p>
+          <div class="card-tags"><span class="c-tag">C++</span><span class="c-tag">STM32</span><span class="c-tag">FreeRTOS</span><span class="c-tag">MPU-6050</span><span class="c-tag">I2C</span><span class="c-tag">PWM</span></div>
+          <span class="card-wip">in progress — code coming soon</span>
+        </div>
+
+        <!-- CARD 4 — Heat Management System -->
+        <div class="deck-card" data-index="3" data-pos="3">
+          <div class="card-num"><span>04 / 06</span><span class="card-suit">⚡</span></div>
           <div class="card-name">Heat Management System</div>
           <span class="card-badge">group project · MTE301 · fall 2025</span>
           <p class="card-desc">Closed-loop thermal control on Arduino Uno. TMP36 ADC sensing, PMOS-driven PWM fan, 16×2 LCD and 80-LED NeoPixel strip. The interesting bug was the inverted PWM logic from the PMOS high-side driver — caught it in Tinkercad before it hit hardware.</p>
           <div class="card-tags"><span class="c-tag">C++</span><span class="c-tag">Arduino</span><span class="c-tag">PWM</span><span class="c-tag">TMP36</span><span class="c-tag">NeoPixel</span></div>
           <a href="https://github.com/dwijjoshi14/heat-management-system" target="_blank" class="card-link">view on github →</a>
         </div>
-        <div class="deck-card" data-index="2" data-pos="2">
-          <div class="card-num"><span>03 / 04</span><span class="card-suit">⚡</span></div>
+
+        <!-- CARD 5 — DC Circuit Analyzer -->
+        <div class="deck-card" data-index="4" data-pos="4">
+          <div class="card-num"><span>05 / 06</span><span class="card-suit">⚡</span></div>
           <div class="card-name">DC Circuit Analyzer</div>
           <p class="card-desc">Solo C++17 tool that applies Ohm's Law and Kirchhoff's Laws to series and parallel circuits. Computes resistance, branch currents, voltage drops, and power — then verifies the result against KVL/KCL automatically. Started as a way to stop doing this by hand in physics lab.</p>
           <div class="card-tags"><span class="c-tag">C++17</span><span class="c-tag">OOP</span><span class="c-tag">KVL/KCL</span><span class="c-tag">Ohm's Law</span><span class="c-tag">Make</span></div>
           <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" class="card-link">view on github →</a>
         </div>
-        <div class="deck-card" data-index="3" data-pos="3">
-          <div class="card-num"><span>04 / 04</span><span class="card-suit">⚡</span></div>
+
+        <!-- CARD 6 — Smart Parking Assistant -->
+        <div class="deck-card" data-index="5" data-pos="5">
+          <div class="card-num"><span>06 / 06</span><span class="card-suit">⚡</span></div>
           <div class="card-name">Smart Parking Assistant</div>
           <span class="card-badge">high school capstone · jun 2024</span>
           <p class="card-desc">Proximity-feedback parking system — 95% detection accuracy from 5 to 100cm, sub-50ms feedback loop. Ran 10+ edge-case scenarios and got reliability from 65% to 88%. First project where I really understood what testing is actually for.</p>
           <div class="card-tags"><span class="c-tag">C++</span><span class="c-tag">Arduino</span><span class="c-tag">ultrasonic</span><span class="c-tag">PWM</span></div>
         </div>
-      </div>
+
+      </div><!-- /card-deck-stage -->
       <div class="deck-controls">
         <button class="deck-btn deck-btn-prev" id="deckPrev">← prev</button>
         <div class="deck-dots" id="deckDots">
@@ -162,6 +202,8 @@
           <div class="deck-dot" data-i="1"></div>
           <div class="deck-dot" data-i="2"></div>
           <div class="deck-dot" data-i="3"></div>
+          <div class="deck-dot" data-i="4"></div>
+          <div class="deck-dot" data-i="5"></div>
         </div>
         <button class="deck-btn deck-btn-next" id="deckNext">next →</button>
       </div>
@@ -174,10 +216,11 @@
     <div class="s-label">tools of the trade</div>
     <h2 class="s-title glitch-title" data-text="skills">my <span class="acc">toolkit</span></h2>
     <div class="skills-grid">
-      <div class="sk-group"><div class="sk-title">languages</div><div class="sk-tags"><span class="sk-tag">C</span><span class="sk-tag">C++</span><span class="sk-tag">Python</span><span class="sk-tag">Java</span><span class="sk-tag">SQL</span></div></div>
-      <div class="sk-group"><div class="sk-title">embedded + hardware</div><div class="sk-tags"><span class="sk-tag">Arduino</span><span class="sk-tag">PWM</span><span class="sk-tag">ADC</span><span class="sk-tag">UART</span><span class="sk-tag">I2C</span><span class="sk-tag">SPI</span><span class="sk-tag">GPIO</span><span class="sk-tag">PMOS driver</span></div></div>
-      <div class="sk-group"><div class="sk-title">tools + platforms</div><div class="sk-tags"><span class="sk-tag">Git</span><span class="sk-tag">FreeRTOS</span><span class="sk-tag">PlatformIO</span><span class="sk-tag">Tinkercad</span><span class="sk-tag">MATLAB</span><span class="sk-tag">Make</span></div></div>
-      <div class="sk-group"><div class="sk-title">testing + QA</div><div class="sk-tags"><span class="sk-tag">test case design</span><span class="sk-tag">black-box</span><span class="sk-tag">white-box</span><span class="sk-tag">defect tracking</span></div></div>
+      <div class="sk-group"><div class="sk-title">languages</div><div class="sk-tags"><span class="sk-tag">C</span><span class="sk-tag">C++</span><span class="sk-tag">Python</span><span class="sk-tag">Java</span><span class="sk-tag">JavaScript</span><span class="sk-tag">TypeScript</span><span class="sk-tag">SQL</span></div></div>
+      <div class="sk-group"><div class="sk-title">embedded + hardware</div><div class="sk-tags"><span class="sk-tag">STM32</span><span class="sk-tag">Arduino</span><span class="sk-tag">PWM</span><span class="sk-tag">ADC</span><span class="sk-tag">UART</span><span class="sk-tag">I2C</span><span class="sk-tag">SPI</span><span class="sk-tag">GPIO</span><span class="sk-tag">PMOS driver</span></div></div>
+      <div class="sk-group"><div class="sk-title">tools + platforms</div><div class="sk-tags"><span class="sk-tag">Git</span><span class="sk-tag">FreeRTOS</span><span class="sk-tag">PlatformIO</span><span class="sk-tag">Tinkercad</span><span class="sk-tag">MATLAB</span><span class="sk-tag">KiCad</span><span class="sk-tag">Make</span><span class="sk-tag">Linux</span></div></div>
+      <div class="sk-group"><div class="sk-title">web + fullstack</div><div class="sk-tags"><span class="sk-tag">Next.js</span><span class="sk-tag">Supabase</span><span class="sk-tag">HTML/CSS</span><span class="sk-tag">Vercel</span></div></div>
+      <div class="sk-group"><div class="sk-title">testing + QA</div><div class="sk-tags"><span class="sk-tag">unit testing</span><span class="sk-tag">black-box</span><span class="sk-tag">white-box</span><span class="sk-tag">defect tracking</span><span class="sk-tag">V&V</span></div></div>
     </div>
   </div>
 </section>
@@ -188,6 +231,22 @@
     <h2 class="s-title glitch-title" data-text="experience">experi<span class="acc">ence</span></h2>
     <div class="timeline-wrap">
       <div class="timeline-line" id="timelineLine"><div class="timeline-spark"></div></div>
+
+      <!-- MCU Webmaster — NEW -->
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div><div class="tl-role">Webmaster &amp; Full-Stack Developer</div><div class="tl-org">Mechatronics Course Union (MCU) · Toronto Metropolitan University</div></div>
+          <div class="tl-meta"><div class="tl-date">Apr 2025 – Present</div><div class="tl-type">part-time</div><div class="tl-toggle">expand</div></div>
+        </div>
+        <div class="tl-body"><ul class="tl-bullets">
+          <li>Sole developer — designed and shipped the full MCU website (<a href="https://mcutmu.ca" target="_blank" style="color:rgba(255,100,100,.7);">mcutmu.ca</a>) from scratch in vanilla HTML/CSS/JS; 6 pages including events, team, academics, calendar, and contact.</li>
+          <li>Engineered a custom animated HUD aesthetic: canvas-based particle/circuit system, 3D coverflow carousel, RGB-split glitch effects, custom cursor, scroll progress bar, and per-section VFX — zero frameworks, zero dependencies.</li>
+          <li>Cut operational cost from $240/yr (agency quote) to $20/yr by self-hosting on GitHub Pages with a custom domain — 92% cost reduction.</li>
+          <li>Built and integrated a live Square e-commerce shop link, Discord/social platform connections, light/dark mode toggle, and full mobile-responsive layout.</li>
+        </ul></div>
+      </div>
+
       <div class="tl-entry">
         <div class="tl-dot"></div>
         <div class="tl-header">
@@ -200,6 +259,7 @@
           <li>Optimized front-end performance through image compression, lazy loading, and CSS/JS cleanup — reduced estimated page load time by ~30% across desktop and mobile.</li>
         </ul></div>
       </div>
+
       <div class="tl-entry">
         <div class="tl-dot"></div>
         <div class="tl-header">
@@ -212,6 +272,7 @@
           <li>Maintained confidential records for 150+ active client files; weekly participation reports across 4 service streams for funder reporting.</li>
         </ul></div>
       </div>
+
       <div class="tl-entry">
         <div class="tl-dot"></div>
         <div class="tl-header">
@@ -224,6 +285,7 @@
           <li>Monthly dashboards for clinical leadership that went directly into staffing and resource decisions.</li>
         </ul></div>
       </div>
+
       <div class="tl-entry">
         <div class="tl-dot"></div>
         <div class="tl-header">
@@ -235,6 +297,7 @@
           <li>Cut evaluation documentation compilation by 30%, enabled same-week funder submissions. Got a Certificate of Recognition for it.</li>
         </ul></div>
       </div>
+
       <div class="tl-entry">
         <div class="tl-dot"></div>
         <div class="tl-header">
@@ -245,6 +308,7 @@
           <li>On-ground coordinator for 30+ participants per session. Handled everything in real time — zero incidents across the whole engagement.</li>
         </ul></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -254,7 +318,7 @@
     <div class="contact-inner reveal">
       <div class="s-label" style="justify-content:center;">get in touch</div>
       <h2 class="contact-big">let's<br/><span class="acc">talk.</span></h2>
-      <p class="contact-sub">Looking for co-op and internship opportunities in embedded systems and mechatronics starting January 2027. If you're building something real and need someone who cares about getting the details right - reach out.</p>
+      <p class="contact-sub">Looking for co-op and internship opportunities in embedded systems and mechatronics starting January 2027. If you're building something real and need someone who cares about getting the details right — reach out.</p>
       <div class="contact-links">
         <a href="mailto:dwijjoshi14@gmail.com" class="c-link">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -449,7 +513,7 @@ document.querySelectorAll('.reveal,.slide-left').forEach(el=>rObs.observe(el));
 // MAGNETIC
 document.querySelectorAll('.magnetic').forEach(btn=>{btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.22}px,${(e.clientY-r.top-r.height/2)*.22}px)`;});btn.addEventListener('mouseleave',()=>btn.style.transform='');});
 
-// CARD DECK
+// CARD DECK — updated for 6 cards
 const cards=Array.from(document.querySelectorAll('.deck-card')),dots=Array.from(document.querySelectorAll('.deck-dot'));
 let cur=0;const tot=cards.length;
 function updDeck(anim=false){cards.forEach((c,i)=>{c.dataset.pos=(i-cur+tot)%tot;if(anim)c.style.transition='transform .6s cubic-bezier(.34,1.56,.64,1),opacity .4s,box-shadow .3s';else c.style.transition='none';});dots.forEach((d,i)=>d.classList.toggle('active',i===cur));}
@@ -474,15 +538,18 @@ function addBot(t){const m=document.createElement('div');m.className='msg bot';m
 function addUser(t){const m=document.createElement('div');m.className='msg user';m.innerHTML=`<div class="msg-bubble">${t}</div><div class="msg-time">${getT()}</div>`;chatMessages.appendChild(m);chatMessages.scrollTop=chatMessages.scrollHeight;}
 function showTyping(){const t=document.createElement('div');t.className='typing-indicator';t.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';chatMessages.appendChild(t);chatMessages.scrollTop=chatMessages.scrollHeight;return t;}
 function getResp(msg){const m=msg.toLowerCase();
-  if(m.match(/who|about|introduce|background|himself/))return"dwij is a mechatronics engineering student at TMU graduating 2029, transferred from computer engineering. builds embedded firmware in C++, works with FreeRTOS, sensor integration, real-time control. also does web development — built a full site for an agri-tech startup in 2026. 4+ years work experience across engineering and community roles. ontario scholar.";
+  if(m.match(/who|about|introduce|background|himself/))return"dwij is a mechatronics engineering student at TMU graduating 2029, transferred from computer engineering. builds embedded firmware in C++, works with FreeRTOS, sensor integration, real-time control. also does web development — built the MCU student union site from scratch, a full-stack clinical tool (ClearShift) at a hackathon, and a site for an agri-tech startup. 4+ years work experience. ontario scholar.";
+  if(m.match(/clearshift|hackathon|clinical|handoff|health/))return"ClearShift — full-stack shift handoff tool for clinical care teams. structured form captures what happened, open tasks, and urgency flags. one tap generates an AI summary for tired incoming staff. built with Next.js, Supabase, and the Claude API. shipped live on Vercel during the Mind the Product World Product Day hackathon. <a href='https://project-ak4dq-pu47a3emu-dwij-joshi-s-projects.vercel.app/' target='_blank' style='color:rgba(255,100,100,.8)'>live demo ↗</a> · github.com/dwijjoshi14/ClearShift";
+  if(m.match(/mcu|webmaster|course union|mechatronics course/))return"dwij is the sole webmaster and developer for the MCU (Mechatronics Course Union) at TMU. built the full site at mcutmu.ca from scratch — vanilla HTML/CSS/JS, zero frameworks. custom HUD aesthetic, canvas-based particles, 3D coverflow, glitch effects. cut the cost from $240/yr to $20/yr by hosting on GitHub Pages.";
+  if(m.match(/imu|robotic arm|mpu|gyroscope|servo/))return"the IMU robotic arm — implementing a complementary filter fusing MPU-6050 accelerometer and gyroscope over I2C for drift-free angle estimation on STM32F103. three-task FreeRTOS architecture (IMU read, angle compute, servo output), tested on Linux via POSIX sim before flash. currently in progress.";
   if(m.match(/rtos|freertos|task|semaphore|queue|mutex/))return"the RTOS project — three-task FreeRTOS in C. sensor queue every 500ms, binary semaphore for critical temp alerts, mutex for shared output. runs on linux via POSIX simulation, ports to STM32 with three HAL swaps. github.com/dwijjoshi14/rtos-task-scheduler";
   if(m.match(/heat|fan|tmp36|neopixel|thermal/))return"heat management system — arduino uno, TMP36 ADC, PMOS PWM fan, 16×2 LCD and 80-LED neopixel. group project for MTE301. the interesting part was debugging the inverted PWM logic from the PMOS high-side driver. github.com/dwijjoshi14/heat-management-system";
   if(m.match(/circuit|ohm|kirchhoff|kvl|kcl/))return"dc circuit analyzer — C++17, ohm's law and kirchhoff's laws on series/parallel circuits with automatic KVL/KCL verification. built it because he was tired of doing this by hand in physics lab. github.com/dwijjoshi14/dc-circuit-analyzer";
-  if(m.match(/project|built|github|repo/))return"three public repos: RTOS Task Scheduler, Heat Management System, DC Circuit Analyzer. all at github.com/dwijjoshi14";
-  if(m.match(/skill|language|tech|cpp|embedded/))return"C and C++ mainly. embedded: Arduino, PWM, ADC, UART, I2C, SPI, GPIO, PMOS driver. tools: Git, FreeRTOS, PlatformIO, Tinkercad, MATLAB. testing: test case design, black-box, white-box.";
-  if(m.match(/experience|work|job|safss|rosalie|leacock|can crops|web design/))return"web designer at can crops inc (may–jul 2026) — built their 6-page site from scratch, 30+ branded assets, ~40% asset time reduction. intake worker at SAFSS (may–jul 2026). administrative assistant at rosalie hall mental health institution — rebuilt data systems, cut report time from 3hr to 45min. senior program assistant at leacock foundation, certificate of recognition. league ambassador at jam sports.";
+  if(m.match(/project|built|github|repo/))return"six projects total: ClearShift (hackathon full-stack app, live on Vercel), RTOS Task Scheduler, IMU Robotic Arm (in progress), Heat Management System, DC Circuit Analyzer, Smart Parking Assistant. github.com/dwijjoshi14";
+  if(m.match(/skill|language|tech|cpp|embedded/))return"C and C++ mainly. embedded: STM32, Arduino, PWM, ADC, UART, I2C, SPI, GPIO, PMOS driver. web: Next.js, Supabase, TypeScript, Vercel. tools: Git, FreeRTOS, PlatformIO, KiCad, Tinkercad, MATLAB. testing: unit testing, black-box, white-box, V&V.";
+  if(m.match(/experience|work|job|safss|rosalie|leacock|can crops|web design/))return"webmaster at MCU/TMU (apr 2025–present). web designer at can crops inc (may–jul 2026). intake worker at SAFSS (may–jul 2026). administrative assistant at rosalie hall mental health institution — rebuilt data systems, cut report time from 3hr to 45min. senior program assistant at leacock foundation, certificate of recognition. league ambassador at jam sports.";
   if(m.match(/coop|intern|hire|available|recruit/))return"looking for co-op or internship in embedded systems / mechatronics starting january 2027. based in toronto. dwijjoshi14@gmail.com or linkedin.com/in/dwij-joshi-14-tron";
-  if(m.match(/education|school|tmu|degree/))return"beng mechatronics engineering at toronto metropolitan university, graduating april 2029. transferred from computer engineering. ontario scholar.";
+  if(m.match(/education|school|tmu|degree/))return"beng mechatronics engineering at toronto metropolitan university, graduating april 2029. transferred from computer engineering. ontario scholar. coursework: embedded systems, data structures, digital logic, circuit analysis, OOP, discrete math.";
   if(m.match(/contact|email|reach|linkedin|github|site/))return"dwijjoshi14@gmail.com · linkedin.com/in/dwij-joshi-14-tron · github.com/dwijjoshi14 · dwijjoshi14.github.io";
   if(m.match(/hello|hi|hey/))return"hey! what do you want to know about dwij?";
   return"not sure i have that — try asking about his projects, skills, experience, or co-op availability. or just email him at dwijjoshi14@gmail.com.";}
