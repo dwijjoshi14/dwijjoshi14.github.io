@@ -126,9 +126,9 @@
     <div class="card-deck-container reveal">
       <div class="card-deck-stage" id="deckStage">
 
-        <!-- CARD 1 — ClearShift (new, hackathon full-stack) -->
+        <!-- CARD 1 — ClearShift -->
         <div class="deck-card" data-index="0" data-pos="0">
-          <div class="card-num"><span>01 / 06</span><span class="card-suit">⚡</span></div>
+          <div class="card-num"><span>01 / 07</span><span class="card-suit">⚡</span></div>
           <div class="card-name">ClearShift</div>
           <span class="card-badge">hackathon · mind the product world product day · jun 2026</span>
           <div class="card-screenshot-wrap">
@@ -147,18 +147,31 @@
           </div>
         </div>
 
-        <!-- CARD 2 — RTOS Task Scheduler -->
+        <!-- CARD 2 — Sentinel (NEW) -->
         <div class="deck-card" data-index="1" data-pos="1">
-          <div class="card-num"><span>02 / 06</span><span class="card-suit">⚡</span></div>
+          <div class="card-num"><span>02 / 07</span><span class="card-suit">⚡</span></div>
+          <div class="card-name">Sentinel</div>
+          <span class="card-badge">hackathon · gitlab transcend · jun 2026</span>
+          <p class="card-desc">Orbit-powered MR blast-radius agent on the GitLab Duo Agent Platform. Triggers with /sentinel in the MR sidebar, traverses GitLab's knowledge graph across 8 node types — files, imports, definitions, pipelines, vulnerabilities, contributors — and posts a structured impact brief directly to the MR in under 60 seconds.</p>
+          <div class="card-tags"><span class="c-tag">GitLab Orbit</span><span class="c-tag">Duo Agent Platform</span><span class="c-tag">YAML</span><span class="c-tag">Python</span><span class="c-tag">Prompt Engineering</span><span class="c-tag">GitLab CI/CD</span></div>
+          <div class="card-links-row">
+            <a href="https://gitlab.com/dwijjoshi14/sentinel-orbit-agent" target="_blank" class="card-link card-link-live">gitlab ↗</a>
+            <a href="https://github.com/dwijjoshi14/sentinel-orbit-agent" target="_blank" class="card-link">github →</a>
+          </div>
+        </div>
+
+        <!-- CARD 3 — RTOS Task Scheduler -->
+        <div class="deck-card" data-index="2" data-pos="2">
+          <div class="card-num"><span>03 / 07</span><span class="card-suit">⚡</span></div>
           <div class="card-name">RTOS Task Scheduler</div>
           <p class="card-desc">Three-task FreeRTOS system in C. SensorTask feeds a typed queue every 500ms, ControlTask applies threshold logic and fires a binary semaphore when temp goes critical, DisplayTask renders live output. Runs on Linux via POSIX simulation — port to STM32 is three HAL function swaps.</p>
           <div class="card-tags"><span class="c-tag">C11</span><span class="c-tag">FreeRTOS</span><span class="c-tag">queue</span><span class="c-tag">semaphore</span><span class="c-tag">mutex</span><span class="c-tag">STM32</span></div>
           <a href="https://github.com/dwijjoshi14/rtos-task-scheduler" target="_blank" class="card-link">view on github →</a>
         </div>
 
-        <!-- CARD 3 — IMU Robotic Arm Controller (new) -->
-        <div class="deck-card" data-index="2" data-pos="2">
-          <div class="card-num"><span>03 / 06</span><span class="card-suit">⚡</span></div>
+        <!-- CARD 4 — IMU Robotic Arm Controller -->
+        <div class="deck-card" data-index="3" data-pos="3">
+          <div class="card-num"><span>04 / 07</span><span class="card-suit">⚡</span></div>
           <div class="card-name">IMU-Based Robotic Arm</div>
           <span class="card-badge">in progress · may 2026 – present</span>
           <p class="card-desc">Implementing a complementary filter fusing MPU-6050 accelerometer and gyroscope data over I2C for drift-free real-time angle estimation on STM32F103. Three-task FreeRTOS architecture — IMU read, angle compute, servo output — with a POSIX simulation layer for full logic testing on Linux before hardware flash.</p>
@@ -166,9 +179,9 @@
           <span class="card-wip">in progress — code coming soon</span>
         </div>
 
-        <!-- CARD 4 — Heat Management System -->
-        <div class="deck-card" data-index="3" data-pos="3">
-          <div class="card-num"><span>04 / 06</span><span class="card-suit">⚡</span></div>
+        <!-- CARD 5 — Heat Management System -->
+        <div class="deck-card" data-index="4" data-pos="4">
+          <div class="card-num"><span>05 / 07</span><span class="card-suit">⚡</span></div>
           <div class="card-name">Heat Management System</div>
           <span class="card-badge">group project · MTE301 · fall 2025</span>
           <p class="card-desc">Closed-loop thermal control on Arduino Uno. TMP36 ADC sensing, PMOS-driven PWM fan, 16×2 LCD and 80-LED NeoPixel strip. The interesting bug was the inverted PWM logic from the PMOS high-side driver — caught it in Tinkercad before it hit hardware.</p>
@@ -176,18 +189,18 @@
           <a href="https://github.com/dwijjoshi14/heat-management-system" target="_blank" class="card-link">view on github →</a>
         </div>
 
-        <!-- CARD 5 — DC Circuit Analyzer -->
-        <div class="deck-card" data-index="4" data-pos="4">
-          <div class="card-num"><span>05 / 06</span><span class="card-suit">⚡</span></div>
+        <!-- CARD 6 — DC Circuit Analyzer -->
+        <div class="deck-card" data-index="5" data-pos="5">
+          <div class="card-num"><span>06 / 07</span><span class="card-suit">⚡</span></div>
           <div class="card-name">DC Circuit Analyzer</div>
           <p class="card-desc">Solo C++17 tool that applies Ohm's Law and Kirchhoff's Laws to series and parallel circuits. Computes resistance, branch currents, voltage drops, and power — then verifies the result against KVL/KCL automatically. Started as a way to stop doing this by hand in physics lab.</p>
           <div class="card-tags"><span class="c-tag">C++17</span><span class="c-tag">OOP</span><span class="c-tag">KVL/KCL</span><span class="c-tag">Ohm's Law</span><span class="c-tag">Make</span></div>
           <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" class="card-link">view on github →</a>
         </div>
 
-        <!-- CARD 6 — Smart Parking Assistant -->
-        <div class="deck-card" data-index="5" data-pos="5">
-          <div class="card-num"><span>06 / 06</span><span class="card-suit">⚡</span></div>
+        <!-- CARD 7 — Smart Parking Assistant -->
+        <div class="deck-card" data-index="6" data-pos="6">
+          <div class="card-num"><span>07 / 07</span><span class="card-suit">⚡</span></div>
           <div class="card-name">Smart Parking Assistant</div>
           <span class="card-badge">high school capstone · jun 2024</span>
           <p class="card-desc">Proximity-feedback parking system — 95% detection accuracy from 5 to 100cm, sub-50ms feedback loop. Ran 10+ edge-case scenarios and got reliability from 65% to 88%. First project where I really understood what testing is actually for.</p>
@@ -204,6 +217,7 @@
           <div class="deck-dot" data-i="3"></div>
           <div class="deck-dot" data-i="4"></div>
           <div class="deck-dot" data-i="5"></div>
+          <div class="deck-dot" data-i="6"></div>
         </div>
         <button class="deck-btn deck-btn-next" id="deckNext">next →</button>
       </div>
@@ -216,10 +230,11 @@
     <div class="s-label">tools of the trade</div>
     <h2 class="s-title glitch-title" data-text="skills">my <span class="acc">toolkit</span></h2>
     <div class="skills-grid">
-      <div class="sk-group"><div class="sk-title">languages</div><div class="sk-tags"><span class="sk-tag">C</span><span class="sk-tag">C++</span><span class="sk-tag">Python</span><span class="sk-tag">Java</span><span class="sk-tag">JavaScript</span><span class="sk-tag">TypeScript</span><span class="sk-tag">SQL</span></div></div>
-      <div class="sk-group"><div class="sk-title">embedded + hardware</div><div class="sk-tags"><span class="sk-tag">STM32</span><span class="sk-tag">Arduino</span><span class="sk-tag">PWM</span><span class="sk-tag">ADC</span><span class="sk-tag">UART</span><span class="sk-tag">I2C</span><span class="sk-tag">SPI</span><span class="sk-tag">GPIO</span><span class="sk-tag">PMOS driver</span></div></div>
-      <div class="sk-group"><div class="sk-title">tools + platforms</div><div class="sk-tags"><span class="sk-tag">Git</span><span class="sk-tag">FreeRTOS</span><span class="sk-tag">PlatformIO</span><span class="sk-tag">Tinkercad</span><span class="sk-tag">MATLAB</span><span class="sk-tag">KiCad</span><span class="sk-tag">Make</span><span class="sk-tag">Linux</span></div></div>
-      <div class="sk-group"><div class="sk-title">web + fullstack</div><div class="sk-tags"><span class="sk-tag">Next.js</span><span class="sk-tag">Supabase</span><span class="sk-tag">HTML/CSS</span><span class="sk-tag">Vercel</span></div></div>
+      <div class="sk-group"><div class="sk-title">languages</div><div class="sk-tags"><span class="sk-tag">C</span><span class="sk-tag">C++</span><span class="sk-tag">Python</span><span class="sk-tag">Java</span><span class="sk-tag">JavaScript</span><span class="sk-tag">TypeScript</span><span class="sk-tag">SQL</span><span class="sk-tag">YAML</span></div></div>
+      <div class="sk-group"><div class="sk-title">embedded + hardware</div><div class="sk-tags"><span class="sk-tag">STM32</span><span class="sk-tag">Arduino</span><span class="sk-tag">FreeRTOS</span><span class="sk-tag">PWM</span><span class="sk-tag">ADC</span><span class="sk-tag">UART</span><span class="sk-tag">I2C</span><span class="sk-tag">SPI</span><span class="sk-tag">GPIO</span><span class="sk-tag">PMOS driver</span><span class="sk-tag">PlatformIO</span></div></div>
+      <div class="sk-group"><div class="sk-title">ai + agents</div><div class="sk-tags"><span class="sk-tag">GitLab Orbit</span><span class="sk-tag">Duo Agent Platform</span><span class="sk-tag">Prompt Engineering</span><span class="sk-tag">Knowledge Graph APIs</span><span class="sk-tag">Claude API</span></div></div>
+      <div class="sk-group"><div class="sk-title">tools + platforms</div><div class="sk-tags"><span class="sk-tag">Git</span><span class="sk-tag">GitHub</span><span class="sk-tag">GitLab</span><span class="sk-tag">GitLab CI/CD</span><span class="sk-tag">Linux</span><span class="sk-tag">VS Code</span><span class="sk-tag">Tinkercad</span><span class="sk-tag">MATLAB</span><span class="sk-tag">KiCad</span><span class="sk-tag">Make</span></div></div>
+      <div class="sk-group"><div class="sk-title">web + fullstack</div><div class="sk-tags"><span class="sk-tag">Next.js</span><span class="sk-tag">Supabase</span><span class="sk-tag">HTML/CSS</span><span class="sk-tag">Vercel</span><span class="sk-tag">Node.js</span></div></div>
       <div class="sk-group"><div class="sk-title">testing + QA</div><div class="sk-tags"><span class="sk-tag">unit testing</span><span class="sk-tag">black-box</span><span class="sk-tag">white-box</span><span class="sk-tag">defect tracking</span><span class="sk-tag">V&V</span></div></div>
     </div>
   </div>
@@ -232,7 +247,6 @@
     <div class="timeline-wrap">
       <div class="timeline-line" id="timelineLine"><div class="timeline-spark"></div></div>
 
-      <!-- MCU Webmaster — NEW -->
       <div class="tl-entry">
         <div class="tl-dot"></div>
         <div class="tl-header">
@@ -513,7 +527,7 @@ document.querySelectorAll('.reveal,.slide-left').forEach(el=>rObs.observe(el));
 // MAGNETIC
 document.querySelectorAll('.magnetic').forEach(btn=>{btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.22}px,${(e.clientY-r.top-r.height/2)*.22}px)`;});btn.addEventListener('mouseleave',()=>btn.style.transform='');});
 
-// CARD DECK — updated for 6 cards
+// CARD DECK — 7 cards
 const cards=Array.from(document.querySelectorAll('.deck-card')),dots=Array.from(document.querySelectorAll('.deck-dot'));
 let cur=0;const tot=cards.length;
 function updDeck(anim=false){cards.forEach((c,i)=>{c.dataset.pos=(i-cur+tot)%tot;if(anim)c.style.transition='transform .6s cubic-bezier(.34,1.56,.64,1),opacity .4s,box-shadow .3s';else c.style.transition='none';});dots.forEach((d,i)=>d.classList.toggle('active',i===cur));}
@@ -538,15 +552,16 @@ function addBot(t){const m=document.createElement('div');m.className='msg bot';m
 function addUser(t){const m=document.createElement('div');m.className='msg user';m.innerHTML=`<div class="msg-bubble">${t}</div><div class="msg-time">${getT()}</div>`;chatMessages.appendChild(m);chatMessages.scrollTop=chatMessages.scrollHeight;}
 function showTyping(){const t=document.createElement('div');t.className='typing-indicator';t.innerHTML='<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';chatMessages.appendChild(t);chatMessages.scrollTop=chatMessages.scrollHeight;return t;}
 function getResp(msg){const m=msg.toLowerCase();
-  if(m.match(/who|about|introduce|background|himself/))return"dwij is a mechatronics engineering student at TMU graduating 2029, transferred from computer engineering. builds embedded firmware in C++, works with FreeRTOS, sensor integration, real-time control. also does web development — built the MCU student union site from scratch, a full-stack clinical tool (ClearShift) at a hackathon, and a site for an agri-tech startup. 4+ years work experience. ontario scholar.";
+  if(m.match(/who|about|introduce|background|himself/))return"dwij is a mechatronics engineering student at TMU graduating 2029, transferred from computer engineering. builds embedded firmware in C++, works with FreeRTOS, sensor integration, real-time control. also does web dev and AI agents — built the MCU student union site, a full-stack clinical tool at a hackathon, an Orbit-powered GitLab agent, and a site for an agri-tech startup. 4+ years work experience. ontario scholar.";
+  if(m.match(/sentinel|orbit|blast.radius|gitlab.*agent|agent.*gitlab|knowledge graph/))return"Sentinel — an Orbit-powered MR blast-radius agent built for the GitLab Transcend Hackathon 2026. one /sentinel command in the MR sidebar triggers it to traverse GitLab Orbit's knowledge graph across 8 node types (files, imports, definitions, pipelines, vulnerabilities, contributors) and post a structured impact brief directly to the MR. fully open source, MIT licensed. gitlab.com/dwijjoshi14/sentinel-orbit-agent · github.com/dwijjoshi14/sentinel-orbit-agent";
   if(m.match(/clearshift|hackathon|clinical|handoff|health/))return"ClearShift — full-stack shift handoff tool for clinical care teams. structured form captures what happened, open tasks, and urgency flags. one tap generates an AI summary for tired incoming staff. built with Next.js, Supabase, and the Claude API. shipped live on Vercel during the Mind the Product World Product Day hackathon. <a href='https://project-ak4dq-pu47a3emu-dwij-joshi-s-projects.vercel.app/' target='_blank' style='color:rgba(255,100,100,.8)'>live demo ↗</a> · github.com/dwijjoshi14/ClearShift";
   if(m.match(/mcu|webmaster|course union|mechatronics course/))return"dwij is the sole webmaster and developer for the MCU (Mechatronics Course Union) at TMU. built the full site at mcutmu.ca from scratch — vanilla HTML/CSS/JS, zero frameworks. custom HUD aesthetic, canvas-based particles, 3D coverflow, glitch effects. cut the cost from $240/yr to $20/yr by hosting on GitHub Pages.";
   if(m.match(/imu|robotic arm|mpu|gyroscope|servo/))return"the IMU robotic arm — implementing a complementary filter fusing MPU-6050 accelerometer and gyroscope over I2C for drift-free angle estimation on STM32F103. three-task FreeRTOS architecture (IMU read, angle compute, servo output), tested on Linux via POSIX sim before flash. currently in progress.";
   if(m.match(/rtos|freertos|task|semaphore|queue|mutex/))return"the RTOS project — three-task FreeRTOS in C. sensor queue every 500ms, binary semaphore for critical temp alerts, mutex for shared output. runs on linux via POSIX simulation, ports to STM32 with three HAL swaps. github.com/dwijjoshi14/rtos-task-scheduler";
   if(m.match(/heat|fan|tmp36|neopixel|thermal/))return"heat management system — arduino uno, TMP36 ADC, PMOS PWM fan, 16×2 LCD and 80-LED neopixel. group project for MTE301. the interesting part was debugging the inverted PWM logic from the PMOS high-side driver. github.com/dwijjoshi14/heat-management-system";
   if(m.match(/circuit|ohm|kirchhoff|kvl|kcl/))return"dc circuit analyzer — C++17, ohm's law and kirchhoff's laws on series/parallel circuits with automatic KVL/KCL verification. built it because he was tired of doing this by hand in physics lab. github.com/dwijjoshi14/dc-circuit-analyzer";
-  if(m.match(/project|built|github|repo/))return"six projects total: ClearShift (hackathon full-stack app, live on Vercel), RTOS Task Scheduler, IMU Robotic Arm (in progress), Heat Management System, DC Circuit Analyzer, Smart Parking Assistant. github.com/dwijjoshi14";
-  if(m.match(/skill|language|tech|cpp|embedded/))return"C and C++ mainly. embedded: STM32, Arduino, PWM, ADC, UART, I2C, SPI, GPIO, PMOS driver. web: Next.js, Supabase, TypeScript, Vercel. tools: Git, FreeRTOS, PlatformIO, KiCad, Tinkercad, MATLAB. testing: unit testing, black-box, white-box, V&V.";
+  if(m.match(/project|built|github|repo/))return"seven projects: ClearShift (hackathon full-stack app, live on Vercel), Sentinel (GitLab Transcend Hackathon — Orbit-powered MR agent), RTOS Task Scheduler, IMU Robotic Arm (in progress), Heat Management System, DC Circuit Analyzer, Smart Parking Assistant. github.com/dwijjoshi14";
+  if(m.match(/skill|language|tech|cpp|embedded/))return"C and C++ mainly. embedded: STM32, Arduino, FreeRTOS, PWM, ADC, UART, I2C, SPI, GPIO, PMOS driver, PlatformIO. AI/agents: GitLab Orbit, Duo Agent Platform, Prompt Engineering, Claude API. web: Next.js, Supabase, TypeScript, Vercel. tools: Git, GitHub, GitLab, GitLab CI/CD, Linux, KiCad, Tinkercad, MATLAB. testing: unit testing, black-box, white-box, V&V.";
   if(m.match(/experience|work|job|safss|rosalie|leacock|can crops|web design/))return"webmaster at MCU/TMU (apr 2025–present). web designer at can crops inc (may–jul 2026). intake worker at SAFSS (may–jul 2026). administrative assistant at rosalie hall mental health institution — rebuilt data systems, cut report time from 3hr to 45min. senior program assistant at leacock foundation, certificate of recognition. league ambassador at jam sports.";
   if(m.match(/coop|intern|hire|available|recruit/))return"looking for co-op or internship in embedded systems / mechatronics starting january 2027. based in toronto. dwijjoshi14@gmail.com or linkedin.com/in/dwij-joshi-14-tron";
   if(m.match(/education|school|tmu|degree/))return"beng mechatronics engineering at toronto metropolitan university, graduating april 2029. transferred from computer engineering. ontario scholar. coursework: embedded systems, data structures, digital logic, circuit analysis, OOP, discrete math.";
