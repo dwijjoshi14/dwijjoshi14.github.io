@@ -792,35 +792,33 @@ function init() {
   });
   heroReveals.push(heroTitle);
 
-  // three blocks are already welded in; the rest land as the rig passes over
+  // three blocks are welded in, one letter went in cracked, one is missing
   const heroGlyphs = $$("#heroName .rt-i");
   heroGlyphs.forEach((glyph, i) => {
     if (i === 0 || i === 4 || i === 8) glyph.classList.add("is-block");
   });
+  const heroUnits = $$("#heroName .rt-u");
+  const markLetter = (ch, cls) => {
+    for (const unit of heroUnits) {
+      if (unit.textContent.trim() === ch) { unit.classList.add(cls); return; }
+    }
+  };
+  markLetter("w", "is-broken");
+  markLetter("h", "is-gap");
 
   // the gantry rail spans the nameplate exactly, not the whole column
   const heroIdentity = $("#heroIdentity");
   const fitRig = () => {
+    const first = heroGlyphs[0];
     const last = heroGlyphs[heroGlyphs.length - 1];
-    if (!heroIdentity || !last) return;
-    const w = Math.round(last.getBoundingClientRect().right - heroIdentity.getBoundingClientRect().left);
+    if (!heroIdentity || !first || !last) return;
+    const w = Math.round(last.getBoundingClientRect().right - first.getBoundingClientRect().left);
     if (w > 120) heroIdentity.style.setProperty("--rig-w", `${w}px`);
   };
   fitRig();
   window.addEventListener("resize", fitRig, { passive: true });
   if (document.fonts) document.fonts.ready.then(fitRig);
   setTimeout(fitRig, 400);
-
-  const heroLede = revealText($(".hero-lede"), {
-    by: "word",
-    stagger: 14,
-    tension: 150,
-    friction: 26,
-    delay: 520,
-    distance: 0.28,
-    auto: false,
-  });
-  heroReveals.push(heroLede);
 
   // The veil may already be gone (reduced motion, or the fallback timer).
   if (document.body.classList.contains("is-entered")) {
