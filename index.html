@@ -31,14 +31,23 @@
 
 <!-- ── loading veil ─────────────────────────────────────────────── -->
 <div class="veil" id="veil" role="status" aria-live="polite" aria-label="Loading Dwij Joshi">
-  <div class="veil-inner" id="veilInner">
-    <div class="veil-mark" aria-hidden="true">
-      <span class="veil-mark-fill" id="veilMarkFill"></span>
-      <span class="veil-bolt">⚡</span>
-    </div>
-    <p class="veil-name">dwij joshi</p>
+  <div class="veil-frame" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
   </div>
-  <div class="veil-meter" aria-hidden="true"><span id="veilMeter"></span></div>
+  <div class="veil-inner" id="veilInner">
+    <p class="veil-kicker">mechatronics · tmu</p>
+    <p class="veil-word"><span>dwij</span><span>joshi</span></p>
+    <div class="veil-bar" aria-hidden="true"><span id="veilMeter"></span></div>
+    <div class="veil-meta">
+      <span>initialising arm</span>
+      <span class="veil-pct"><b id="veilPct">00</b><i>%</i></span>
+    </div>
+  </div>
+</div>
+
+<!-- ── the arm lives here, above every section ──────────────────── -->
+<div class="scene-layer" id="sceneLayer" aria-hidden="true">
+  <canvas id="scene3d"></canvas>
 </div>
 
 <!-- ── page furniture ───────────────────────────────────────────── -->
@@ -90,7 +99,6 @@
   <!-- ── 01 · hero (pinned, recedes under the work block) ───────── -->
   <section class="hero" id="hero" data-section>
     <canvas id="field" aria-hidden="true"></canvas>
-    <canvas id="scene3d" aria-hidden="true"></canvas>
     <div class="hero-shade" id="heroShade" aria-hidden="true"></div>
 
     <div class="hero-inner" id="heroInner">
@@ -367,7 +375,7 @@
       </div>
 
       <div class="tl" id="tl">
-        <div class="tl-rail" aria-hidden="true"><span class="tl-thread" id="tlThread"></span></div>
+        <div class="tl-rail" aria-hidden="true"><span class="tl-thread" id="tlThread"></span><span class="tl-node" id="tlNode"></span></div>
 
         <article class="tl-entry">
           <div class="tl-head">

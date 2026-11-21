@@ -1,6 +1,9 @@
 /* ─────────────────────────────────────────────────────────────────
-   hero scene — a three-axis arm, built from primitives, lit hard
-   and articulated slowly. Sits between the galaxy and the copy.
+   the arm — one scene for the whole page.
+   It holds the hero, then travels: out beside the deck, into the
+   capability seam, down the experience column, and settles small
+   behind the closing line. The camera pans, zooms and orbits between
+   those poses while the model keeps articulating the whole way.
    ───────────────────────────────────────────────────────────────── */
 
 const canvas = document.getElementById("scene3d");
@@ -18,7 +21,7 @@ async function boot() {
     THREE = await import("three");
   } catch (err) {
     /* no three.js (offline, blocked CDN) — the galaxy stands alone */
-    console.warn("hero scene skipped:", err);
+    console.warn("arm scene skipped:", err);
     return;
   }
 
@@ -28,13 +31,13 @@ async function boot() {
     alpha: true,
     powerPreference: "high-performance"
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.2;
   if ("outputColorSpace" in renderer) renderer.outputColorSpace = THREE.SRGBColorSpace;
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 40);
+  const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 60);
 
   /* ── materials ─────────────────────────────────────────────────── */
   /* low metalness on purpose: metals ignore diffuse light and read as
@@ -155,11 +158,12 @@ async function boot() {
   collarElbow.position.x = 0.09;
   elbow.add(collarElbow);
 
+  /* the turn-table halo, sunk into the base plate */
   const collarBase = new THREE.Mesh(
-    new THREE.TorusGeometry(0.5, 0.01, 6, 72), ember
+    new THREE.TorusGeometry(0.5, 0.008, 6, 72), ember
   );
   collarBase.rotation.x = Math.PI / 2;
-  collarBase.position.y = 0.13;
+  collarBase.position.y = 0.12;
   rig.add(collarBase);
 
   /* ── the dial the arm stands on ────────────────────────────────── */
@@ -209,21 +213,50 @@ async function boot() {
   front.position.set(2.2, 2.4, 6);
   scene.add(front);
 
-  /* ── framing ───────────────────────────────────────────────────── */
-  function resize() {
-    const w = canvas.clientWidth || 1;
-    const h = canvas.clientHeight || 1;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    /* slide the frustum left so the arm sits right of the copy column */
-    camera.setViewOffset(w, h, -w * 0.13, 0, w, h);
-    camera.updateProjectionMatrix();
-    /* on tighter screens the copy columns crowd in — shrink instead of collide */
-    rig.scale.setScalar(w < 1200 ? 0.7 : 0.85);
-  }
-  resize();
+  /* ── poses: where the arm stands in each section ───────────────── */
+  /* x / y shift the frustum (fractions of the viewport), radius is the
+     orbit distance, height the camera elevation, look the aim point,
+     scale the model itself, opacity the whole layer. */
+  const POSES = [
+    { id: "hero", x: 0.105, y: 0.0, angle: 0.42, radius: 6.9, height: 2.15, look: 1.12, scale: 0.85, opacity: 1.0 },
+    { id: "work", x: -0.27, y: 0.04, angle: 0.95, radius: 9.8, height: 2.1, look: 1.0, scale: 0.74, opacity: 0.92 },
+    { id: "capability", x: 0.26, y: 0.42, angle: 2.1, radius: 11.2, height: 2.0, look: 0.9, scale: 0.58, opacity: 0.38 },
+    { id: "experience", x: 0.4, y: -0.06, angle: 3.1, radius: 10.4, height: 1.8, look: 0.79, scale: 0.58, opacity: 0.6 },
+    { id: "contact", x: 0.0, y: 0.04, angle: 3.85, radius: 12, height: 1.6, look: 0.73, scale: 0.5, opacity: 0.3 }
+  ];
+  const stops = POSES.map((pose) => ({
+    ...pose,
+    el: document.getElementById(pose.id)
+  }));
+  const layer = document.getElementById("sceneLayer");
+  let ghost = false;
 
-  /* ── pointer + scroll ──────────────────────────────────────────── */
+  /* the arm eases toward whichever section owns the middle of the screen */
+  let target = stops[0];
+  let lastPick = 0;
+  function pick() {
+    const now = performance.now();
+    if (now - lastPick < 180) return;
+    lastPick = now;
+    const probe = window.scrollY + window.innerHeight * 0.55;
+    let chosen = stops[0];
+    for (const stop of stops) {
+      if (!stop.el) continue;
+      if (probe >= stop.el.getBoundingClientRect().top + window.scrollY) chosen = stop;
+    }
+    target = chosen;
+
+    /* in the hero the arm sits in the scene; below it, it becomes a hologram */
+    const wantsGhost = chosen.id !== "hero";
+    if (wantsGhost !== ghost) {
+      ghost = wantsGhost;
+      layer?.classList.toggle("is-ghost", ghost);
+    }
+  }
+
+  const cur = { ...POSES[0] };
+
+  /* ── pointer ───────────────────────────────────────────────────── */
   let pointerX = 0, pointerY = 0, aimX = 0, aimY = 0;
 
   window.addEventListener("pointermove", (e) => {
@@ -231,36 +264,63 @@ async function boot() {
     aimY = (e.clientY / window.innerHeight) * 2 - 1;
   }, { passive: true });
 
-  let scrollP = 0, scrollTarget = 0;
-
-  function readScroll() {
-    scrollTarget = Math.min(1, Math.max(0, window.scrollY / window.innerHeight));
+  /* ── framing ───────────────────────────────────────────────────── */
+  function resize() {
+    const w = canvas.clientWidth || window.innerWidth;
+    const h = canvas.clientHeight || window.innerHeight;
+    renderer.setSize(w, h, false);
   }
-  window.addEventListener("scroll", readScroll, { passive: true });
-  readScroll();
+  resize();
 
   /* ── loop ──────────────────────────────────────────────────────── */
   const clock = new THREE.Clock();
   let elapsed = 0;
   let raf = 0;
   let running = false;
-  let first = true;
 
   function frame() {
     raf = requestAnimationFrame(frame);
     const dt = Math.min(clock.getDelta(), 0.05);
     elapsed += dt;
 
-    scrollP += (scrollTarget - scrollP) * 0.07;
+    pick();
+
+    /* frame-rate independent ease, so the travel feels the same at 60 and 144 */
+    const k = 1 - Math.exp(-3.6 * dt);
+    cur.x += (target.x - cur.x) * k;
+    cur.y += (target.y - cur.y) * k;
+    cur.angle += (target.angle - cur.angle) * k;
+    cur.radius += (target.radius - cur.radius) * k;
+    cur.height += (target.height - cur.height) * k;
+    cur.look += (target.look - cur.look) * k;
+    cur.scale += (target.scale - cur.scale) * k;
+    cur.opacity += (target.opacity - cur.opacity) * k;
+
     pointerX += (aimX - pointerX) * 0.05;
     pointerY += (aimY - pointerY) * 0.05;
+
+    const w = canvas.clientWidth || 1;
+    const h = canvas.clientHeight || 1;
+    if (canvas.width !== Math.round(w * renderer.getPixelRatio())) resize();
+
+    camera.aspect = w / h;
+    /* slide the frustum so the arm stands where the section leaves room */
+    camera.setViewOffset(w, h, -w * (cur.x + pointerX * 0.012), -h * (cur.y - pointerY * 0.018), w, h);
+    camera.updateProjectionMatrix();
+
+    camera.position.set(
+      Math.sin(cur.angle) * cur.radius,
+      cur.height,
+      Math.cos(cur.angle) * cur.radius
+    );
+    camera.lookAt(0, cur.look, 0);
 
     const t = elapsed;
 
     /* the arm keeps working while you read */
-    yaw.rotation.y = Math.sin(t * 0.21) * 0.52 + scrollP * 0.7;
-    pitch.rotation.z = -0.28 + Math.sin(t * 0.31 + 0.7) * 0.22 - scrollP * 0.18;
-    elbow.rotation.z = -0.62 + Math.sin(t * 0.39 + 2.0) * 0.3 + scrollP * 0.2;
+    yaw.rotation.y = Math.sin(t * 0.21) * 0.5 + 0.35;
+    pitch.rotation.z = -0.28 + Math.sin(t * 0.31 + 0.7) * 0.22;
+    elbow.rotation.z = -0.62 + Math.sin(t * 0.39 + 2.0) * 0.3;
     wrist.rotation.z = Math.sin(t * 0.52 + 1.1) * 0.32;
     wrist.rotation.x = Math.cos(t * 0.34) * 0.18;
 
@@ -268,31 +328,16 @@ async function boot() {
     fingerA.position.x = -0.09 - grip * 0.05;
     fingerB.position.x = 0.09 + grip * 0.05;
 
-    dial.rotation.y = t * 0.05 + scrollP * 0.4;
+    dial.rotation.y = t * 0.05;
+    collarBase.rotation.z = -t * 0.22;
 
-    /* camera orbits as the hero is scrolled through */
-    const angle = 0.42 + scrollP * 1.5 + pointerX * 0.2;
-    const radius = 6.9 - scrollP * 1.2;
-    const height = 2.15 + scrollP * 0.45 - pointerY * 0.2;
+    rig.scale.setScalar(cur.scale * (w < 1200 ? 0.86 : 1));
 
-    camera.position.set(
-      Math.sin(angle) * radius,
-      height,
-      Math.cos(angle) * radius
-    );
-    camera.lookAt(0, 1.12, 0);
-
-    /* own the fade: ease in on load, dissolve as the work block climbs over the hero */
-    const reveal = Math.min(1, elapsed / 1.3);
-    const recede = Math.max(0, 1 - scrollP * 2.6);
-    canvas.style.opacity = String(reveal * recede);
+    /* ease in on load, then follow the section's own opacity */
+    const reveal = Math.min(1, elapsed / 1.4);
+    canvas.style.opacity = (cur.opacity * reveal).toFixed(3);
 
     renderer.render(scene, camera);
-
-    if (first) {
-      first = false;
-      canvas.classList.add("is-live");
-    }
   }
 
   function start() {
@@ -309,27 +354,13 @@ async function boot() {
     cancelAnimationFrame(raf);
   }
 
-  /* render only while the hero is on screen */
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !document.hidden) start();
-          else stop();
-        });
-      },
-      { threshold: 0.02 }
-    ).observe(canvas);
-  } else {
-    start();
-  }
-
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) stop();
     else start();
   });
 
   window.addEventListener("resize", resize, { passive: true });
+  window.addEventListener("load", resize, { once: true });
 
   start();
 }

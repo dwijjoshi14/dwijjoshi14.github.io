@@ -297,7 +297,7 @@ subscribe(() => {
 /* ── loading veil + entrance ───────────────────────────────────── */
 const veil = $("#veil");
 const veilInner = $("#veilInner");
-const veilMark = $("#veilMarkFill");
+const veilPct = $("#veilPct");
 const veilMeter = $("#veilMeter");
 const heroReveals = [];
 
@@ -322,9 +322,11 @@ function bootVeil() {
   let removed = false;
   const paint = () => {
     const p = clamp01(progress.value);
-    const scale = `scaleY(${p})`;
-    if (veilMark) veilMark.style.transform = scale;
     if (veilMeter) veilMeter.style.transform = `scaleX(${p})`;
+    if (veilPct) {
+      const pct = Math.round(p * 100) >= 99 ? 100 : Math.round(p * 100);
+      veilPct.textContent = String(pct).padStart(2, "0");
+    }
   };
 
   const stopPaint = subscribe((dt) => {
@@ -959,11 +961,40 @@ function init() {
   /* timeline: thread draw + expanders */
   const expSection = $("#experience");
   const thread = $("#tlThread");
+  const rail = $(".tl-rail");
+  const tlNode = $("#tlNode");
+  const tlEntries = $$(".tl-entry");
+  let nodeY = 0;
+  let nodeReady = false;
+  let nodeOn = false;
+
   subscribe(() => {
     if (!expSection || !thread) return;
     const rect = expSection.getBoundingClientRect();
     const p = clamp01((window.innerHeight - rect.top) / (window.innerHeight + rect.height));
     thread.style.transform = `scaleY(${p.toFixed(4)})`;
+
+    // a read head that rides the rail to whichever role owns the middle of the screen
+    if (tlNode && rail && tlEntries.length) {
+      const mid = window.innerHeight * 0.48;
+      let best = tlEntries[0];
+      let bestD = Infinity;
+      for (const el of tlEntries) {
+        const r = el.getBoundingClientRect();
+        const d = Math.abs(r.top + r.height * 0.5 - mid);
+        if (d < bestD) { bestD = d; best = el; }
+      }
+      const rr = rail.getBoundingClientRect();
+      const y = best.getBoundingClientRect().top + 13 - rr.top;
+      nodeY = nodeReady ? nodeY + (y - nodeY) * 0.16 : y;
+      nodeReady = true;
+      tlNode.style.transform = `translateY(${nodeY.toFixed(1)}px) rotate(45deg)`;
+      const on = rr.top < window.innerHeight - 40 && rr.bottom > 40;
+      if (on !== nodeOn) {
+        nodeOn = on;
+        tlNode.classList.toggle("is-on", on);
+      }
+    }
   }, 16);
 
   $$(".tl-entry").forEach((entry) => {
