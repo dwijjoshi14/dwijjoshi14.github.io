@@ -561,6 +561,77 @@ function initField() {
   }
 }
 
+/* ── drifting motes: the museum sections get an atmosphere ─────── */
+function initMotes(canvas) {
+  if (!canvas || REDUCED) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  let w = 0;
+  let h = 0;
+  let dpr = 1;
+  let visible = false;
+  let t = 0;
+
+  const motes = Array.from({ length: 130 }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    size: Math.random() < 0.12 ? 2 : 1,
+    rise: 0.012 + Math.random() * 0.055,
+    sway: 0.4 + Math.random() * 1.4,
+    phase: Math.random() * Math.PI * 2,
+    alpha: 0.18 + Math.random() * 0.55,
+    spark: Math.random() < 0.3,
+  }));
+
+  function size() {
+    const rect = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    w = Math.max(1, rect.width);
+    h = Math.max(1, rect.height);
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function draw(dt) {
+    t += dt;
+    ctx.clearRect(0, 0, w, h);
+    ctx.globalCompositeOperation = "lighter";
+    for (const m of motes) {
+      m.y -= m.rise * dt;
+      if (m.y < -0.05) {
+        m.y = 1.05;
+        m.x = Math.random();
+      }
+      const x = (m.x + Math.sin(t * m.sway + m.phase) * 0.014) * w;
+      const tw = 0.55 + 0.45 * Math.sin(t * 1.4 + m.phase);
+      ctx.globalAlpha = m.alpha * tw;
+      ctx.fillStyle = m.spark ? "#ff8f7c" : "#ff2e2e";
+      ctx.fillRect(x, m.y * h, m.size, m.size);
+    }
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = "source-over";
+  }
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(
+      (entries) => entries.forEach((e) => { visible = e.isIntersecting; }),
+      { rootMargin: "140px 0px" }
+    ).observe(canvas);
+  } else {
+    visible = true;
+  }
+
+  size();
+  window.addEventListener("resize", size, { passive: true });
+
+  subscribe((dt) => {
+    if (!visible || document.hidden) return;
+    draw(Math.min(dt, 0.05));
+  }, 0);
+}
+
 /* ── chequered seam dissolve ───────────────────────────────────── */
 function initSeam(canvas) {
   if (!canvas) return () => {};
@@ -1002,6 +1073,41 @@ function init() {
     }, { margin: "0px 0px -10% 0px" });
   });
 
+  /* vitrine motion: the plinths glide, the catalogue numeral drifts,
+     and a spotlight follows the pointer over each plate */
+  const skGroups = $$(".cap-right .sk-group");
+  const ghostNums = [
+    ["#capability", $(".cap .sec-ghost")],
+    ["#experience", $(".exp .sec-ghost")],
+  ];
+
+  subscribe(() => {
+    const vh = window.innerHeight;
+    for (const group of skGroups) {
+      const r = group.getBoundingClientRect();
+      if (r.bottom < -60 || r.top > vh + 60) continue;
+      const d = (r.top + r.height / 2 - vh / 2) / vh;
+      group.style.translate = `0 ${(-d * 26).toFixed(1)}px`;
+    }
+    for (const [sel, el] of ghostNums) {
+      if (!el) continue;
+      const section = $(sel);
+      if (!section) continue;
+      const r = section.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) continue;
+      const d = (r.top + r.height / 2 - vh / 2) / vh;
+      el.style.translate = `0 ${(d * 110).toFixed(1)}px`;
+    }
+  }, 16);
+
+  $(".cap-right")?.addEventListener("pointermove", (e) => {
+    const group = e.target.closest(".sk-group");
+    if (!group) return;
+    const r = group.getBoundingClientRect();
+    group.style.setProperty("--mx", `${(((e.clientX - r.left) / r.width) * 100).toFixed(1)}%`);
+    group.style.setProperty("--my", `${(((e.clientY - r.top) / r.height) * 100).toFixed(1)}%`);
+  }, { passive: true });
+
   /* timeline: thread draw + expanders */
   const expSection = $("#experience");
   const thread = $("#tlThread");
@@ -1333,6 +1439,8 @@ function init() {
 
   /* field last, so the hero has its layout */
   initField();
+  initMotes($("#capMotes"));
+  initMotes($("#expMotes"));
 
   /* keep measurement honest after images settle */
   window.addEventListener("load", measureDeck);
