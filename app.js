@@ -881,6 +881,14 @@ function init() {
     return dim;
   });
 
+  // card numbers follow the deck order, so a new lead card renumbers the rest
+  cards.forEach((card, i) => {
+    const label = String(i + 1).padStart(2, "0");
+    $$(".card-corner b", card).forEach((b) => { b.textContent = label; });
+    const ghost = $(".card-ghost", card);
+    if (ghost) ghost.textContent = label;
+  });
+
   function measureDeck() {
     if (!pin) return;
     deckW = deck ? deck.offsetWidth : 460;
@@ -1275,7 +1283,7 @@ function init() {
     if (/mcu|webmaster|course union/.test(q))
       return "Dwij is sole webmaster for the Mechatronics Course Union at TMU — built tmutron.ca from scratch in vanilla HTML/CSS/JS with a custom HUD aesthetic, cut hosting from $240/yr to $20/yr on GitHub Pages.";
     if (/project|built|github|repo/.test(q))
-      return "Seven projects: ClearShift (clinical handoff, live on Vercel), Sentinel (GitLab Orbit agent), RTOS Task Scheduler, IMU Robotic Arm (in progress), Heat Management System, DC Circuit Analyzer, Smart Parking Assistant. <a href='https://github.com/dwijjoshi14' target='_blank' rel='noopener'>github.com/dwijjoshi14</a>";
+      return "Eight projects: Parallax Research (co-founded research publication, daily market and technology brief), ClearShift (clinical handoff, live on Vercel), Sentinel (GitLab Orbit agent), RTOS Task Scheduler, IMU Robotic Arm (in progress), Heat Management System, DC Circuit Analyzer, Smart Parking Assistant. <a href='https://github.com/dwijjoshi14' target='_blank' rel='noopener'>github.com/dwijjoshi14</a>";
     if (/skill|language|tech|cpp|embedded/.test(q))
       return "C and C++ mainly. Embedded: STM32, Arduino, FreeRTOS, PWM, ADC, UART, I2C, SPI, GPIO, PlatformIO. AI: GitLab Orbit, Duo Agent Platform, prompt engineering, Claude API. Web: Next.js, Supabase, TypeScript, Vercel. Tools: Git, GitLab CI/CD, Linux, KiCad, MATLAB.";
     if (/experience|work|job|safss|rosalie|leacock|can crops/.test(q))
