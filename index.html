@@ -13,11 +13,13 @@
   <script type="importmap">
   {
     "imports": {
-      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs"
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs",
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"
     }
   }
   </script>
   <script type="module" src="app.js"></script>
+  <script type="module" src="scene.js"></script>
   <noscript>
     <style>
       #veil{display:none}
@@ -88,6 +90,7 @@
   <!-- ── 01 · hero (pinned, recedes under the work block) ───────── -->
   <section class="hero" id="hero" data-section>
     <canvas id="field" aria-hidden="true"></canvas>
+    <canvas id="scene3d" aria-hidden="true"></canvas>
     <div class="hero-shade" id="heroShade" aria-hidden="true"></div>
 
     <div class="hero-inner" id="heroInner">
@@ -379,10 +382,10 @@
             </div>
           </div>
           <div class="tl-body"><div class="tl-body-inner"><ul>
-            <li>Sole developer — designed and shipped the full MCU website (<a href="https://mcutmu.ca" target="_blank" rel="noopener">mcutmu.ca</a>) from scratch in vanilla HTML/CSS/JS; 6 pages including events, team, academics, calendar, and contact.</li>
-            <li>Engineered a custom animated HUD aesthetic: canvas-based particle/circuit system, 3D coverflow carousel, RGB-split glitch effects, custom cursor, scroll progress bar, and per-section VFX — zero frameworks, zero dependencies.</li>
-            <li>Cut operational cost from $240/yr (agency quote) to $20/yr by self-hosting on GitHub Pages with a custom domain — 92% cost reduction.</li>
-            <li>Built and integrated a live Square e-commerce shop link, Discord/social platform connections, light/dark mode toggle, and full mobile-responsive layout.</li>
+            <li>Sole developer — designed and shipped <a href="https://tmutron.ca" target="_blank" rel="noopener">tmutron.ca</a> from scratch in vanilla HTML/CSS/JS: 6 pages covering events, team, academics, calendar and contact, with zero frameworks or external dependencies.</li>
+            <li>Hand-coded the entire visual system — canvas particle and circuit backgrounds, a 3D coverflow carousel, RGB-split glitch on page load, a custom HUD cursor, scroll progress bar and per-section VFX.</li>
+            <li>Cut hosting from $240/yr (agency quote) to $20/yr on GitHub Pages with a custom domain — a 92% reduction.</li>
+            <li>Integrated a live Square shop, Discord and social links, a light/dark toggle, page transitions and a fully responsive layout.</li>
           </ul></div></div>
         </article>
 
@@ -399,9 +402,9 @@
             </div>
           </div>
           <div class="tl-body"><div class="tl-body-inner"><ul>
-            <li>Built and launched a fully responsive 6-page website from scratch for an early-stage agri-tech startup, establishing the company's first professional web presence with a complete brand identity system.</li>
-            <li>Produced 30+ branded digital assets across web and social media; cut future asset production time by ~40% through a reusable component library.</li>
-            <li>Optimized front-end performance through image compression, lazy loading, and CSS/JS cleanup — reduced estimated page load time by ~30% across desktop and mobile.</li>
+            <li>Built and launched a fully responsive 6-page site for an early-stage agri-tech startup — the company's first professional web presence, with a complete brand identity system.</li>
+            <li>Produced 30+ branded assets across web and social; a reusable component library cut production time on later assets by roughly 40%.</li>
+            <li>Trimmed front-end weight with image compression, lazy loading and CSS/JS cleanup — about 30% faster pages on desktop and mobile.</li>
           </ul></div></div>
         </article>
 
@@ -409,7 +412,7 @@
           <div class="tl-head">
             <div class="tl-main">
               <h3 class="tl-role">Intake Worker</h3>
-              <p class="tl-org">SAFSS · Toronto</p>
+              <p class="tl-org">Settlement Assistance and Family Support Services (SAFSS) · Toronto</p>
             </div>
             <div class="tl-meta">
               <span class="tl-date mono">may – jul 2026</span>
@@ -418,9 +421,9 @@
             </div>
           </div>
           <div class="tl-body"><div class="tl-body-inner"><ul>
-            <li>Processed intake for 30+ weekly walk-in cases, end-to-end data entry into the client management database with zero integrity errors.</li>
-            <li>Built a standardized intake checklist that cut average onboarding time by ~20% and made documentation consistent across the team.</li>
-            <li>Maintained confidential records for 150+ active client files; weekly participation reports across 4 service streams for funder reporting.</li>
+            <li>Managed end-to-end intake and data entry for 30+ weekly cases with zero database integrity errors.</li>
+            <li>Held confidential records for 150+ active clients, and turned weekly participation across 4 service streams into funder reporting.</li>
+            <li>Built a standardized intake checklist that cut average onboarding time by ~20% and made handoffs consistent across the team.</li>
           </ul></div></div>
         </article>
 
@@ -437,9 +440,9 @@
             </div>
           </div>
           <div class="tl-body"><div class="tl-body-inner"><ul>
-            <li>Rebuilt the client tracking system for 50+ users — cut report generation from ~3 hours to under 45 minutes.</li>
-            <li>Designed a data-entry protocol adopted across 3 program teams that fixed cross-department reporting inconsistencies.</li>
-            <li>Monthly dashboards for clinical leadership that went directly into staffing and resource decisions.</li>
+            <li>Rebuilt the Excel-based client tracking system for 50+ users — report generation dropped from ~3 hours to under 45 minutes.</li>
+            <li>The updated data-entry protocol was adopted across 3 program teams and improved audit readiness.</li>
+            <li>Monthly dashboards for clinical leadership that fed directly into staffing and resource decisions.</li>
           </ul></div></div>
         </article>
 
@@ -456,8 +459,8 @@
             </div>
           </div>
           <div class="tl-body"><div class="tl-body-inner"><ul>
-            <li>Tracked engagement for 100+ students across 4 streams. Spotted a 15% attendance drop, flagged it — schedule change recovered participation within 6 weeks.</li>
-            <li>Cut evaluation documentation compilation by 30%, enabled same-week funder submissions. Got a Certificate of Recognition for it.</li>
+            <li>Tracked outcomes for 100+ students across 4 streams. Spotted a 15% attendance drop and flagged it — a schedule change recovered participation within 6 weeks.</li>
+            <li>Cut evaluation documentation compilation by 30%, enabling same-week funder submissions — earned a Certificate of Recognition for it.</li>
           </ul></div></div>
         </article>
 
@@ -474,7 +477,7 @@
             </div>
           </div>
           <div class="tl-body"><div class="tl-body-inner"><ul>
-            <li>On-ground coordinator for 30+ participants per session. Handled everything in real time — zero incidents across the whole engagement.</li>
+            <li>Coordinated live operations for community sports programs — 30+ participants per session, zero incidents across the engagement.</li>
           </ul></div></div>
         </article>
       </div>

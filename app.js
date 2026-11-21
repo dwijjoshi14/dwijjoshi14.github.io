@@ -1092,7 +1092,7 @@ function init() {
     if (/circuit|ohm|kirchhoff|kvl|kcl/.test(q))
       return "DC Circuit Analyzer — C++17 tool applying Ohm's and Kirchhoff's laws to series and parallel circuits, with automatic KVL/KCL verification. Built so he could stop doing it by hand in physics lab.";
     if (/mcu|webmaster|course union/.test(q))
-      return "Dwij is sole webmaster for the Mechatronics Course Union at TMU — built mcutmu.ca from scratch in vanilla HTML/CSS/JS with a custom HUD aesthetic, cut hosting from $240/yr to $20/yr on GitHub Pages.";
+      return "Dwij is sole webmaster for the Mechatronics Course Union at TMU — built tmutron.ca from scratch in vanilla HTML/CSS/JS with a custom HUD aesthetic, cut hosting from $240/yr to $20/yr on GitHub Pages.";
     if (/project|built|github|repo/.test(q))
       return "Seven projects: ClearShift (clinical handoff, live on Vercel), Sentinel (GitLab Orbit agent), RTOS Task Scheduler, IMU Robotic Arm (in progress), Heat Management System, DC Circuit Analyzer, Smart Parking Assistant. <a href='https://github.com/dwijjoshi14' target='_blank' rel='noopener'>github.com/dwijjoshi14</a>";
     if (/skill|language|tech|cpp|embedded/.test(q))

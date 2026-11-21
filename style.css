@@ -243,6 +243,11 @@ body.menu-open{overflow:hidden}
   z-index:1;pointer-events:none;opacity:1;
   transform:translate3d(0,0,0);
 }
+#scene3d{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:2;pointer-events:none;opacity:0;
+}
+@media (max-width:760px){#scene3d{display:none}}
 .hero::after{
   content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);
