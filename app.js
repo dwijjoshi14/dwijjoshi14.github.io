@@ -301,33 +301,10 @@ const veilPct = $("#veilPct");
 const veilMeter = $("#veilMeter");
 const heroReveals = [];
 
-/* the nameplate is still on the jig: a weld pass and a build counter */
-function startBuild() {
-  const host = $("#heroIdentity");
-  const pct = $("#rigPct");
-  if (!host) return;
-  if (REDUCED) {
-    if (pct) pct.textContent = "100";
-    return;
-  }
-  host.classList.add("is-welding");
-  animate({
-    tension: 44,
-    friction: 27,
-    onUpdate: (p) => {
-      if (pct) pct.textContent = String(Math.round(clamp01(p) * 100)).padStart(2, "0");
-    },
-    onRest: () => {
-      if (pct) pct.textContent = "100";
-    },
-  });
-}
-
 function bootVeil() {
   if (!veil) {
     document.body.classList.add("is-entered");
     heroReveals.forEach((r) => r.start());
-    startBuild();
     return;
   }
 
@@ -336,7 +313,6 @@ function bootVeil() {
     veil.remove();
     document.body.classList.add("is-entered");
     heroReveals.forEach((r) => r.start());
-    startBuild();
     return;
   }
 
@@ -369,7 +345,6 @@ function bootVeil() {
       veil.classList.add("is-gone");
       document.body.classList.add("is-entered");
       heroReveals.forEach((r, i) => setTimeout(() => r.start(), i * 90));
-      startBuild();
       setTimeout(() => {
         removed = true;
         stopPaint();
@@ -453,9 +428,11 @@ function initField() {
     canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const narrow = w < 760;
-    cx = w * (narrow ? 0.56 : 0.68);
-    cy = h * (narrow ? 0.28 : 0.5);
-    R = Math.min(w, h) * (narrow ? 1.05 : 0.84);
+    /* on a phone the galaxy stays high and compact, so the name sits in
+       its own dark band instead of on top of the dust */
+    cx = w * (narrow ? 0.5 : 0.68);
+    cy = h * (narrow ? 0.19 : 0.5);
+    R = Math.min(w, h) * (narrow ? 0.76 : 0.84);
   }
 
   function draw(time) {
@@ -805,20 +782,6 @@ function init() {
   };
   markLetter("w", "is-broken");
   markLetter("h", "is-gap");
-
-  // the gantry rail spans the nameplate exactly, not the whole column
-  const heroIdentity = $("#heroIdentity");
-  const fitRig = () => {
-    const first = heroGlyphs[0];
-    const last = heroGlyphs[heroGlyphs.length - 1];
-    if (!heroIdentity || !first || !last) return;
-    const w = Math.round(last.getBoundingClientRect().right - first.getBoundingClientRect().left);
-    if (w > 120) heroIdentity.style.setProperty("--rig-w", `${w}px`);
-  };
-  fitRig();
-  window.addEventListener("resize", fitRig, { passive: true });
-  if (document.fonts) document.fonts.ready.then(fitRig);
-  setTimeout(fitRig, 400);
 
   // The veil may already be gone (reduced motion, or the fallback timer).
   if (document.body.classList.contains("is-entered")) {

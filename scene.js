@@ -1,22 +1,21 @@
 /* ─────────────────────────────────────────────────────────────────
-   the arm — one scene for the whole page.
-   It holds the hero, then travels: out beside the deck, into the
-   capability seam, down the experience column, and settles small
-   behind the closing line. The camera pans, zooms and orbits between
-   those poses while the model keeps articulating the whole way.
+   the arms — one scene for the whole page.
 
-   In the hero the same arm is joined by a crew of three: they are
-   pinned to fixed screen positions around the nameplate so the name
-   is being built from every side, then they fade as you scroll and
-   the lead arm carries on alone.
+   In the hero, four machines stand around the nameplate and work it:
+   the lead arm on the left flank, three more pinned to fixed screen
+   anchors. Every one of them turns its head, leans its boom and
+   pitches its head at the same point — the middle of the word — so
+   the whole rig reads as one crew building one thing.
+
+   Scroll away and the crew fades; the lead arm travels on: out beside
+   the deck, into the capability seam, down the experience column, and
+   settles small behind the closing line.
    ───────────────────────────────────────────────────────────────── */
 
 const canvas = document.getElementById("scene3d");
 
 const canRun =
-  canvas &&
-  window.matchMedia("(min-width: 761px)").matches &&
-  !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (canRun) boot();
 
@@ -30,15 +29,16 @@ async function boot() {
     return;
   }
 
+  const narrowAtBoot = window.innerWidth < 760;
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
     alpha: true,
     powerPreference: "high-performance"
   });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, narrowAtBoot ? 1.35 : 1.6));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.2;
+  renderer.toneMappingExposure = 1.25;
   if ("outputColorSpace" in renderer) renderer.outputColorSpace = THREE.SRGBColorSpace;
 
   const scene = new THREE.Scene();
@@ -48,10 +48,16 @@ async function boot() {
   /* low metalness on purpose: metals ignore diffuse light and read as
      a black silhouette against this near-black stage */
   const steel = new THREE.MeshStandardMaterial({
-    color: 0x5d5054, metalness: 0.32, roughness: 0.46
+    color: 0x6a5c60, metalness: 0.34, roughness: 0.44
+  });
+  const plateMat = new THREE.MeshStandardMaterial({
+    color: 0x3a2e31, metalness: 0.36, roughness: 0.5
   });
   const graphite = new THREE.MeshStandardMaterial({
     color: 0x241c1f, metalness: 0.28, roughness: 0.58
+  });
+  const rubberMat = new THREE.MeshStandardMaterial({
+    color: 0x14100f, metalness: 0.1, roughness: 0.9
   });
   const ember = new THREE.MeshStandardMaterial({
     color: 0xff3b30, emissive: 0xff1e14, emissiveIntensity: 1.7,
@@ -77,35 +83,77 @@ async function boot() {
     return mesh;
   }
 
-  /* ── the assembly ──────────────────────────────────────────────── */
-  /* One builder, so the crew is the same machine as the lead arm —
-     same proportions, same light. */
+  /* a bolt ring: cheap, but it is what makes the machine read as built
+     rather than modelled */
+  function boltRing(parent, radius, y, count, size = 0.022) {
+    const geo = new THREE.CylinderGeometry(size, size, size * 2.2, 6);
+    for (let i = 0; i < count; i += 1) {
+      const a = (i / count) * Math.PI * 2;
+      const bolt = new THREE.Mesh(geo, steel);
+      bolt.position.set(Math.cos(a) * radius, y, Math.sin(a) * radius);
+      parent.add(bolt);
+    }
+  }
+
+  /* a piston: barrel fixed to the parent, rod sliding toward the joint */
+  function piston(parent, x, y, z, length, lean = 0) {
+    const barrel = part(new THREE.CylinderGeometry(0.052, 0.058, length * 0.55, 14), graphite);
+    barrel.position.set(x, y, z);
+    barrel.rotation.z = lean;
+    parent.add(barrel);
+
+    const rod = part(new THREE.CylinderGeometry(0.026, 0.026, length * 0.62, 12), steel);
+    rod.position.set(x + Math.sin(lean) * length * 0.2, y - length * 0.44, z);
+    parent.add(rod);
+
+    const cap = part(new THREE.CylinderGeometry(0.062, 0.062, 0.05, 14), steel);
+    cap.position.set(x, y + length * 0.26, z);
+    parent.add(cap);
+  }
+
+  /* ── one machine ───────────────────────────────────────────────── */
   function buildArm({ dial: withDial = true } = {}) {
     const rig = new THREE.Group();
     rig.rotation.y = -0.5;
 
-    const base = part(new THREE.CylinderGeometry(0.66, 0.76, 0.11, 56), steel);
-    base.position.y = 0.055;
+    /* the base never moves: the machine is bolted to the floor */
+    const base = part(new THREE.CylinderGeometry(0.72, 0.82, 0.13, 56), steel);
+    base.position.y = 0.065;
     rig.add(base);
 
-    const plinth = part(new THREE.CylinderGeometry(0.3, 0.42, 0.32, 48), graphite);
-    plinth.position.y = 0.27;
+    const baseRing = part(new THREE.CylinderGeometry(0.62, 0.66, 0.06, 48), graphite);
+    baseRing.position.y = 0.15;
+    rig.add(baseRing);
+    boltRing(rig, 0.66, 0.15, 8, 0.026);
+
+    const plinth = part(new THREE.CylinderGeometry(0.32, 0.46, 0.3, 48), graphite);
+    plinth.position.y = 0.32;
     rig.add(plinth);
 
-    /* yaw — everything above the plinth turns on the vertical axis */
-    const yaw = new THREE.Group();
-    yaw.position.y = 0.5;
-    rig.add(yaw);
+    /* the tilt unit: this is the part that leans the boom at the word
+       while the base stays flat on the ground */
+    const tilt = new THREE.Group();
+    tilt.position.y = 0.52;
+    rig.add(tilt);
 
-    const turret = part(new THREE.CylinderGeometry(0.33, 0.33, 0.24, 48), steel);
+    /* yaw — everything above the tilt turns on the vertical axis */
+    const yaw = new THREE.Group();
+    tilt.add(yaw);
+
+    const turret = part(new THREE.CylinderGeometry(0.35, 0.36, 0.26, 48), steel);
     turret.position.y = 0.1;
     yaw.add(turret);
 
+    /* counterweight hanging off the back of the turret */
+    const weight = part(new THREE.BoxGeometry(0.34, 0.3, 0.3), graphite);
+    weight.position.set(0, 0.06, -0.36);
+    yaw.add(weight);
+
     const yokeGeo = new THREE.BoxGeometry(0.1, 0.36, 0.46);
     const yokeL = part(yokeGeo, steel);
-    yokeL.position.set(-0.27, 0.32, 0);
+    yokeL.position.set(-0.29, 0.32, 0);
     const yokeR = part(yokeGeo, steel);
-    yokeR.position.set(0.27, 0.32, 0);
+    yokeR.position.set(0.29, 0.32, 0);
     yaw.add(yokeL, yokeR);
 
     /* pitch — shoulder swings the upper arm */
@@ -113,72 +161,116 @@ async function boot() {
     pitch.position.y = 0.48;
     yaw.add(pitch);
 
-    const shoulder = part(new THREE.CylinderGeometry(0.2, 0.2, 0.56, 36), graphite);
+    const shoulder = part(new THREE.CylinderGeometry(0.21, 0.21, 0.62, 36), graphite);
     shoulder.rotation.z = Math.PI / 2;
     pitch.add(shoulder);
+    boltRing(pitch, 0.24, 0, 6, 0.02);
 
-    const upperArm = part(new THREE.BoxGeometry(0.2, 0.94, 0.27), steel);
+    const upperArm = part(new THREE.BoxGeometry(0.21, 0.94, 0.28), steel);
     upperArm.position.y = 0.5;
     pitch.add(upperArm);
+
+    /* the boom's backbone: two plate ribs and a hydraulic ram */
+    const ribGeo = new THREE.BoxGeometry(0.03, 0.8, 0.16);
+    const ribL = part(ribGeo, plateMat);
+    ribL.position.set(-0.12, 0.52, 0);
+    const ribR = part(ribGeo, plateMat);
+    ribR.position.set(0.12, 0.52, 0);
+    pitch.add(ribL, ribR);
+    piston(pitch, 0.155, 0.62, -0.06, 0.62, 0.04);
 
     /* elbow */
     const elbow = new THREE.Group();
     elbow.position.y = 0.97;
     pitch.add(elbow);
 
-    const elbowJoint = part(new THREE.CylinderGeometry(0.16, 0.16, 0.32, 32), graphite);
+    const elbowJoint = part(new THREE.CylinderGeometry(0.17, 0.17, 0.36, 32), graphite);
     elbowJoint.rotation.z = Math.PI / 2;
     elbow.add(elbowJoint);
+    boltRing(elbow, 0.2, 0, 5, 0.018);
 
-    const forearm = part(new THREE.BoxGeometry(0.17, 0.8, 0.21), steel);
+    const forearm = part(new THREE.BoxGeometry(0.18, 0.8, 0.22), steel);
     forearm.position.y = 0.42;
     elbow.add(forearm);
+
+    const forearmPlate = part(new THREE.BoxGeometry(0.03, 0.66, 0.13), plateMat);
+    forearmPlate.position.set(0.11, 0.44, 0);
+    elbow.add(forearmPlate);
+    piston(elbow, -0.13, 0.5, 0.03, 0.5, -0.05);
+
+    /* the hose bundle running the length of the arm */
+    const hose = new THREE.Mesh(
+      new THREE.TubeGeometry(
+        new THREE.CatmullRomCurve3([
+          new THREE.Vector3(0.0, 0.06, 0.16),
+          new THREE.Vector3(0.13, 0.36, 0.2),
+          new THREE.Vector3(0.1, 0.72, 0.17),
+          new THREE.Vector3(-0.02, 0.95, 0.1)
+        ]),
+        22, 0.016, 6, false
+      ),
+      rubberMat
+    );
+    pitch.add(hose);
 
     /* wrist + gripper */
     const wrist = new THREE.Group();
     wrist.position.y = 0.83;
     elbow.add(wrist);
 
-    const wristBody = part(new THREE.CylinderGeometry(0.11, 0.12, 0.2, 28), graphite);
+    const wristBody = part(new THREE.CylinderGeometry(0.12, 0.13, 0.22, 28), graphite);
     wristBody.position.y = 0.06;
     wrist.add(wristBody);
 
-    const fingerGeo = new THREE.BoxGeometry(0.06, 0.28, 0.11);
+    const fingerGeo = new THREE.BoxGeometry(0.065, 0.3, 0.12);
     const fingerA = part(fingerGeo, steel);
-    fingerA.position.set(-0.09, 0.28, 0);
+    fingerA.position.set(-0.095, 0.3, 0);
     const fingerB = part(fingerGeo, steel);
-    fingerB.position.set(0.09, 0.28, 0);
+    fingerB.position.set(0.095, 0.3, 0);
     wrist.add(fingerA, fingerB);
 
+    /* the welding head, aimed by the wrist */
+    const nozzle = part(new THREE.ConeGeometry(0.045, 0.16, 12), steel);
+    nozzle.position.set(0, 0.44, 0);
+    nozzle.rotation.x = Math.PI;
+    wrist.add(nozzle);
+
+    const nozzleCollar = new THREE.Mesh(
+      new THREE.TorusGeometry(0.062, 0.014, 6, 20), ember
+    );
+    nozzleCollar.rotation.x = Math.PI / 2;
+    nozzleCollar.position.y = 0.37;
+    wrist.add(nozzleCollar);
+
     /* ember collars sitting on each axis */
-    const collarGeo = new THREE.TorusGeometry(0.205, 0.014, 8, 56);
+    const collarGeo = new THREE.TorusGeometry(0.215, 0.014, 8, 56);
     const collarShoulder = new THREE.Mesh(collarGeo, ember);
     collarShoulder.rotation.y = Math.PI / 2;
-    collarShoulder.position.x = 0.09;
+    collarShoulder.position.x = 0.1;
     pitch.add(collarShoulder);
 
     const collarElbow = new THREE.Mesh(
-      new THREE.TorusGeometry(0.165, 0.013, 8, 48), ember
+      new THREE.TorusGeometry(0.175, 0.013, 8, 48), ember
     );
     collarElbow.rotation.y = Math.PI / 2;
-    collarElbow.position.x = 0.09;
+    collarElbow.position.x = 0.1;
     elbow.add(collarElbow);
 
     /* the turn-table halo, sunk into the base plate */
     const collarBase = new THREE.Mesh(
-      new THREE.TorusGeometry(0.5, 0.008, 6, 72), ember
+      new THREE.TorusGeometry(0.54, 0.008, 6, 72), ember
     );
     collarBase.rotation.x = Math.PI / 2;
-    collarBase.position.y = 0.12;
+    collarBase.position.y = 0.14;
     rig.add(collarBase);
 
-    /* the weld: a hot point right between the fingers */
+    /* the weld: a hot point right under the nozzle */
     const sparkMat = new THREE.MeshStandardMaterial({
       color: 0xffd9c8, emissive: 0xff3a22, emissiveIntensity: 2.4,
       metalness: 0.1, roughness: 0.6, transparent: true, opacity: 0.95
     });
     const spark = new THREE.Mesh(new THREE.SphereGeometry(0.045, 14, 12), sparkMat);
-    spark.position.set(0, 0.45, 0);
+    spark.position.set(0, 0.54, 0);
     wrist.add(spark);
 
     /* ── the dial the arm stands on ──────────────────────────────── */
@@ -210,7 +302,7 @@ async function boot() {
       rig.add(dial);
     }
 
-    return { rig, yaw, pitch, elbow, wrist, fingerA, fingerB, collarBase, spark };
+    return { rig, tilt, yaw, pitch, elbow, wrist, fingerA, fingerB, collarBase, spark };
   }
 
   /* the lead arm: holds the hero, then travels the whole page */
@@ -220,10 +312,12 @@ async function boot() {
   const { rig, yaw, pitch, elbow, wrist, fingerA, fingerB, collarBase, spark } = lead;
 
   /* the crew: pinned to screen positions around the nameplate */
+  /* three machines stand under the word and weld up into it, so their
+     heads and nozzles land on the letters */
   const CREW = [
-    { x: -0.44, y: 0.44, size: 0.4, phase: 0.0, spin: 0.7, lean: 0.34 },
-    { x: 0.7, y: 0.27, size: 0.4, phase: 2.4, spin: -0.9, lean: -0.42 },
-    { x: 0.56, y: -0.57, size: 0.42, phase: 4.1, spin: 1.2, lean: -0.28 }
+    { x: -0.56, y: -0.44, nx: -0.64, ny: -0.36, size: 0.34, nsize: 0.19, phase: 0.0 },
+    { x: 0.02, y: -0.52, nx: 0.03, ny: -0.43, size: 0.36, nsize: 0.21, phase: 2.4 },
+    { x: 0.58, y: -0.46, nx: 0.66, ny: -0.37, size: 0.34, nsize: 0.19, phase: 4.1 }
   ].map((cfg) => ({ ...cfg, ...buildArm({ dial: false }), fade: 0 }));
 
   CREW.forEach((c) => {
@@ -250,6 +344,12 @@ async function boot() {
   const front = new THREE.DirectionalLight(0xffffff, 0.95);
   front.position.set(2.2, 2.4, 6);
   scene.add(front);
+
+  /* a hot working light down near the floor, so the machines glow from
+     underneath the way a welding bay does */
+  const bay = new THREE.PointLight(0xff5a3c, 12, 9, 2);
+  bay.position.set(0, 0.35, 2.4);
+  scene.add(bay);
 
   /* ── poses: where the arm stands in each section ───────────────── */
   /* x / y shift the frustum (fractions of the viewport), radius is the
@@ -310,22 +410,57 @@ async function boot() {
   }
   resize();
 
+  /* ── screen anchoring ──────────────────────────────────────────── */
   /* the crew is pinned to the screen, not the scene: its base lands on a
      fixed point of the viewport and it stands up from there */
   const camRight = new THREE.Vector3();
   const camUp = new THREE.Vector3();
   const camBack = new THREE.Vector3();
-  const halfH = Math.tan((34 * Math.PI) / 360);
+  const halfTan = Math.tan((34 * Math.PI) / 360);
 
   function placeOnScreen(object, ndcX, ndcY, distance, aspect) {
     camera.matrixWorld.extractBasis(camRight, camUp, camBack);
-    const sy = halfH * distance;
+    const sy = halfTan * distance;
     const sx = sy * aspect;
     object.position
       .copy(camera.position)
       .addScaledVector(camBack, -distance)
       .addScaledVector(camRight, ndcX * sx)
       .addScaledVector(camUp, ndcY * sy);
+  }
+
+  /* the point the whole crew works on: the middle of the word, at the
+     depth the crew stands at */
+  const focus = new THREE.Vector3();
+  function focusPoint(distance) {
+    camera.matrixWorld.extractBasis(camRight, camUp, camBack);
+    const sy = halfTan * distance;
+    const sx = sy * camera.aspect;
+    /* the lead arm's pose slides the frustum, so the screen centre sits
+       at -2*cur on the camera plane */
+    return focus
+      .copy(camera.position)
+      .addScaledVector(camBack, -distance)
+      .addScaledVector(camRight, -2 * cur.x * sx)
+      .addScaledVector(camUp, -2 * cur.y * sy);
+  }
+
+  /* turn the machine so its boom, head and nozzle all face the target */
+  const aimDir = new THREE.Vector3();
+  function aimAt(arm, point, k = 1) {
+    camera.matrixWorld.extractBasis(camRight, camUp, camBack);
+    aimDir.copy(point).sub(arm.rig.position);
+    const sx = aimDir.dot(camRight);
+    const sy = aimDir.dot(camUp);
+    const sz = aimDir.dot(camBack);
+
+    /* lean the boom in the picture plane, within what the tilt unit can do */
+    const lean = THREE.MathUtils.clamp(Math.atan2(-sx, sy), -0.5, 0.5);
+    arm.tilt.rotation.z += (lean * k - arm.tilt.rotation.z) * 0.14;
+
+    /* and turn the turret so the head faces it */
+    const turn = Math.atan2(sx, -sz);
+    arm.yaw.rotation.y += (turn * k - arm.yaw.rotation.y) * 0.14;
   }
 
   /* ── loop ──────────────────────────────────────────────────────── */
@@ -359,6 +494,8 @@ async function boot() {
     const h = canvas.clientHeight || 1;
     if (canvas.width !== Math.round(w * renderer.getPixelRatio())) resize();
 
+    const narrow = w < 760;
+
     camera.aspect = w / h;
     /* slide the frustum so the arm stands where the section leaves room */
     camera.setViewOffset(w, h, -w * (cur.x + pointerX * 0.012), -h * (cur.y - pointerY * 0.018), w, h);
@@ -373,17 +510,24 @@ async function boot() {
     camera.updateMatrixWorld();
 
     const t = elapsed;
+    const inHero = target.id === "hero";
 
-    /* the arm keeps working while you read */
-    yaw.rotation.y = Math.sin(t * 0.21) * 0.5 + 0.35;
-    pitch.rotation.z = -0.28 + Math.sin(t * 0.31 + 0.7) * 0.22;
-    elbow.rotation.z = -0.62 + Math.sin(t * 0.39 + 2.0) * 0.3;
+    /* the lead arm keeps working while you read — and in the hero it is
+       pointed straight at the word */
+    if (inHero) {
+      aimAt(lead, focusPoint(9.4));
+    } else {
+      yaw.rotation.y = Math.sin(t * 0.21) * 0.5 + 0.35;
+      lead.tilt.rotation.z += (0 - lead.tilt.rotation.z) * 0.06;
+    }
+    pitch.rotation.z = -0.34 + Math.sin(t * 0.31 + 0.7) * 0.22;
+    elbow.rotation.z = -0.66 + Math.sin(t * 0.39 + 2.0) * 0.3;
     wrist.rotation.z = Math.sin(t * 0.52 + 1.1) * 0.32;
     wrist.rotation.x = Math.cos(t * 0.34) * 0.18;
 
     const grip = 0.5 + 0.5 * Math.sin(t * 0.7);
-    fingerA.position.x = -0.09 - grip * 0.05;
-    fingerB.position.x = 0.09 + grip * 0.05;
+    fingerA.position.x = -0.095 - grip * 0.05;
+    fingerB.position.x = 0.095 + grip * 0.05;
     spark.material.emissiveIntensity = 1.2 + grip * 2.4;
     spark.scale.setScalar(0.7 + grip * 0.5);
 
@@ -391,37 +535,45 @@ async function boot() {
 
     rig.scale.setScalar(cur.scale * (w < 1200 ? 0.86 : 1));
 
+    /* a phone has no margin to keep an arm in: the hero crew does the
+       work, and the travelling arm stays off-stage */
+    lead.rig.visible = !narrow;
+
     /* ── the crew ────────────────────────────────────────────────── */
-    const chef = target.id === "hero" ? 1 : 0;
-    CREW.forEach((c) => {
-      c.fade += (chef - c.fade) * (1 - Math.exp(-4.2 * dt));
+    const wantsCrew = inHero && cur.opacity > 0.2;
+    const crewFade = narrow ? 1 : 1;
+    CREW.forEach((c, i) => {
+      c.fade += ((wantsCrew ? crewFade : 0) - c.fade) * (1 - Math.exp(-4.2 * dt));
       const on = c.fade > 0.015;
       c.rig.visible = on;
       if (!on) return;
+
+      const ax = narrow ? c.nx : c.x;
+      const ay = narrow ? c.ny : c.y;
 
       /* the lead's pose slides the frustum, so the screen anchor is
          compensated by that shift to land where it was aimed */
       placeOnScreen(
         c.rig,
-        c.x - 2 * cur.x + pointerX * 0.012,
-        c.y - 2 * cur.y - pointerY * 0.016,
+        ax - 2 * cur.x + pointerX * 0.012,
+        ay - 2 * cur.y - pointerY * 0.016,
         8.6,
         camera.aspect
       );
-      c.rig.scale.setScalar(c.size * c.fade * (w < 1200 ? 0.88 : 1));
-      c.rig.rotation.z = c.lean * 0.5;
-      c.rig.rotation.y = Math.sin(t * 0.3 + c.phase) * 0.5 + c.spin;
+      c.rig.scale.setScalar((narrow ? c.nsize : c.size) * c.fade);
+      c.rig.rotation.z = 0;
+
+      aimAt(c, focusPoint(8.6));
 
       const s = t + c.phase;
-      c.yaw.rotation.y = Math.sin(s * 0.46) * 0.34;
-      c.pitch.rotation.z = -0.5 + Math.sin(s * 0.64) * 0.3;
-      c.elbow.rotation.z = -0.78 + Math.sin(s * 0.74 + 1.3) * 0.34;
-      c.wrist.rotation.z = Math.sin(s * 0.92) * 0.3;
-      c.wrist.rotation.x = Math.cos(s * 0.6) * 0.2;
+      c.pitch.rotation.z = -0.4 + Math.sin(s * 0.64) * 0.24;
+      c.elbow.rotation.z = -0.72 + Math.sin(s * 0.74 + 1.3) * 0.3;
+      c.wrist.rotation.z = Math.sin(s * 0.92) * 0.26;
+      c.wrist.rotation.x = Math.cos(s * 0.6) * 0.18;
 
       const cg = 0.5 + 0.5 * Math.sin(s * 1.7);
-      c.fingerA.position.x = -0.09 - cg * 0.05;
-      c.fingerB.position.x = 0.09 + cg * 0.05;
+      c.fingerA.position.x = -0.095 - cg * 0.05;
+      c.fingerB.position.x = 0.095 + cg * 0.05;
       c.spark.material.emissiveIntensity = 1.0 + cg * 3.2;
       c.spark.scale.setScalar(0.6 + cg * 0.7);
       c.spark.material.opacity = 0.75 + cg * 0.25;
