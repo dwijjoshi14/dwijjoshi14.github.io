@@ -301,10 +301,33 @@ const veilPct = $("#veilPct");
 const veilMeter = $("#veilMeter");
 const heroReveals = [];
 
+/* the nameplate is still on the jig: a weld pass and a build counter */
+function startBuild() {
+  const host = $("#heroIdentity");
+  const pct = $("#rigPct");
+  if (!host) return;
+  if (REDUCED) {
+    if (pct) pct.textContent = "100";
+    return;
+  }
+  host.classList.add("is-welding");
+  animate({
+    tension: 44,
+    friction: 27,
+    onUpdate: (p) => {
+      if (pct) pct.textContent = String(Math.round(clamp01(p) * 100)).padStart(2, "0");
+    },
+    onRest: () => {
+      if (pct) pct.textContent = "100";
+    },
+  });
+}
+
 function bootVeil() {
   if (!veil) {
     document.body.classList.add("is-entered");
     heroReveals.forEach((r) => r.start());
+    startBuild();
     return;
   }
 
@@ -313,6 +336,7 @@ function bootVeil() {
     veil.remove();
     document.body.classList.add("is-entered");
     heroReveals.forEach((r) => r.start());
+    startBuild();
     return;
   }
 
@@ -345,6 +369,7 @@ function bootVeil() {
       veil.classList.add("is-gone");
       document.body.classList.add("is-entered");
       heroReveals.forEach((r, i) => setTimeout(() => r.start(), i * 90));
+      startBuild();
       setTimeout(() => {
         removed = true;
         stopPaint();
@@ -695,6 +720,25 @@ function init() {
     auto: false,
   });
   heroReveals.push(heroTitle);
+
+  // three blocks are already welded in; the rest land as the rig passes over
+  const heroGlyphs = $$("#heroName .rt-i");
+  heroGlyphs.forEach((glyph, i) => {
+    if (i === 0 || i === 4 || i === 8) glyph.classList.add("is-block");
+  });
+
+  // the gantry rail spans the nameplate exactly, not the whole column
+  const heroIdentity = $("#heroIdentity");
+  const fitRig = () => {
+    const last = heroGlyphs[heroGlyphs.length - 1];
+    if (!heroIdentity || !last) return;
+    const w = Math.round(last.getBoundingClientRect().right - heroIdentity.getBoundingClientRect().left);
+    if (w > 120) heroIdentity.style.setProperty("--rig-w", `${w}px`);
+  };
+  fitRig();
+  window.addEventListener("resize", fitRig, { passive: true });
+  if (document.fonts) document.fonts.ready.then(fitRig);
+  setTimeout(fitRig, 400);
 
   const heroLede = revealText($(".hero-lede"), {
     by: "word",

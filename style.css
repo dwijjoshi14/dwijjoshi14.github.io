@@ -311,6 +311,70 @@ body.menu-open{overflow:hidden}
   display:flex;flex-wrap:wrap;column-gap:.22em;
 }
 .hero-name{position:relative}
+
+/* ── the nameplate is still on the jig ─────────────────────────── */
+.rig{
+  position:relative;display:flex;align-items:flex-end;gap:.7rem;
+  max-width:min(44rem,92%,var(--rig-w,44rem));height:1.2rem;
+  margin:0 0 clamp(.3rem,1vh,.65rem);
+  opacity:0;transform:translateY(6px);
+  transition:opacity .8s var(--ease) .15s,transform .9s var(--plate) .15s;
+}
+body.is-entered .rig{opacity:1;transform:none}
+.rig-rail{position:relative;flex:1;height:6px;border-top:1px solid rgba(255,46,46,.38)}
+.rig-rail::after{
+  content:"";position:absolute;left:0;right:0;top:0;height:6px;
+  background:repeating-linear-gradient(90deg,rgba(255,46,46,.55) 0 1px,transparent 1px 15px);
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 45%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0,#000 45%,transparent 100%);
+}
+.rig-weld{
+  position:absolute;left:0;top:-4px;width:1px;height:30px;opacity:0;pointer-events:none;
+  background:linear-gradient(180deg,var(--red) 0%,rgba(255,46,46,0) 100%);
+}
+.rig-weld i{
+  position:absolute;left:50%;bottom:-2px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;
+  background:var(--spark);
+  box-shadow:0 0 10px 2px rgba(255,46,46,.85),0 0 26px 6px rgba(255,46,46,.35);
+}
+.hero-identity.is-welding .rig-weld{animation:weldPass 2.5s cubic-bezier(.42,0,.28,1) .15s forwards}
+@keyframes weldPass{
+  0%{left:0;opacity:0}
+  6%{opacity:1}
+  94%{opacity:1}
+  100%{left:100%;opacity:0}
+}
+.rig-read{
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--t3);white-space:nowrap;line-height:1;
+}
+.rig-read b{color:var(--red);font-weight:400;font-variant-numeric:tabular-nums;margin-right:.1em}
+.rig-read i{font-style:normal;color:var(--red);opacity:.55;margin-left:.05em}
+
+/* three blocks already welded in */
+.hero-name .rt-i.is-block{color:var(--red);text-shadow:0 0 46px rgba(255,46,46,.45)}
+
+/* little gantry arms clamping the hero cards */
+.panel-clamp{
+  position:absolute;left:-46px;top:50%;width:46px;height:60px;overflow:visible;
+  transform:translateY(-50%);
+  fill:none;stroke:rgba(255,46,46,.6);stroke-width:1;
+  filter:drop-shadow(0 0 6px rgba(255,46,46,.28));
+  opacity:0;pointer-events:none;
+  transition:opacity 1s var(--ease) .9s;
+  animation:clampIdle 9s ease-in-out infinite;
+}
+.panel-clamp circle{fill:#0b090c;stroke:rgba(255,46,46,.8)}
+body.is-entered .panel-clamp{opacity:.8}
+@keyframes clampIdle{
+  0%,100%{transform:translateY(-50%) rotate(0deg)}
+  50%{transform:translateY(-50%) rotate(1.4deg)}
+}
+@media (max-width:1200px){.rig-word{display:none}}
+@media (max-width:760px){.rig-read{display:none}}
+@media (max-width:900px){.panel-clamp{display:none}}
+
+.panel-stats dd em{font-style:normal;color:var(--red);font-size:.64em;letter-spacing:0;margin-left:.03em}
 .hero-lede{
   max-width:33rem;margin-top:clamp(1rem,2.4vh,1.6rem);
   color:var(--t2);font-weight:300;line-height:1.62;
@@ -743,6 +807,8 @@ body.is-entered .hero-foot{opacity:1;transform:none;transition-delay:.85s}
 .tl-head{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem 1.5rem;align-items:start}
 .tl-role{font-size:clamp(1.28rem,2.2vw,1.75rem);line-height:.95;letter-spacing:0}
 .tl-org{margin-top:.4rem;color:var(--t2);font-size:.9rem;font-weight:300}
+.tl-org a{color:var(--t1);border-bottom:1px solid rgba(255,46,46,.4);transition:color .3s,border-color .3s}
+.tl-org a:hover{color:var(--red);border-color:var(--red)}
 .tl-meta{display:flex;flex-direction:column;align-items:flex-end;gap:.35rem;text-align:right}
 .tl-date,.tl-type,.tl-toggle{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);white-space:nowrap}
 .tl-toggle{color:var(--red);opacity:.75}
@@ -1013,6 +1079,7 @@ body.cursor-on,body.cursor-on a,body.cursor-on button{cursor:none}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
   .rt-i{opacity:1!important;transform:none!important}
   .deck-card,.work-head,.cap-copy,.sk-group,.exp-head,.contact-sub,.contact-links,.tl-entry,.tl-body li{opacity:1!important;transform:none!important}
+  .rig-weld,.panel-clamp{display:none}
   .sk-tags li,.cap-right::before,.cap-right::after{animation:none!important}
   .scene-layer{display:none}
   .hero-top,.hero-panels,.hero-foot{opacity:1!important;transform:none!important}
