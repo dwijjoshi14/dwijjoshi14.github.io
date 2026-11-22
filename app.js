@@ -886,13 +886,10 @@ function init() {
 
     /* drag the top card sideways: the deck deals and the pin follows */
     let drag = null;
-    deck.addEventListener("pointerdown", (e) => {
-      if (e.button !== 0 || MOBILE_TRACK.matches) return;
-      drag = { x: e.clientX, y: window.scrollY, moved: 0 };
-      deck.classList.add("is-dragging");
-      try { deck.setPointerCapture(e.pointerId); } catch (err) {}
-    });
-    deck.addEventListener("pointermove", (e) => {
+
+    // Drag tracking stays on window instead of using pointer capture, because
+    // capture retargets the click to the deck and the cards never open.
+    function onDragMove(e) {
       if (!drag) return;
       drag.moved = Math.max(drag.moved, Math.abs(e.clientX - drag.x));
       const travel = Math.max(1, pin.offsetHeight - window.innerHeight);
@@ -901,16 +898,26 @@ function init() {
       const clamped = Math.min(base + travel, Math.max(base, y));
       if (lenis) lenis.scrollTo(clamped, { immediate: true });
       else window.scrollTo(0, clamped);
-    });
-    const releaseDrag = () => {
+    }
+
+    function endDrag() {
+      window.removeEventListener("pointermove", onDragMove);
+      window.removeEventListener("pointerup", endDrag);
+      window.removeEventListener("pointercancel", endDrag);
       // A drag that deals the deck should not also open the card it ended on.
       suppressClick = !!drag && drag.moved > 8;
       drag = null;
       deck.classList.remove("is-dragging");
-    };
-    deck.addEventListener("pointerup", releaseDrag);
-    deck.addEventListener("pointercancel", releaseDrag);
-    deck.addEventListener("pointerleave", releaseDrag);
+    }
+
+    deck.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0 || MOBILE_TRACK.matches) return;
+      drag = { x: e.clientX, y: window.scrollY, moved: 0 };
+      deck.classList.add("is-dragging");
+      window.addEventListener("pointermove", onDragMove, { passive: true });
+      window.addEventListener("pointerup", endDrag, { once: true });
+      window.addEventListener("pointercancel", endDrag, { once: true });
+    });
   }
 
   function scrollToCard(i) {
