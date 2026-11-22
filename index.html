@@ -186,6 +186,44 @@
               <span class="card-ghost" aria-hidden="true">01</span>
               <span class="card-sheen" aria-hidden="true"></span>
               <div class="card-body">
+                <p class="card-badge">embedded systems · c11 · freertos · 2025 – 2026</p>
+                <h3 class="card-name">RTOS Task Scheduler</h3>
+                <div class="card-shot">
+                  <img src="rtos-thermal-response.png" alt="Closed-loop thermal response chart: filtered temperature peaks at 80.8 °C while fan duty steps through 40, 70 and 100 percent" loading="lazy" decoding="async" />
+                </div>
+                <p class="card-desc">Three-task FreeRTOS controller regulating a first-order thermal plant — typed queues, a binary semaphore and a mutex behind a hysteresis fan policy, EMA filtering, a 1 s watchdog and injected sensor faults. 77 cases / 494 checks, clean under ASan, UBSan and TSan.</p>
+                <ul class="card-tags"><li>C11</li><li>FreeRTOS</li><li>hysteresis control</li><li>queues + semaphores</li><li>POSIX threads</li><li>sanitizers</li></ul>
+                <div class="card-links">
+                  <a href="https://github.com/dwijjoshi14/rtos-task-scheduler" target="_blank" rel="noopener" class="card-link">view on github →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="deck-card" data-index="1">
+              <span class="card-corner tl"><b>02</b><i>♦</i></span>
+              <span class="card-corner br"><b>02</b><i>♦</i></span>
+              <span class="card-ghost" aria-hidden="true">02</span>
+              <span class="card-sheen" aria-hidden="true"></span>
+              <div class="card-body">
+                <p class="card-badge">tooling · c++17 · 2025 – 2026</p>
+                <h3 class="card-name">DC Circuit Analyzer</h3>
+                <div class="card-shot">
+                  <img src="dc-circuit-analyzer.png" alt="DC Circuit Analyzer card showing a Wheatstone bridge with node voltages and passing KCL and power checks" loading="lazy" decoding="async" />
+                </div>
+                <p class="card-desc">Solves arbitrary resistor networks by modified nodal analysis with Gaussian elimination, reading netlists written in engineering notation. Every answer is checked against KCL and a source-versus-dissipation power balance — 153 tests, warnings as errors, CI on Ubuntu and macOS.</p>
+                <ul class="card-tags"><li>C++17</li><li>MNA</li><li>Gaussian elimination</li><li>KVL/KCL</li><li>netlist parser</li></ul>
+                <div class="card-links">
+                  <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" rel="noopener" class="card-link">view on github →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="deck-card" data-index="2">
+              <span class="card-corner tl"><b>03</b><i>♦</i></span>
+              <span class="card-corner br"><b>03</b><i>♦</i></span>
+              <span class="card-ghost" aria-hidden="true">03</span>
+              <span class="card-sheen" aria-hidden="true"></span>
+              <div class="card-body">
                 <p class="card-badge">founder · research publication · 2026 – present</p>
                 <h3 class="card-name">Parallax Research</h3>
                 <div class="card-shot">
@@ -199,10 +237,26 @@
               </div>
             </article>
 
+            <article class="deck-card" data-index="3">
+              <span class="card-corner tl"><b>04</b><i>♦</i></span>
+              <span class="card-corner br"><b>04</b><i>♦</i></span>
+              <span class="card-ghost" aria-hidden="true">04</span>
+              <span class="card-sheen" aria-hidden="true"></span>
+              <div class="card-body">
+                <p class="card-badge">in progress · 2026</p>
+                <h3 class="card-name">IMU-Based Robotic Arm</h3>
+                <p class="card-desc">Complementary filter fusing MPU-6050 accelerometer and gyroscope data over I2C for drift-free angle estimation on STM32F103, driving a gesture-controlled 3-DOF servo arm at sub-10 ms latency. Three FreeRTOS tasks, with a POSIX simulation layer that tests the logic before hardware flash.</p>
+                <ul class="card-tags"><li>C++</li><li>STM32</li><li>FreeRTOS</li><li>MPU-6050</li><li>complementary filter</li><li>PWM</li></ul>
+                <div class="card-links">
+                  <a href="https://github.com/dwijjoshi14/imu-robotic-arm" target="_blank" rel="noopener" class="card-link">view on github →</a>
+                </div>
+              </div>
+            </article>
+
             <article class="deck-card" data-index="1">
-              <span class="card-corner tl"><b>02</b><i>♦</i></span>
-              <span class="card-corner br"><b>02</b><i>♦</i></span>
-              <span class="card-ghost" aria-hidden="true">02</span>
+              <span class="card-corner tl"><b>05</b><i>♦</i></span>
+              <span class="card-corner br"><b>05</b><i>♦</i></span>
+              <span class="card-ghost" aria-hidden="true">05</span>
               <span class="card-sheen" aria-hidden="true"></span>
               <div class="card-body">
                 <p class="card-badge">hackathon · mind the product world product day · jun 2026</p>
@@ -220,9 +274,9 @@
             </article>
 
             <article class="deck-card" data-index="1">
-              <span class="card-corner tl"><b>02</b><i>♦</i></span>
-              <span class="card-corner br"><b>02</b><i>♦</i></span>
-              <span class="card-ghost" aria-hidden="true">02</span>
+              <span class="card-corner tl"><b>06</b><i>♦</i></span>
+              <span class="card-corner br"><b>06</b><i>♦</i></span>
+              <span class="card-ghost" aria-hidden="true">06</span>
               <span class="card-sheen" aria-hidden="true"></span>
               <div class="card-body">
                 <p class="card-badge">hackathon · gitlab transcend · jun 2026</p>
@@ -236,45 +290,15 @@
               </div>
             </article>
 
-            <article class="deck-card" data-index="2">
-              <span class="card-corner tl"><b>03</b><i>♦</i></span>
-              <span class="card-corner br"><b>03</b><i>♦</i></span>
-              <span class="card-ghost" aria-hidden="true">03</span>
-              <span class="card-sheen" aria-hidden="true"></span>
-              <div class="card-body">
-                <p class="card-badge">systems · c11 · 2026</p>
-                <h3 class="card-name">RTOS Task Scheduler</h3>
-                <p class="card-desc">Three-task FreeRTOS system in C. SensorTask feeds a typed queue every 500ms, ControlTask applies threshold logic and fires a binary semaphore when temp goes critical, DisplayTask renders live output. Runs on Linux via POSIX simulation — port to STM32 is three HAL function swaps.</p>
-                <ul class="card-tags"><li>C11</li><li>FreeRTOS</li><li>queue</li><li>semaphore</li><li>mutex</li><li>STM32</li></ul>
-                <div class="card-links">
-                  <a href="https://github.com/dwijjoshi14/rtos-task-scheduler" target="_blank" rel="noopener" class="card-link">view on github →</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="deck-card" data-index="3">
-              <span class="card-corner tl"><b>04</b><i>♦</i></span>
-              <span class="card-corner br"><b>04</b><i>♦</i></span>
-              <span class="card-ghost" aria-hidden="true">04</span>
-              <span class="card-sheen" aria-hidden="true"></span>
-              <div class="card-body">
-                <p class="card-badge">in progress · may 2026 – present</p>
-                <h3 class="card-name">IMU-Based Robotic Arm</h3>
-                <p class="card-desc">Complementary filter fusing MPU-6050 accelerometer and gyroscope data over I2C for drift-free real-time angle estimation on STM32F103. Three-task FreeRTOS architecture — IMU read, angle compute, servo output — with a POSIX simulation layer for full logic testing on Linux before hardware flash.</p>
-                <ul class="card-tags"><li>C++</li><li>STM32</li><li>FreeRTOS</li><li>MPU-6050</li><li>I2C</li><li>PWM</li></ul>
-                <div class="card-links"><span class="card-note">code coming soon</span></div>
-              </div>
-            </article>
-
             <article class="deck-card" data-index="4">
-              <span class="card-corner tl"><b>05</b><i>♦</i></span>
-              <span class="card-corner br"><b>05</b><i>♦</i></span>
-              <span class="card-ghost" aria-hidden="true">05</span>
+              <span class="card-corner tl"><b>07</b><i>♦</i></span>
+              <span class="card-corner br"><b>07</b><i>♦</i></span>
+              <span class="card-ghost" aria-hidden="true">07</span>
               <span class="card-sheen" aria-hidden="true"></span>
               <div class="card-body">
                 <p class="card-badge">group project · MTE301 · fall 2025</p>
                 <h3 class="card-name">Heat Management System</h3>
-                <p class="card-desc">Closed-loop thermal control on Arduino Uno. TMP36 ADC sensing, PMOS-driven PWM fan, 16×2 LCD and 80-LED NeoPixel strip. The interesting bug was the inverted PWM logic from the PMOS high-side driver — caught it in Tinkercad before it hit hardware.</p>
+                <p class="card-desc">Closed-loop thermal control on Arduino Uno. TMP36 ADC sensing, PID-style PWM fan through a PMOS high-side driver, 16×2 LCD and 80-LED NeoPixel strip. The interesting bug was the inverted PWM logic from the driver — caught in Tinkercad before it hit hardware.</p>
                 <ul class="card-tags"><li>C++</li><li>Arduino</li><li>PWM</li><li>TMP36</li><li>NeoPixel</li></ul>
                 <div class="card-links">
                   <a href="https://github.com/dwijjoshi14/heat-management-system" target="_blank" rel="noopener" class="card-link">view on github →</a>
@@ -282,26 +306,10 @@
               </div>
             </article>
 
-            <article class="deck-card" data-index="5">
-              <span class="card-corner tl"><b>06</b><i>♦</i></span>
-              <span class="card-corner br"><b>06</b><i>♦</i></span>
-              <span class="card-ghost" aria-hidden="true">06</span>
-              <span class="card-sheen" aria-hidden="true"></span>
-              <div class="card-body">
-                <p class="card-badge">tooling · c++17 · 2025</p>
-                <h3 class="card-name">DC Circuit Analyzer</h3>
-                <p class="card-desc">Solo C++17 tool that applies Ohm's Law and Kirchhoff's Laws to series and parallel circuits. Computes resistance, branch currents, voltage drops, and power — then verifies the result against KVL/KCL automatically. Started as a way to stop doing this by hand in physics lab.</p>
-                <ul class="card-tags"><li>C++17</li><li>OOP</li><li>KVL/KCL</li><li>Ohm's Law</li><li>Make</li></ul>
-                <div class="card-links">
-                  <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" rel="noopener" class="card-link">view on github →</a>
-                </div>
-              </div>
-            </article>
-
             <article class="deck-card" data-index="6">
-              <span class="card-corner tl"><b>07</b><i>♦</i></span>
-              <span class="card-corner br"><b>07</b><i>♦</i></span>
-              <span class="card-ghost" aria-hidden="true">07</span>
+              <span class="card-corner tl"><b>08</b><i>♦</i></span>
+              <span class="card-corner br"><b>08</b><i>♦</i></span>
+              <span class="card-ghost" aria-hidden="true">08</span>
               <span class="card-sheen" aria-hidden="true"></span>
               <div class="card-body">
                 <p class="card-badge">capstone · jun 2024</p>
@@ -319,13 +327,13 @@
           <button class="deck-arrow" id="deckPrev" type="button" aria-label="Previous project">←</button>
           <span class="deck-count"><b id="deckIndex">01</b><i>/</i>08</span>
           <div class="deck-dots" id="deckDots">
-            <button type="button" class="is-on" aria-label="Project 1 — Parallax Research"></button>
-            <button type="button" aria-label="Project 2 — ClearShift"></button>
-            <button type="button" aria-label="Project 3 — Sentinel"></button>
-            <button type="button" aria-label="Project 4 — RTOS Task Scheduler"></button>
-            <button type="button" aria-label="Project 5 — IMU-Based Robotic Arm"></button>
-            <button type="button" aria-label="Project 6 — Heat Management System"></button>
-            <button type="button" aria-label="Project 7 — DC Circuit Analyzer"></button>
+            <button type="button" class="is-on" aria-label="Project 1 — RTOS Task Scheduler"></button>
+            <button type="button" aria-label="Project 2 — DC Circuit Analyzer"></button>
+            <button type="button" aria-label="Project 3 — Parallax Research"></button>
+            <button type="button" aria-label="Project 4 — IMU-Based Robotic Arm"></button>
+            <button type="button" aria-label="Project 5 — ClearShift"></button>
+            <button type="button" aria-label="Project 6 — Sentinel"></button>
+            <button type="button" aria-label="Project 7 — Heat Management System"></button>
             <button type="button" aria-label="Project 8 — Smart Parking Assistant"></button>
           </div>
           <button class="deck-arrow" id="deckNext" type="button" aria-label="Next project">→</button>
@@ -350,7 +358,7 @@
         <div class="cap-copy">
           <p>I'm a <strong>Mechatronics Engineering student at Toronto Metropolitan University</strong>, transferred from Computer Engineering because I kept being more interested in the hardware side of everything. That intersection of electronics, firmware, and physical systems is where I want to live.</p>
           <p>On the technical side I've been building with <span class="hl">embedded C++ firmware</span>, working with <span class="hl">sensor integration</span>, real-time control loops, FreeRTOS, and writing tests that actually catch things before they break in the real world.</p>
-          <p>Every build leaves with its numbers attached — <span class="hl">±2°C thermal control</span>, a <span class="hl">25% latency cut</span>, <span class="hl">95% sensor reliability</span> — plus the validation report that shows how I measured them.</p>
+          <p>Every build leaves with its numbers attached — <span class="hl">494 assertions</span> across the RTOS kernel and control logic, a circuit solver that checks its own <span class="hl">KCL and power balance</span>, <span class="hl">±2°C thermal control</span>, <span class="hl">95% sensor reliability</span> — plus the report that shows how I measured them.</p>
           <p>Outside of engineering, I've spent a few years doing real work in clinical data management, youth programs, and community operations. I'm not choosy about what kind of problem I'm solving — I just want to solve it well.</p>
         </div>
         <div class="stat-grid">
@@ -372,20 +380,24 @@
           <ul class="sk-tags"><li>STM32</li><li>Arduino</li><li>FreeRTOS</li><li>PWM</li><li>ADC</li><li>UART</li><li>I2C</li><li>SPI</li><li>GPIO</li><li>PMOS driver</li><li>PlatformIO</li></ul>
         </div>
         <div class="sk-group">
-          <div class="sk-head"><span class="sk-num mono">03</span><h3 class="sk-title">ai + agents</h3></div>
+          <div class="sk-head"><span class="sk-num mono">03</span><h3 class="sk-title">control + numerical</h3></div>
+          <ul class="sk-tags"><li>closed-loop control</li><li>hysteresis</li><li>EMA filtering</li><li>state machines</li><li>watchdog timers</li><li>MNA</li><li>Gaussian elimination</li><li>KVL/KCL</li></ul>
+        </div>
+        <div class="sk-group">
+          <div class="sk-head"><span class="sk-num mono">04</span><h3 class="sk-title">ai + agents</h3></div>
           <ul class="sk-tags"><li>GitLab Orbit</li><li>Duo Agent Platform</li><li>Prompt Engineering</li><li>Knowledge Graph APIs</li><li>Claude API</li></ul>
         </div>
         <div class="sk-group">
-          <div class="sk-head"><span class="sk-num mono">04</span><h3 class="sk-title">tools + platforms</h3></div>
-          <ul class="sk-tags"><li>Git</li><li>GitHub</li><li>GitLab</li><li>GitLab CI/CD</li><li>Linux</li><li>VS Code</li><li>Tinkercad</li><li>MATLAB</li><li>KiCad</li><li>Make</li></ul>
+          <div class="sk-head"><span class="sk-num mono">05</span><h3 class="sk-title">tools + platforms</h3></div>
+          <ul class="sk-tags"><li>Git</li><li>GitHub</li><li>GitHub Actions</li><li>GitLab</li><li>GitLab CI/CD</li><li>Make</li><li>ASan / TSan / UBSan</li><li>GCC static analyzer</li><li>Linux</li><li>VS Code</li><li>Tinkercad</li><li>MATLAB</li><li>KiCad</li></ul>
         </div>
         <div class="sk-group">
-          <div class="sk-head"><span class="sk-num mono">05</span><h3 class="sk-title">web + fullstack</h3></div>
+          <div class="sk-head"><span class="sk-num mono">06</span><h3 class="sk-title">web + fullstack</h3></div>
           <ul class="sk-tags"><li>Next.js</li><li>Supabase</li><li>HTML/CSS</li><li>Vercel</li><li>Node.js</li></ul>
         </div>
         <div class="sk-group">
-          <div class="sk-head"><span class="sk-num mono">06</span><h3 class="sk-title">testing + qa</h3></div>
-          <ul class="sk-tags"><li>unit testing</li><li>black-box</li><li>white-box</li><li>defect tracking</li><li>V&amp;V</li></ul>
+          <div class="sk-head"><span class="sk-num mono">07</span><h3 class="sk-title">testing + qa</h3></div>
+          <ul class="sk-tags"><li>unit testing</li><li>black-box</li><li>white-box</li><li>defect tracking</li><li>V&amp;V</li><li>fault injection</li></ul>
         </div>
       </div>
       </div>
