@@ -826,6 +826,7 @@ function init() {
   let tiltTY = 0;
   let sheenX = 50;
   let sheenY = 0;
+  let suppressClick = false;
   const cardState = new Array(cards.length).fill("");
   const dims = cards.map((card) => {
     const dim = document.createElement("span");
@@ -848,6 +849,7 @@ function init() {
     $$(".card-corner b", card).forEach((b) => { b.textContent = label; });
     const ghost = $(".card-ghost", card);
     if (ghost) ghost.textContent = label;
+    card.tabIndex = 0;
   });
 
   function measureDeck() {
@@ -886,12 +888,13 @@ function init() {
     let drag = null;
     deck.addEventListener("pointerdown", (e) => {
       if (e.button !== 0 || MOBILE_TRACK.matches) return;
-      drag = { x: e.clientX, y: window.scrollY };
+      drag = { x: e.clientX, y: window.scrollY, moved: 0 };
       deck.classList.add("is-dragging");
       try { deck.setPointerCapture(e.pointerId); } catch (err) {}
     });
     deck.addEventListener("pointermove", (e) => {
       if (!drag) return;
+      drag.moved = Math.max(drag.moved, Math.abs(e.clientX - drag.x));
       const travel = Math.max(1, pin.offsetHeight - window.innerHeight);
       const base = pin.getBoundingClientRect().top + window.scrollY;
       const y = drag.y - ((e.clientX - drag.x) / Math.max(260, deckW)) * travel;
@@ -900,6 +903,8 @@ function init() {
       else window.scrollTo(0, clamped);
     });
     const releaseDrag = () => {
+      // A drag that deals the deck should not also open the card it ended on.
+      suppressClick = !!drag && drag.moved > 8;
       drag = null;
       deck.classList.remove("is-dragging");
     };
@@ -1009,6 +1014,271 @@ function init() {
       document.body.classList.toggle("is-tracking", nowTracking);
     }
   }, 0);
+
+  /* ── project detail overlay: a card opens into its own page ───── */
+  const PROJECTS = {
+    "RTOS Task Scheduler": {
+      kicker: "embedded systems / c11 / freertos",
+      intro: "A temperature controller on three FreeRTOS tasks, built so it cannot quietly trust a sensor that has failed.",
+      body: [
+        "The earlier version of this ran three tasks on a scripted waveform, which meant nothing could really go wrong. This one samples a first order thermal model that heats up from a workload and cools from the fan the controller commands, so overshoot, saturation and recovery all happen for real.",
+        "ControlTask runs a hysteresis state machine with a 2 C guard band. It escalates the moment a reading crosses a threshold and steps down one state at a time, only after the temperature falls a full band below the line that caused the step. Health checks read the raw signal before the EMA, because a stuck sensor looks perfectly smooth once you filter it.",
+        "The same sources build for an STM32 later. For now they run on Linux through a POSIX port of the FreeRTOS API. CI runs 77 cases and 494 checks under ASan, UBSan and TSan, plus the GCC static analyzer over the whole program.",
+      ],
+      facts: [["tasks", "3"], ["sample period", "200 ms"], ["checks", "494"], ["peak", "80.8 C"]],
+      stack: ["C11", "FreeRTOS", "POSIX threads", "queues and semaphores", "hysteresis control", "EMA filter", "sanitizers", "GitHub Actions"],
+      links: [["view on github", "https://github.com/dwijjoshi14/rtos-task-scheduler"]],
+    },
+    "DC Circuit Analyzer": {
+      kicker: "tools / c++17",
+      intro: "A solver for DC networks that checks its own answers instead of printing confident nonsense.",
+      body: [
+        "It started as a way to stop doing voltage dividers by hand in physics lab, and the first version only handled series and parallel strings. This one parses a netlist and solves arbitrary resistor networks with modified nodal analysis and Gaussian elimination, so a bridge or a ladder is a few lines of text.",
+        "Every run ends with two checks: the worst KCL residual at each node, and a comparison of what the sources deliver against what the resistors dissipate. If the answer is wrong, the tool says so, and a bad netlist comes back with a line number. Values accept engineering notation, so 4k7 and 220 ohms both parse.",
+        "153 checks cover the parsers, both circuit types, the solver on a divider, a parallel pair and an unbalanced bridge, plus the failure modes: a floating section, conflicting sources and a singular matrix. The build treats warnings as errors and CI runs on Ubuntu and macOS.",
+      ],
+      facts: [["language", "C++17"], ["solver", "nodal analysis"], ["checks", "153"], ["KCL residual", "3.9e-18 A"]],
+      stack: ["C++17", "modified nodal analysis", "Gaussian elimination", "netlist parser", "Make", "GitHub Actions"],
+      links: [["view on github", "https://github.com/dwijjoshi14/dc-circuit-analyzer"]],
+    },
+    "Parallax Research": {
+      kicker: "founder / research publication",
+      intro: "A research group I co founded, publishing a morning brief across markets, technology and company fundamentals.",
+      body: [
+        "Parallax is built on a simple idea: the same facts look different depending on where you stand. We publish a daily brief that tries to be useful to someone making a decision, not someone scrolling past a headline.",
+        "I run the technology desk. That means AI infrastructure, hardware supply chains and the engineering constraints that decide what actually ships, written for people who want the mechanism. I also keep the site and the archive addressable, so a brief stays readable months after the morning it went out.",
+      ],
+      facts: [["role", "co founder"], ["desk", "technology"], ["cadence", "daily brief"], ["since", "2026"]],
+      stack: ["research", "AI infrastructure", "hardware supply chains", "publishing", "writing"],
+      links: [["read the brief", "https://www.parallaxresearchgroup.ca", true]],
+    },
+    "IMU-Based Robotic Arm": {
+      kicker: "robotics / stm32 / in progress",
+      intro: "A servo arm that follows your hand, built on an STM32 with a filter that keeps the angle honest.",
+      body: [
+        "The MPU-6050 gives you an accelerometer that is noisy and a gyroscope that drifts. A complementary filter fuses the two over I2C, which is enough for a stable angle at under 10 ms without dragging a Kalman filter onto the chip.",
+        "Three FreeRTOS tasks split the work: read the sensor, compute the angle, drive the servos over PWM. The control logic runs under a POSIX simulation layer first, so I can test the behaviour without the arm sitting on the bench.",
+        "Still in progress. The next step is the hardware build and tuning the filter against real motion instead of simulated data.",
+      ],
+      facts: [["axes", "3"], ["sensor", "MPU-6050"], ["latency", "under 10 ms"], ["board", "STM32F103"]],
+      stack: ["C++", "STM32", "FreeRTOS", "MPU-6050", "I2C", "PWM", "complementary filter"],
+      links: [["view on github", "https://github.com/dwijjoshi14/imu-robotic-arm"]],
+    },
+    "ClearShift": {
+      kicker: "hackathon / full stack / shipped",
+      intro: "A shift handoff tool for clinical care teams, built and shipped live inside a hackathon window.",
+      body: [
+        "Handoff at shift change is where clinical information quietly disappears. ClearShift turns it into a structured form: what happened, what is still open, and how urgent it is. The incoming worker gets a plain English summary instead of a wall of notes.",
+        "Built with Next.js, TypeScript and Supabase, with the Claude API writing the summary. It went from an empty repo to a live Vercel deployment inside the Mind the Product World Product Day competition window, which was mostly a lesson in deciding what not to build.",
+      ],
+      facts: [["event", "World Product Day"], ["ship time", "one weekend"], ["database", "Supabase"], ["status", "live"], ["summary", "Claude API"]],
+      stack: ["Next.js", "TypeScript", "Supabase", "Claude API", "Vercel"],
+      links: [["live demo", "https://project-ak4dq-pu47a3emu-dwij-joshi-s-projects.vercel.app/", true], ["view on github", "https://github.com/dwijjoshi14/ClearShift"]],
+    },
+    "Sentinel": {
+      kicker: "hackathon / gitlab / agents",
+      intro: "A GitLab agent that answers the question every reviewer actually has: what else does this merge request touch?",
+      body: [
+        "Type /sentinel in the merge request sidebar and it walks GitLab Orbit's knowledge graph across eight node types, including files, imports, definitions, pipelines, vulnerabilities and contributors. Then it posts a structured impact brief back to the request in under a minute.",
+        "Built on the Duo Agent Platform for the GitLab Transcend hackathon, with YAML for the agent and Python for the graph traversal. The interesting part was deciding what a blast radius even means for a repository, and which edges are worth following before the brief stops being useful.",
+      ],
+      facts: [["command", "/sentinel"], ["node types", "8"], ["response", "under 60 s"], ["event", "GitLab Transcend"]],
+      stack: ["GitLab Orbit", "Duo Agent Platform", "YAML", "Python", "GitLab CI/CD"],
+      links: [["open on gitlab", "https://gitlab.com/dwijjoshi14/sentinel-orbit-agent", true], ["view on github", "https://github.com/dwijjoshi14/sentinel-orbit-agent"]],
+    },
+    "Heat Management System": {
+      kicker: "coursework / mte301 / arduino",
+      intro: "A closed loop thermal controller on an Arduino Uno, built for MTE301.",
+      body: [
+        "A TMP36 reads temperature through the ADC, the code decides a fan duty, and a PMOS high side driver switches the fan with PWM. A 16x2 LCD shows the numbers and an 80 LED NeoPixel strip shows the state from across the room.",
+        "The bug worth remembering was inverted PWM logic from the PMOS driver, where a higher duty meant less cooling. I caught it in Tinkercad before it ever reached hardware, which is the whole reason the simulation came first. That one still comes up when I explain why I test in layers.",
+      ],
+      facts: [["course", "MTE301"], ["sensor", "TMP36"], ["output", "PWM fan"], ["display", "LCD + NeoPixel"]],
+      stack: ["C++", "Arduino", "TMP36", "PWM", "PMOS", "NeoPixel", "LCD"],
+      links: [["view on github", "https://github.com/dwijjoshi14/heat-management-system"]],
+    },
+    "Smart Parking Assistant": {
+      kicker: "capstone / 2024 / arduino",
+      intro: "My first capstone, and the project where testing stopped being a checkbox for me.",
+      body: [
+        "An ultrasonic sensor measures distance and the feedback gets faster as you close in. It held 95% detection accuracy from 5 to 100 cm with a feedback loop under 50 ms.",
+        "The first version was unreliable at the edges of its range. I ran more than ten edge case scenarios, rewrote the timing, and took reliability from 65 to 88%. That gap is the reason I now write the failure cases before I trust a number.",
+      ],
+      facts: [["range", "5 to 100 cm"], ["accuracy", "95%"], ["loop", "under 50 ms"], ["reliability", "65 to 88%"]],
+      stack: ["C++", "Arduino", "ultrasonic", "PWM", "testing"],
+      links: [],
+      note: "documented on request",
+    },
+  };
+
+  const projModal = $("#projModal");
+  const projPanel = projModal ? $(".proj-panel", projModal) : null;
+  const projScroll = $("#projScroll");
+  let projReturnFocus = null;
+
+  // Every card gets a real way in, so the deck is not just a display.
+  cards.forEach((card) => {
+    const name = $(".card-name", card)?.textContent.trim();
+    const links = $(".card-links", card);
+    if (!name || !PROJECTS[name] || !links) return;
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "card-link card-open";
+    btn.dataset.open = name;
+    btn.textContent = "the full story";
+    links.prepend(btn);
+    card.setAttribute("aria-haspopup", "dialog");
+  });
+
+  function fillProject(name) {
+    const data = PROJECTS[name];
+    if (!data || !projModal) return false;
+    const card = cards.find((c) => $(".card-name", c)?.textContent.trim() === name);
+
+    $("#projKicker").textContent = data.kicker;
+    $("#projTitle").textContent = name;
+
+    const shot = $("#projShot");
+    const source = card?.querySelector(".card-shot img");
+    if (shot) {
+      shot.innerHTML = "";
+      if (source) {
+        const img = new Image();
+        img.src = source.currentSrc || source.src;
+        img.alt = source.alt || name;
+        img.decoding = "async";
+        shot.appendChild(img);
+        shot.hidden = false;
+      } else {
+        shot.hidden = true;
+      }
+    }
+
+    $("#projIntro").textContent = data.intro;
+
+    const copy = $("#projCopy");
+    copy.innerHTML = "";
+    data.body.forEach((text) => {
+      const p = document.createElement("p");
+      p.textContent = text;
+      copy.appendChild(p);
+    });
+
+    const facts = $("#projFacts");
+    facts.innerHTML = "";
+    data.facts.forEach(([label, value]) => {
+      const cell = document.createElement("div");
+      cell.className = "proj-fact";
+      const dt = document.createElement("dt");
+      dt.textContent = label;
+      const dd = document.createElement("dd");
+      dd.textContent = value;
+      cell.append(dt, dd);
+      facts.appendChild(cell);
+    });
+
+    const stack = $("#projStack");
+    stack.innerHTML = "";
+    data.stack.forEach((item) => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      stack.appendChild(li);
+    });
+
+    const links = $("#projLinks");
+    links.innerHTML = "";
+    data.links.forEach(([label, href, live]) => {
+      const a = document.createElement("a");
+      a.className = live ? "proj-link is-live" : "proj-link";
+      a.href = href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = label + " \u2197";
+      links.appendChild(a);
+    });
+    if (data.note) {
+      const note = document.createElement("span");
+      note.className = "proj-note";
+      note.textContent = data.note;
+      links.appendChild(note);
+    }
+
+    if (projScroll) projScroll.scrollTop = 0;
+    return true;
+  }
+
+  function openProject(name) {
+    if (!projModal || !fillProject(name)) return;
+    projReturnFocus = document.activeElement;
+    projModal.classList.add("is-open");
+    projModal.setAttribute("aria-hidden", "false");
+    document.documentElement.classList.add("proj-open");
+    lenis?.stop();
+    $("#projClose")?.focus({ preventScroll: true });
+  }
+
+  function closeProject() {
+    if (!projModal?.classList.contains("is-open")) return;
+    projModal.classList.remove("is-open");
+    projModal.setAttribute("aria-hidden", "true");
+    document.documentElement.classList.remove("proj-open");
+    lenis?.start();
+    if (projReturnFocus?.focus) projReturnFocus.focus({ preventScroll: true });
+  }
+
+  if (deck) {
+    deck.addEventListener("click", (e) => {
+      if (suppressClick) {
+        suppressClick = false;
+        return;
+      }
+      const opener = e.target.closest("[data-open]");
+      if (opener) {
+        e.preventDefault();
+        openProject(opener.dataset.open);
+        return;
+      }
+      if (e.target.closest("a")) return;
+      const card = e.target.closest(".deck-card");
+      if (!card) return;
+      if (!MOBILE_TRACK.matches && !card.classList.contains("is-front")) return;
+      openProject($(".card-name", card).textContent.trim());
+    });
+
+    deck.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      if (e.target.closest("a, button")) return;
+      const card = e.target.closest(".deck-card");
+      if (!card) return;
+      e.preventDefault();
+      openProject($(".card-name", card).textContent.trim());
+    });
+  }
+
+  projModal?.querySelector("[data-proj-close]")?.addEventListener("click", closeProject);
+  $("#projClose")?.addEventListener("click", closeProject);
+
+  document.addEventListener("keydown", (e) => {
+    if (!projModal?.classList.contains("is-open")) return;
+    if (e.key === "Escape") {
+      closeProject();
+      return;
+    }
+    if (e.key !== "Tab" || !projPanel) return;
+    const focusable = Array.from(
+      projPanel.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+    );
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
 
   /* stat counters */
   $$(".stat").forEach((stat) => {

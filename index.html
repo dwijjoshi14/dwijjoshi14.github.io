@@ -191,7 +191,7 @@
                 <div class="card-shot">
                   <img src="rtos-thermal-response.png" alt="Closed-loop thermal response chart: filtered temperature peaks at 80.8 °C while fan duty steps through 40, 70 and 100 percent" loading="lazy" decoding="async" />
                 </div>
-                <p class="card-desc">Three-task FreeRTOS controller regulating a first-order thermal plant — typed queues, a binary semaphore and a mutex behind a hysteresis fan policy, EMA filtering, a 1 s watchdog and injected sensor faults. 77 cases / 494 checks, clean under ASan, UBSan and TSan.</p>
+                <p class="card-desc">Three FreeRTOS tasks regulating a thermal model that pushes back: queues, a binary semaphore and a mutex behind a hysteresis fan policy, plus EMA filtering, a watchdog and injected sensor faults. 494 checks pass under sanitizers.</p>
                 <ul class="card-tags"><li>C11</li><li>FreeRTOS</li><li>hysteresis control</li><li>queues + semaphores</li><li>POSIX threads</li><li>sanitizers</li></ul>
                 <div class="card-links">
                   <a href="https://github.com/dwijjoshi14/rtos-task-scheduler" target="_blank" rel="noopener" class="card-link">view on github →</a>
@@ -210,7 +210,7 @@
                 <div class="card-shot">
                   <img src="dc-circuit-analyzer.png" alt="DC Circuit Analyzer card showing a Wheatstone bridge with node voltages and passing KCL and power checks" loading="lazy" decoding="async" />
                 </div>
-                <p class="card-desc">Solves arbitrary resistor networks by modified nodal analysis with Gaussian elimination, reading netlists written in engineering notation. Every answer is checked against KCL and a source-versus-dissipation power balance — 153 tests, warnings as errors, CI on Ubuntu and macOS.</p>
+                <p class="card-desc">A C++17 solver for arbitrary resistor networks. It reads netlists, solves them by modified nodal analysis, then checks its own answer against KCL and a power balance. 153 checks, warnings as errors.</p>
                 <ul class="card-tags"><li>C++17</li><li>MNA</li><li>Gaussian elimination</li><li>KVL/KCL</li><li>netlist parser</li></ul>
                 <div class="card-links">
                   <a href="https://github.com/dwijjoshi14/dc-circuit-analyzer" target="_blank" rel="noopener" class="card-link">view on github →</a>
@@ -229,7 +229,7 @@
                 <div class="card-shot">
                   <img src="parallax-research.jpg" alt="Parallax Research Group homepage" loading="lazy" decoding="async" />
                 </div>
-                <p class="card-desc">Independent research group publishing a morning brief across markets, economics and technology. I run the technology desk — AI infrastructure, hardware supply chains, and the engineering constraints that decide what actually ships — and keep the site and the archive addressable.</p>
+                <p class="card-desc">An independent research group publishing a morning brief across markets, economics and technology. I run the technology desk: AI infrastructure, hardware supply chains and the constraints that decide what actually ships.</p>
                 <ul class="card-tags"><li>Research</li><li>AI infrastructure</li><li>Hardware</li><li>Publishing</li><li>Writing</li></ul>
                 <div class="card-links">
                   <a href="https://www.parallaxresearchgroup.ca" target="_blank" rel="noopener" class="card-link is-live">read the brief ↗</a>
@@ -245,7 +245,7 @@
               <div class="card-body">
                 <p class="card-badge">in progress · 2026</p>
                 <h3 class="card-name">IMU-Based Robotic Arm</h3>
-                <p class="card-desc">Complementary filter fusing MPU-6050 accelerometer and gyroscope data over I2C for drift-free angle estimation on STM32F103, driving a gesture-controlled 3-DOF servo arm at sub-10 ms latency. Three FreeRTOS tasks, with a POSIX simulation layer that tests the logic before hardware flash.</p>
+                <p class="card-desc">A complementary filter fusing MPU-6050 data over I2C for drift free angle estimation on STM32F103. It drives a gesture controlled servo arm with three axes at under 10 ms latency, tested in simulation before it touches hardware.</p>
                 <ul class="card-tags"><li>C++</li><li>STM32</li><li>FreeRTOS</li><li>MPU-6050</li><li>complementary filter</li><li>PWM</li></ul>
                 <div class="card-links">
                   <a href="https://github.com/dwijjoshi14/imu-robotic-arm" target="_blank" rel="noopener" class="card-link">view on github →</a>
@@ -264,7 +264,7 @@
                 <div class="card-shot">
                   <img src="https://raw.githubusercontent.com/dwijjoshi14/ClearShift/main/screenshot.png" alt="ClearShift app screenshot" loading="lazy" decoding="async" />
                 </div>
-                <p class="card-desc">Full-stack shift handoff tool for clinical care teams — structured two-minute form, flagged urgency levels, AI-generated plain-English summaries. Built and shipped live on Vercel within the competition window.</p>
+                <p class="card-desc">A shift handoff tool for clinical care teams. A structured form captures what happened, flags urgency and generates a plain English summary, and it shipped live on Vercel inside the competition window.</p>
                 <ul class="card-tags"><li>Next.js</li><li>Supabase</li><li>Claude API</li><li>TypeScript</li><li>Vercel</li></ul>
                 <div class="card-links">
                   <a href="https://project-ak4dq-pu47a3emu-dwij-joshi-s-projects.vercel.app/" target="_blank" rel="noopener" class="card-link is-live">live demo ↗</a>
@@ -281,7 +281,7 @@
               <div class="card-body">
                 <p class="card-badge">hackathon · gitlab transcend · jun 2026</p>
                 <h3 class="card-name">Sentinel</h3>
-                <p class="card-desc">Orbit-powered MR blast-radius agent on the GitLab Duo Agent Platform. Triggers with /sentinel in the MR sidebar, traverses GitLab's knowledge graph across 8 node types — files, imports, definitions, pipelines, vulnerabilities, contributors — and posts a structured impact brief directly to the MR in under 60 seconds.</p>
+                <p class="card-desc">An Orbit powered agent on the GitLab Duo Agent Platform. Type /sentinel and it walks the knowledge graph across 8 node types, then posts a structured impact brief to the merge request in under a minute.</p>
                 <ul class="card-tags"><li>GitLab Orbit</li><li>Duo Agent Platform</li><li>YAML</li><li>Python</li><li>Prompt Engineering</li><li>GitLab CI/CD</li></ul>
                 <div class="card-links">
                   <a href="https://gitlab.com/dwijjoshi14/sentinel-orbit-agent" target="_blank" rel="noopener" class="card-link is-live">gitlab ↗</a>
@@ -298,7 +298,7 @@
               <div class="card-body">
                 <p class="card-badge">group project · MTE301 · fall 2025</p>
                 <h3 class="card-name">Heat Management System</h3>
-                <p class="card-desc">Closed-loop thermal control on Arduino Uno. TMP36 ADC sensing, PID-style PWM fan through a PMOS high-side driver, 16×2 LCD and 80-LED NeoPixel strip. The interesting bug was the inverted PWM logic from the driver — caught in Tinkercad before it hit hardware.</p>
+                <p class="card-desc">Closed loop thermal control on an Arduino Uno. TMP36 sensing, a PID style PWM fan through a PMOS high side driver, an LCD and an 80 LED NeoPixel strip. The bug was inverted PWM logic, caught in Tinkercad first.</p>
                 <ul class="card-tags"><li>C++</li><li>Arduino</li><li>PWM</li><li>TMP36</li><li>NeoPixel</li></ul>
                 <div class="card-links">
                   <a href="https://github.com/dwijjoshi14/heat-management-system" target="_blank" rel="noopener" class="card-link">view on github →</a>
@@ -314,7 +314,7 @@
               <div class="card-body">
                 <p class="card-badge">capstone · jun 2024</p>
                 <h3 class="card-name">Smart Parking Assistant</h3>
-                <p class="card-desc">Proximity-feedback parking system — 95% detection accuracy from 5 to 100cm, sub-50ms feedback loop. Ran 10+ edge-case scenarios and got reliability from 65% to 88%. First project where I really understood what testing is actually for.</p>
+                <p class="card-desc">A proximity feedback parking aid with 95% detection accuracy from 5 to 100 cm and a loop under 50 ms. Ten edge cases took reliability from 65 to 88%, which is where I learned what testing is for.</p>
                 <ul class="card-tags"><li>C++</li><li>Arduino</li><li>ultrasonic</li><li>PWM</li></ul>
                 <div class="card-links"><span class="card-note">documented on request</span></div>
               </div>
@@ -337,7 +337,7 @@
             <button type="button" aria-label="Project 8 — Smart Parking Assistant"></button>
           </div>
           <button class="deck-arrow" id="deckNext" type="button" aria-label="Next project">→</button>
-          <span class="deck-hint">drag · scroll</span>
+          <span class="deck-hint">drag · scroll · click to open</span>
         </div>
       </div>
     </div>
@@ -575,6 +575,24 @@
   </section>
 
 </main>
+
+<!-- ── project detail overlay ──────────────────────────────────── -->
+<div class="proj-modal" id="projModal" aria-hidden="true">
+  <div class="proj-backdrop" data-proj-close></div>
+  <div class="proj-panel" role="dialog" aria-modal="true" aria-labelledby="projTitle">
+    <button class="proj-close" id="projClose" type="button" aria-label="Close project">✕</button>
+    <div class="proj-scroll" id="projScroll">
+      <p class="proj-kicker" id="projKicker"></p>
+      <h2 class="proj-title" id="projTitle">project</h2>
+      <figure class="proj-shot" id="projShot" hidden></figure>
+      <p class="proj-intro" id="projIntro"></p>
+      <div class="proj-copy" id="projCopy"></div>
+      <dl class="proj-facts" id="projFacts"></dl>
+      <ul class="proj-stack" id="projStack"></ul>
+      <div class="proj-links" id="projLinks"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ── chat ────────────────────────────────────────────────────── -->
 <button class="chat-hint" id="chatHint" type="button">ask my AI about me</button>
